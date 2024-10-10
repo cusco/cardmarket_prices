@@ -1,0 +1,86 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main, staging ]
+
+jobs:
+  Validate_and_Test:
+    runs-on: ubuntu-latest
+
+#    services:
+#      postgres:
+#        image: postgres:15
+#        env:
+#          POSTGRES_USER: db_user
+#          POSTGRES_PASSWORD: db_password
+#          POSTGRES_DB: db_name
+#        ports: [ '5432:5432' ]
+#        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+        cache: 'pip'
+
+#    - uses: actions/cache@v3
+#      id: cache
+#      with:
+#        path: |
+#          ~/.cache/pip
+#          ${{ env.pythonLocation }}
+##        key: ${{ runner.os }}-pip-${{ hashFiles('py-requirements/base.txt') }}
+#        key: ${{ env.pythonLocation }}-pip-${{ hashFiles('requirements.txt') }}
+
+#        restore-keys: |
+#          ${{ runner.os }}-pip-
+#          ${{ runner.os }}-
+
+    - name: Set-up Requirements
+#      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+#    - name: upterm
+#      uses: lhotari/action-upterm@v1
+
+#    - name: Run migrations
+#      run: |
+#        cd src
+#        ./manage.py migrate
+
+#    - name: Set-up Scripts
+#      run: |
+#        git submodule init
+#        git submodule update
+#        ./scripts/get_static_validation_backend.sh
+
+    - name: Static Validation
+      run: |
+        ./scripts/static_validate_ci_backend.sh
+
+    - name: Test Reporter
+      uses: dorny/test-reporter@v1
+      if:
+        success() || failure()  # run this step even if previous step failed
+      with:
+        name: Report - Static Validation
+        path: report_*.xml
+        reporter: java-junit
+
+#    - name: Test Backend
+#      env:
+#        SECRETKEY: django-insecure-k1l0gdyz@0ql=k8x!f1=4y67_gak-q!1d43fd0r21vaf@8-aze
+#        DJANGO_SETTINGS_MODULE: cm_prices.settings.ci
+#      run: |
+#        ./scripts/test_ci_backend.sh

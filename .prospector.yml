@@ -1,0 +1,79 @@
+inherits:
+  - strictness_veryhigh
+
+uses:
+    - django
+    - celery
+
+ignore-patterns:
+  - ^setup.py$
+  - wsgi.py$
+  - ^static
+
+pylint:
+  disable:
+    - missing-final-newline
+    - too-few-public-methods
+    - too-many-ancestors
+    - unsubscriptable-object # this was added due to list[int] support, remove in python 3.10
+    - bad-whitespace
+    - W0613  # allow Unused arguments
+    - W0142  # allow Used * or ** magic
+    - R0201  # disable no-self-use
+    - C0209  # disbale consider-using-f-string, use .format() as valid
+    - invalid-name
+
+  options:
+    max-locals: 25
+    max-returns: 6
+    max-branches: 20
+    max-statements: 60
+    min-public-methods: 1
+    max-public-methods: 24
+    max-line-length: 120
+    max-args: 10
+    max-module-lines: 1200
+    max-attributes: 8
+    # Regular expressions used to match various names
+    # (we allow longer names than default)
+    argument-rgx: "[a-z_][a-z0-9_]{2,60}$"
+    attr-rgx: "[a-z_][a-z0-9_]{2,60}$"
+    function-rgx: "[a-z_][a-z0-9_]{2,60}$"
+    method-rgx: "[a-z_][a-z0-9_]{2,60}$"
+    variable-rgx: "[a-z_][a-z0-9_]{2,60}$"
+
+pep8:
+  options:
+    max-line-length: 120
+  disable:
+    - W292  # no newline at end of file
+    - W391  # blank line at end of file
+    - E402
+
+pyroma:
+  disable:
+    - PYR15
+    - PYR18
+    - PYR17
+
+pep257:
+  run: true
+  disable:
+    - D100  # Missing docstring in public module
+    - D101  # Missing docstring in public class
+    - D104  # Missing docstring in public package
+    - D106  # Missing docstring in public nested class
+    - D202  # No blank lines allowed after function docstring
+    - D203  # 1 blank line required before class docstring
+    - D212  # Multi-line docstring summary should start at the first line
+
+
+mccabe:
+  options:
+    max-complexity: 20
+
+dodgy:
+  run: false
+
+pyflakes:
+  run: false
