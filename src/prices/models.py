@@ -67,20 +67,43 @@ class Catalog(BaseAbstractModel):
     md5sum = models.CharField(max_length=32, verbose_name='MD5sum', unique=True)
 
 
+class MTGSet(BaseAbstractModel):
+    """Model representing SET NAMES of MTG cards."""
+
+    expansion_id = models.PositiveSmallIntegerField(verbose_name='Cardmarket Set ID', unique=True, primary_key=True)
+    name = models.CharField(max_length=255, verbose_name='Set Name', unique=True)
+
+    def __str__(self):
+        """Return representation in string format."""
+
+        return self.name
+
+
 class MTGCard(BaseAbstractModel):
-    """Model representing a MTG card."""
+    """Model representing MTG card."""
 
     cm_id = models.PositiveIntegerField(null=False, blank=False, primary_key=True)
-    name = models.CharField(max_length=255, null=True)
-    slug = models.SlugField(255, unique=True, null=True)  # nosemgrep /en/Magic/Products/Singles/Mirage/Flash
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(255, unique=True, null=True)  # noset /en/Magic/Products/Singles/Mirage/Flash
+
+    expansion = models.ForeignKey(MTGSet, on_delete=models.SET_NULL, null=True, related_name='cards')
 
     category_id = models.PositiveIntegerField(default=1)
-    expansion_id = models.PositiveIntegerField()
+    # expansion_id = models.PositiveIntegerField()
     metacard_id = models.PositiveIntegerField()
     cm_date_added = models.DateTimeField(verbose_name='Date added to cardmarket')
 
     class Meta:
         indexes = [models.Index(fields=['cm_id'], name='idx_mtgcard_cm_id')]
+
+    def __str__(self):
+        """Return representation in string format."""
+
+        latest_price = self.prices.order_by('-catalog_date').first()
+        trend_price = latest_price.trend if latest_price else 'No Price'
+        set_name = self.expansion.name if self.expansion else 'Unknown Set'
+
+        return f"{self.name} - {set_name} - Trend: {trend_price}"
 
 
 class MTGCardPrice(BaseAbstractModel):

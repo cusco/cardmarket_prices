@@ -128,6 +128,7 @@ SHELL_PLUS_POST_IMPORTS = (
     # ('module.submodule2', 'function3'),
     # ('module.submodule3', '*'),
     # 'module.submodule4',
+    ('prices.services', '*'),
     ('lib.utils', '*'),
 )
 
