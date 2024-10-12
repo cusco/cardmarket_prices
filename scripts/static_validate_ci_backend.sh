@@ -3,7 +3,7 @@
 export DJANGO_SETTINGS_MODULE=cm_prices.settings
 
 # exit on first non zero return status
-set -e
+set -x
 
 # ensure tee passes the error of the test tool
 # https://stackoverflow.com/questions/6871859/piping-command-output-to-tee-but-also-save-exit-code-of-command
