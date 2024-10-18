@@ -1,6 +1,8 @@
 curl_cffi==0.7.3
 requests==2.32.3
+python-dateutil==2.9.0.post0
 bs4==0.0.2
+pandas==2.2.3
 
 Django==5.1.2
 django-money==3.5.3
@@ -11,7 +13,6 @@ ptpython==3.0.29
 pytz==2024.2
 
 celery~=5.4.0
-semgrep~=1.90.0
 PyYAML~=6.0.2
 
 # dev
@@ -19,4 +20,4 @@ black==24.10.0
 isort==5.13.2
 prospector==1.11.0
 bandit==1.7.10
-semgrep==1.90.0
+semgrep==1.92.0
