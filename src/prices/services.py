@@ -7,6 +7,7 @@ import pytz
 import requests
 from bs4 import BeautifulSoup
 from curl_cffi import requests as curl
+from dateutil import parser
 
 from prices.models import Catalog, MTGCard, MTGCardPrice, MTGSet
 
@@ -18,11 +19,18 @@ germany_tz = pytz.timezone('Europe/Berlin')
 def update_mtg():
     """Fetch new cards, new prices and save them in the local models."""
 
-    new_sets = update_cm_sets()
-    new_cards = update_cm_products()
+    new_sets = create_cm_sets()
+    updated_sets = update_sets_extra_info()
+    new_cards, updated_cards = update_cm_products()
     updated_prices = update_cm_prices()
-    logger.info('Added new %d cards and updated %d prices', new_cards, updated_prices)
-    return new_sets, new_cards, updated_prices
+
+    return {
+        'new_sets': new_sets,
+        'updated_sets': updated_sets,
+        'new_cards': new_cards,
+        'updated_cards': updated_cards,
+        'updated_prices': updated_prices,
+    }
 
 
 def update_cm_products():
@@ -30,6 +38,7 @@ def update_cm_products():
 
     # Lists for bulk create/update
     insert_cards = []
+    update_cards = []
 
     url = 'https://downloads.s3.cardmarket.com/productCatalog/productList/products_singles_1.json'
 
@@ -40,8 +49,8 @@ def update_cm_products():
         existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRODUCTS)
         if existing_catalog.exists():
             catalog_date = existing_catalog.first().catalog_date
-            logger.info('Products already up to date since %s (%s)', catalog_date, md5sum)
-            return 0
+            logger.info('Products (MTG Singles) already up to date since %s (%s)', catalog_date, md5sum)
+            return 0, 0
 
         data = response.json()
 
@@ -56,33 +65,61 @@ def update_cm_products():
         for product_item in data['products']:
             cm_id = product_item['idProduct']
             name = product_item.get('name', None)
+            expansion_id = product_item.get('idExpansion', None)
+            category_id = product_item.get('idCategory', None)
+            metacard_id = product_item.get('idMetacard', None)
+            date_added = product_item.get('dateAdded')
+            if date_added:
+                date_added = datetime.strptime(date_added, '%Y-%m-%d %H:%M:%S')
+                date_added = date_added.replace(tzinfo=germany_tz)
             # slug = product_item.get('website', None).replace("/en/", "") if product_item.get('website') else None
 
-            # Check if the card already exists
-            card = existing_cards.get(cm_id)
+            card = existing_cards.get(cm_id)  # Exists?
+            # INSERT
             if not card:
-
-                date_added = product_item.get('dateAdded')
-                if date_added:
-                    date_added = datetime.strptime(date_added, '%Y-%m-%d %H:%M:%S')  # convert str to date
-                    date_added = date_added.replace(tzinfo=germany_tz)
-
                 card = MTGCard(
                     cm_id=cm_id,
                     name=name,
-                    category_id=product_item.get('idCategory', None),
-                    expansion_id=product_item.get('idExpansion', None),
-                    metacard_id=product_item.get('idMetacard', None),
+                    category_id=category_id,
+                    expansion_id=expansion_id,
+                    metacard_id=metacard_id,
                     cm_date_added=date_added,
                 )
                 insert_cards.append(card)
+            else:
+                # for some reason, expansion id of newly added cards changed the next day... (happened in SL extra life)
+                # UPDATE
+                to_update = False
+                if card.name != name:
+                    card.name = name
+                    to_update = True
+                if card.expansion_id != expansion_id:
+                    card.expansion_id = expansion_id
+                    to_update = True
+                if card.category_id != category_id:
+                    card.category_id = category_id
+                    to_update = True
+                if card.metacard_id != metacard_id:
+                    card.metacard_id = metacard_id
+                    to_update = True
+                if card.cm_date_added != date_added:
+                    card.date_updated = date_added
+                    to_update = True
+                if to_update:
+                    update_cards.append(card)
 
-        # Bulk create new cards
+        # Bulk create / update
         if insert_cards:
             MTGCard.objects.bulk_create(insert_cards)
             logger.info('%d new cards inserted.', len(insert_cards))
 
-    return len(insert_cards)
+        if update_cards:
+            MTGCard.objects.bulk_update(
+                update_cards, fields=['name', 'expansion_id', 'category_id', 'metacard_id', 'date_updated']
+            )
+            logger.info('%d existing cards updated.', len(update_cards))
+
+    return len(insert_cards), len(update_cards)
 
 
 def update_cm_prices(local_content=None):
@@ -92,19 +129,6 @@ def update_cm_prices(local_content=None):
     insert_prices = []
 
     # ############ previously downloaded json files
-
-    # from pathlib import Path
-    #
-    # directory = Path("../local/catalogs")
-    # files = sorted(directory.glob("202*json"), key=lambda f: f.name)
-    # for file in files:
-    #     with open(file, "r") as f:
-    #         # content = json.load(f)
-    #         content = f.read()
-    #         try:
-    #             update_cm_prices(local_content=content)
-    #         except Exception as err:
-    #             print(err)
     if local_content:
         md5sum = hashlib.md5(local_content.encode('utf-8'), usedforsecurity=False).hexdigest()  # nosemgrep
         try:
@@ -181,28 +205,144 @@ def update_cm_prices(local_content=None):
     return len(insert_prices)
 
 
-def update_cm_sets():
-    """Update cardmarket set names and ids."""
+def create_cm_sets():
+    """Read cardmarket set names and ids from its select/option html element."""
 
-    url = "https://www.cardmarket.com/en/Magic/Products/Singles"
+    # url = "https://www.cardmarket.com/en/Magic/Products/Singles"
+    url = "https://www.cardmarket.com/en/Magic/Products/Search?idExpansion=0&idRarity=0&perSite=20"
     created_sets = 0
 
     response = curl.get(url, impersonate='chrome')
+    if not response.ok:
+        logger.error('Could not read cardmmarket.com url: %s', response.status_code)
+        return 0
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    cm_sets = soup.find('select', attrs={'name': 'idExpansion'})
+    existing_sets = MTGSet.objects.values_list('expansion_id', flat=True)
+
+    for opt in cm_sets.find_all('option'):
+        set_id = int(opt.get('value').strip())
+        if set_id == 0:  # skip "All" option
+            continue
+
+        if set_id not in existing_sets:
+            set_name = opt.text.strip()
+            new_set = MTGSet(name=set_name, expansion_id=set_id)
+            new_set.save()
+            created_sets += 1
+    logger.info('Created %d sets', created_sets)
+    return created_sets
+
+
+def update_sets_extra_info():
+    """Scrape SETS release_date and set_url from cardmarket."""
+
+    missing_info = MTGSet.objects.filter(url__isnull=True) | MTGSet.objects.filter(release_date__isnull=True)
+    if not missing_info.exists():
+        return 0
+
+    url = "https://www.cardmarket.com/en/Magic/Expansions"
+    response = curl.get(url=url, impersonate='chrome')
+    update_sets = []
+
     if response.ok:
         soup = BeautifulSoup(response.text, 'html.parser')
-        cm_sets = soup.find('select', attrs={'name': 'idExpansion'})
-        existing_sets = MTGSet.objects.values_list('expansion_id', flat=True)
 
-        for opt in cm_sets.find_all('option'):
-            set_id = int(opt.get('value').strip())
-            if set_id == 0:  # skip "All" option
+        for exp_row in soup.find_all('div', attrs={'class': 'expansion-row'}):
+            # exp_code = None
+            # exp_card_qty = int(exp_row.find_all('div')[4].text.split(' ')[0])
+            exp_url = exp_row.attrs.get('data-url', None)
+            exp_name = exp_row.attrs.get('data-local-name', None)
+            exp_release_date = exp_row.find_all('div')[5].text
+
+            local_set = MTGSet.objects.filter(name=exp_name)
+            if not local_set.exists():
                 continue
+            local_set = local_set.first()
 
-            if set_id not in existing_sets:
-                set_name = opt.text.strip()
-                new_set = MTGSet(name=set_name, expansion_id=set_id)
-                new_set.save()
-                created_sets += 1
-                logger.info('Created new set %s.', set_name)
+            to_update = False
 
-    return created_sets
+            if not local_set.url:
+                local_set.url = exp_url
+                to_update = True
+            if not local_set.release_date:
+                local_set.release_date = parser.parse(exp_release_date)
+                to_update = True
+
+            if to_update:
+                update_sets.append(local_set)
+                # local_set.save(update_fields=['code', 'release_date'])
+
+        if update_sets:
+            MTGSet.objects.bulk_update(update_sets, ['url', 'release_date'])
+            logger.info('Updated %d sets', len(update_sets))
+
+    return len(update_sets)
+
+
+def update_cm_sets_extra():
+    """
+    Update cardmarket set extra info based on mtgjson.com.
+
+    After some verification, data in mtgjson is not all linked to cardmarket.
+    Skipping this for now, but maybe it gets fixed in the future.
+    See: https://github.com/mtgjson/mtgjson/issues/1236#issuecomment-2430108124
+    """
+
+    url = "https://mtgjson.com/api/v5/SetList.json"
+    updated_sets = 0
+
+    response = requests.get(url, timeout=10)
+    if not response.ok:
+        logger.error('Could not read cardmmarket.com url: %s', response.status_code)
+        return 0
+
+    data = response.json()['data']
+
+    for set_obj in data:
+        cm_id = set_obj.get('mcmId')
+        cm_id_extra = set_obj.get('mcmIdExtras')
+
+        if cm_id:
+            existing_set = MTGSet.objects.get(expansion_id=cm_id)
+            if not existing_set.code:
+                existing_set.code = set_obj.get('code')
+                existing_set.release_date = set_obj.get('releaseDate')
+                existing_set.type = set_obj.get('type')
+                existing_set.is_foil_only = set_obj.get('isFoilOnly')
+                existing_set.save()
+                updated_sets += 1
+
+        if cm_id_extra:
+            existing_set = MTGSet.objects.get(expansion_id=cm_id_extra)
+            if not existing_set.code:
+                existing_set.code = set_obj.get('code')
+                existing_set.release_date = set_obj.get('releaseDate')
+                existing_set.type = set_obj.get('type')
+                existing_set.is_foil_only = set_obj.get('isFoilOnly')
+                existing_set.save()
+                updated_sets += 1
+
+    logger.info('Updated %d sets', updated_sets)
+    return updated_sets
+
+
+def get_set_code(url, proxies=None):
+    """Given a cardmarket card url, find the SET it belongs to and return its code."""
+
+    # url = f'https://www.cardmarket.com/en/Magic/Products/Singles/{set_name}'
+    # url = url.replace("Magic/Expansions", "Magic/Products/Singles")
+    response = curl.get(url=url, impersonate='chrome', proxies=proxies)
+    if response.ok:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        table = soup.find('div', attrs={'class': 'table-body'})
+        if not table:
+            return None
+        span = table.find('span', attrs={'class': 'is-magic'})
+        title = span['title']
+        code = title.split('/')[4]
+
+        return code
+
+    return None

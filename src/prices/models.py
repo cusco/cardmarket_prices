@@ -72,6 +72,13 @@ class MTGSet(BaseAbstractModel):
 
     expansion_id = models.PositiveSmallIntegerField(verbose_name='Cardmarket Set ID', unique=True, primary_key=True)
     name = models.CharField(max_length=255, verbose_name='Set Name', unique=True)
+    url = models.URLField(verbose_name='URL', unique=True, null=True)  # nosem
+
+    # info populated from 3rd party sources
+    release_date = models.DateField(verbose_name='Set Release', null=True)  # nosem
+    code = models.CharField(max_length=10, verbose_name='Set Code', null=True)  # nosem
+    type = models.CharField(max_length=64, verbose_name='Set Type', null=True)  # nosem
+    is_foil_only = models.BooleanField(default=False)
 
     def __str__(self):
         """Return representation in string format."""
@@ -92,6 +99,7 @@ class MTGCard(BaseAbstractModel):
     # expansion_id = models.PositiveIntegerField()
     metacard_id = models.PositiveIntegerField()
     cm_date_added = models.DateTimeField(verbose_name='Date added to cardmarket')
+    # slope = models.FloatField(verbose_name='Slope')
 
     class Meta:
         indexes = [models.Index(fields=['cm_id'], name='idx_mtgcard_cm_id')]
@@ -130,3 +138,9 @@ class MTGCardPrice(BaseAbstractModel):
     class Meta:
         constraints = [models.UniqueConstraint(fields=['catalog_date', 'cm_id'], name='Unique card price per day')]
         indexes = [models.Index(fields=['cm_id'], name='idx_mtgprice_cm_id')]
+
+    def __str__(self):
+        """Return representation in string format."""
+
+        catalog_date = self.catalog_date.date()
+        return f"{self.card.name} - {catalog_date} (T: {self.trend}, L: {self.low}, A: {self.avg})"
