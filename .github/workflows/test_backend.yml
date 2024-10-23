@@ -5,8 +5,14 @@ name: CI
 on:
   push:
     branches: [ master, main ]
-  pull_request_target:
+  pull_request:
     branches: [ master, main, staging ]
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 jobs:
   Validate_and_Test:
@@ -21,6 +27,12 @@ jobs:
 #          POSTGRES_DB: db_name
 #        ports: [ '5432:5432' ]
 #        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    permissions:
+      statuses: write
+      checks: write
+      contents: write
+      pull-requests: write
 
     steps:
     - uses: actions/checkout@v4
@@ -71,6 +83,7 @@ jobs:
 
     - name: Test Reporter
       uses: dorny/test-reporter@v1
+
       if:
         success() || failure()  # run this step even if previous step failed
       with:
