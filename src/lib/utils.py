@@ -1,3 +1,5 @@
+import gzip
+import io
 import logging
 import statistics
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -11,150 +13,134 @@ from prices.constants import LEGAL_STANDARD_SETS
 from prices.models import MTGCard
 from prices.services import update_cm_prices
 
-logging.basicConfig(level=logging.INFO)  # temporary
 logger = logging.getLogger(__name__)
 germany_tz = pytz.timezone('Europe/Berlin')
+SLOPE_THRESHOLD = 0.4  # Move magic values to named constants
+MIN_PRICE_VALUE = 1
+MIN_PERCENTAGE = 1
+
+
+def show_stats(days=7, cards_qs=None):
+    """Show statistics for MTG cards regarding latest price changes over a specified period."""
+    if not cards_qs:
+        cards_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
+
+    always_rising = {}
+    trending_cards = {}
+    logger.info('Processing stats for %d cards', cards_qs.count())
+
+    with ProcessPoolExecutor() as executor:
+        futures = {executor.submit(rank_card_by_price, card, days): ('rising', card.pk) for card in cards_qs}
+        futures.update({executor.submit(price_slope, card, days): ('trending', card.pk) for card in cards_qs})
+
+        for future in as_completed(futures):
+            task_type, card_id = futures[future]
+            result = future.result()
+            if task_type == 'rising' and result:
+                always_rising[card_id] = result
+            elif task_type == 'trending' and result >= SLOPE_THRESHOLD:
+                trending_cards[card_id] = result
+
+    logger.info('Always Rising:')
+    log_sorted_cards(always_rising, "price increase")
+
+    logger.info('Trending Cards:')
+    log_sorted_cards(trending_cards, "slope")
+
+
+def log_sorted_cards(card_dict, label):
+    """Reusable function to log sorted cards by specified label."""
+    for card_id, value in sorted(card_dict.items(), key=lambda x: x[1], reverse=True):
+        card = MTGCard.objects.only("name").get(pk=card_id)
+        logger.info('%.2f | %s (%s)', value, card, label)
 
 
 def simple_trend(price_dates, price_values):
     """Calculate the rate of price change (slope) over time using basic linear regression."""
-
-    # Number of data points (dates and prices)
     num_values = len(price_dates)
-
-    # Convert dates into numeric time values (days since the first date)
     time_values = [(date - price_dates[0]).days for date in price_dates]
-
-    # Calculate necessary sums for the linear regression formula
-    sum_time = sum(time_values)  # Sum of time values (e.g., total days)
-    sum_price = sum(price_values)  # Sum of price values
-    sum_time_price = sum(t * p for t, p in zip(time_values, price_values))  # Sum of (time * price)
-    sum_time_squared = sum(t**2 for t in time_values)  # Sum of squared time values
-
-    # Calculate the numerator and denominator for the slope (linear regression formula)
+    sum_time = sum(time_values)
+    sum_price = sum(price_values)
+    sum_time_price = sum(t * p for t, p in zip(time_values, price_values))
+    sum_time_squared = sum(t**2 for t in time_values)
     numerator = num_values * sum_time_price - sum_time * sum_price
     denominator = num_values * sum_time_squared - sum_time**2
-
-    # Calculate the slope of the trend (rate of price change)
-    trend_slope = numerator / denominator if denominator != 0 else 0
-
-    return trend_slope
+    return numerator / denominator if denominator != 0 else 0
 
 
 def price_slope(card, days=None):
-    """Find the trend of x days of a card pricing."""
+    """Calculate trend slope for card prices over a period."""
+    prices = fetch_prices(card, "trend", days)
+    if len(prices) <= 1:
+        return 0
 
+    price_dates, price_values = zip(*prices)
+    return simple_trend(price_dates, price_values)
+
+
+def price_increase_ranking(card, price_field, days=None):
+    """Calculate percentage increase for a specified price field over a period."""
+    prices = fetch_prices(card, price_field, days)
+    if len(prices) < 2 or prices[0][1] >= prices[-1][1]:
+        return 0
+
+    for i in range(1, len(prices)):
+        if prices[i][1] < prices[i - 1][1]:
+            return 0
+
+    return ((prices[-1][1] - prices[0][1]) / prices[0][1]) * 100
+
+
+def fetch_prices(card, field, days):
+    """Fetch filtered prices for a specific field and days."""
     if days:
         days_ago = timezone.now() - timedelta(days=days)
-        if card.prices.filter(catalog_date__gte=days_ago).count() <= 1:
-            logger.warning('error getting trend from %d days', days)
-            return 0
-        prices = card.prices.filter(catalog_date__gte=days_ago)
-    else:
-        prices = card.prices.all()
-    prices = prices.exclude(trend__isnull=True)
-    if prices.count() <= 1:
-        return 0
-    price_labels = list(prices.values_list('catalog_date', flat=True))
-    price_values = list(prices.values_list('trend', flat=True))
-    price_values = [0 if val is None else val for val in price_values]  # replace None with 0
-
-    # price_labels = list(self.charted_prices.values_list('price_date', flat=True))[-days:]
-    # price_values = list(self.charted_prices.values_list('price_value', flat=True))[-days:]
-
-    # x_values = np.linspace(0, 1, len(price_labels))
-    # y_values = [float(x) for x in price_values]
-    # price_trend = np.polyfit(x_values, y_values, 1)[-2]
-    slope = simple_trend(price_labels, price_values)
-
-    return slope
-
-
-def price_increase_ranking(card, price='trend'):
-    """Calculate how much the card's price has risen, returns the percentage increase."""
-
-    # Get the prices for the card, ordered by date and exclude None values for trend.
-    prices = list(
-        card.prices.filter(**{f"{price}__isnull": False}).order_by('catalog_date').values_list('catalog_date', price)
+        return list(
+            card.prices.filter(catalog_date__gte=days_ago, **{f"{field}__isnull": False})
+            .order_by('catalog_date')
+            .values_list('catalog_date', field)
+        )
+    return list(
+        card.prices.filter(**{f"{field}__isnull": False}).order_by('catalog_date').values_list('catalog_date', field)
     )
-
-    # If there are less than 2 price points, return 0 (no ranking possible).
-    if len(prices) < 2:
-        return 0
-
-    first_price = prices[0][1]
-    last_price = prices[len(prices) - 1][1]
-
-    # Ensure the price has risen at least once, return 0 otherwise.
-    if first_price >= last_price:
-        return 0
-
-    # Check if the price is rising or staying the same every day
-    for i in range(1, len(prices)):
-        if prices[i][1] < prices[i - 1][1]:  # Price dropped at some point
-            return 0
-
-    # Calculate the percentage increase.
-    percentage_increase = ((last_price - first_price) / first_price) * 100
-
-    return percentage_increase
 
 
 def update_from_local_files():
-    """Update prices from local json files."""
-
+    """Update prices from local JSON files compressed in .gz."""
     directory = Path("../local/catalogs")
-    files = sorted(directory.glob("202*json"), key=lambda f: f.name)
-    for json in files:
-        # noset
-        with open(json, "r", encoding='utf-8') as file:
-            # content = json.load(f)
-            content = file.read()
-            try:
-                update_cm_prices(local_content=content)
-            except Exception as err:  # NOQA
-                print(err)
+    catalog_files = sorted(directory.glob("202*json.gz"), key=lambda f: f.name)
+    for catalog_file in catalog_files:
+        try:
+            with gzip.open(catalog_file, "rb") as gz_file:
+                content = io.TextIOWrapper(gz_file, encoding='utf-8').read()
+            update_cm_prices(local_content=content)
+        except (OSError, IOError, ValueError) as err:
+            logger.error("Failed to update from %s: %s", catalog_file, err)
 
 
-def rank_card_by_price(card):
-    """Process a card to determine its mean price increase and add it to the results."""
+def rank_card_by_price(card, days=None):
+    """Calculate the mean percentage increase across multiple price metrics for a card over a period."""
 
-    prices = ['avg', 'avg1', 'low', 'trend']
-    min_value = 1
-    min_percentage = 1
+    price_fields = ['avg', 'avg1', 'low', 'trend']
+    min_value = 1  # Minimum threshold for last price to be considered significant
+    min_percentage = 1  # Minimum threshold for percentage increase
 
-    last_price = card.prices.order_by('-catalog_date').first()
-    if not last_price:
-        return None, None
+    # Get the latest price to check if it meets the minimum threshold
+    last_prices = (
+        card.prices.filter(catalog_date__gte=timezone.now() - timedelta(days=days)).order_by('-catalog_date').first()
+    )
 
-    if last_price.trend and last_price.trend >= min_value:
-        increase_list = []
-        for price in prices:
-            increase = price_increase_ranking(card, price)
-            if not increase or increase < min_percentage:
-                return None, None
-            increase_list.append(increase)
+    # Skip card if the last trend price is below min_value or missing
+    if not last_prices or (last_prices.trend and last_prices.trend < min_value):
+        return 0
 
-        increase_mean = statistics.mean(increase_list)
+    # List to hold percentage increases for each price field
+    increase_list = []
+    for price_field in price_fields:
+        increase = price_increase_ranking(card, price_field, days)
+        if increase < min_percentage:
+            return 0  # Discard if any increase is below threshold
+        increase_list.append(increase)
 
-        return card.pk, increase_mean
-    return None, None
-
-
-def show_stats():
-    """Show statistics for mtg cards regarding latest price changes."""
-
-    t2_cards = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
-
-    print('=============== Always Rising')
-    always_rising = {}
-    with ProcessPoolExecutor() as executor:
-        futures = [executor.submit(rank_card_by_price, card) for card in t2_cards]
-        for future in as_completed(futures):
-            card_id, increase = future.result()
-            if card_id and increase:
-                always_rising[card_id] = increase
-
-    for card_id, increase in sorted(always_rising.items(), key=lambda x: x[1]):
-        card = MTGCard.objects.get(pk=card_id)
-        print(f'{increase} | {card}')
+    # Return the mean of the increases if all price fields meet the threshold
+    return statistics.mean(increase_list) if increase_list else 0
