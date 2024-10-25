@@ -11,7 +11,7 @@
     "url": "/en/Magic/Expansions/Alpha",
     "release_date": "1993-08-01",
     "code": "LEA",
-    "type": null,
+    "type": "core",
     "is_foil_only": false
   }
 },
@@ -27,7 +27,7 @@
     "url": "/en/Magic/Expansions/Beta",
     "release_date": "1993-10-01",
     "code": "LEB",
-    "type": null,
+    "type": "core",
     "is_foil_only": false
   }
 },
@@ -43,7 +43,7 @@
     "url": "/en/Magic/Expansions/Unlimited",
     "release_date": "1993-12-01",
     "code": "2ED",
-    "type": null,
+    "type": "core",
     "is_foil_only": false
   }
 },
@@ -91,7 +91,7 @@
     "url": "/en/Magic/Expansions/Revised",
     "release_date": "1994-04-01",
     "code": "3ED",
-    "type": null,
+    "type": "core",
     "is_foil_only": false
   }
 },
@@ -443,7 +443,7 @@
     "url": "/en/Magic/Expansions/Sixth-Edition",
     "release_date": "1999-04-01",
     "code": "6ED",
-    "type": null,
+    "type": "core",
     "is_foil_only": false
   }
 },
@@ -971,7 +971,7 @@
     "url": "/en/Magic/Expansions/Beatdown",
     "release_date": "2000-12-01",
     "code": "BTD",
-    "type": null,
+    "type": "box",
     "is_foil_only": false
   }
 },
@@ -1003,7 +1003,7 @@
     "url": "/en/Magic/Expansions/Battle-Royale",
     "release_date": "1999-11-01",
     "code": "BRB",
-    "type": null,
+    "type": "box",
     "is_foil_only": false
   }
 },
@@ -1115,8 +1115,8 @@
     "url": "/en/Magic/Expansions/Friday-Night-Magic-Promos",
     "release_date": "2000-02-01",
     "code": "FNM",
-    "type": null,
-    "is_foil_only": false
+    "type": "promo",
+    "is_foil_only": true
   }
 },
 {
@@ -1179,7 +1179,7 @@
     "url": "/en/Magic/Expansions/Summer-Magic",
     "release_date": "1994-07-01",
     "code": "SUM",
-    "type": null,
+    "type": "core",
     "is_foil_only": false
   }
 },
@@ -1227,7 +1227,7 @@
     "url": "/en/Magic/Expansions/Player-Rewards-Promos",
     "release_date": "2001-05-01",
     "code": "MPR",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -2011,7 +2011,7 @@
     "url": "/en/Magic/Expansions/Duels-of-the-Planeswalkers-Decks",
     "release_date": "2010-06-01",
     "code": "DPA",
-    "type": null,
+    "type": "box",
     "is_foil_only": false
   }
 },
@@ -2187,8 +2187,8 @@
     "url": "/en/Magic/Expansions/Premium-Deck-Series-Fire-Lightning",
     "release_date": "2010-11-01",
     "code": "PD2",
-    "type": null,
-    "is_foil_only": false
+    "type": "premium_deck",
+    "is_foil_only": true
   }
 },
 {
@@ -2331,7 +2331,7 @@
     "url": "/en/Magic/Expansions/Commander",
     "release_date": "2011-06-01",
     "code": "CMD",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -3947,7 +3947,7 @@
     "url": "/en/Magic/Expansions/Khans-of-Tarkir-Promos",
     "release_date": "2014-09-20",
     "code": "PKTK",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -3963,7 +3963,7 @@
     "url": "/en/Magic/Expansions/Fate-Reforged-Promos",
     "release_date": "2015-01-17",
     "code": "PFRF",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -4123,7 +4123,7 @@
     "url": "/en/Magic/Expansions/Dragons-Of-Tarkir-Promos",
     "release_date": "2015-03-21",
     "code": "PDTK",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -4251,7 +4251,7 @@
     "url": "/en/Magic/Expansions/Magic-Origins-Promos",
     "release_date": "2015-07-11",
     "code": "PORI",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -4395,7 +4395,7 @@
     "url": "/en/Magic/Expansions/Battle-for-Zendikar-Promos",
     "release_date": "2015-09-26",
     "code": "PBFZ",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -4443,7 +4443,7 @@
     "url": "/en/Magic/Expansions/Oath-of-the-Gatewatch-Promos",
     "release_date": "2016-01-16",
     "code": "POGW",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -4587,7 +4587,7 @@
     "url": "/en/Magic/Expansions/Shadows-over-Innistrad-Promos",
     "release_date": "2016-04-02",
     "code": "PSOI",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -4747,7 +4747,7 @@
     "url": "/en/Magic/Expansions/Kaladesh-Promos",
     "release_date": "2016-09-24",
     "code": "PKLD",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -4875,7 +4875,7 @@
     "url": "/en/Magic/Expansions/Aether-Revolt-Promos",
     "release_date": "2017-01-14",
     "code": "PAER",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -4939,7 +4939,7 @@
     "url": "/en/Magic/Expansions/Amonkhet-Promos",
     "release_date": "2017-04-22",
     "code": "PAKH",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -5099,7 +5099,7 @@
     "url": "/en/Magic/Expansions/Hour-of-Devastation-Promos",
     "release_date": "2017-07-08",
     "code": "PHOU",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -5259,8 +5259,8 @@
     "url": "/en/Magic/Expansions/Hascon-2017-Promos",
     "release_date": "2017-09-08",
     "code": "H17",
-    "type": null,
-    "is_foil_only": false
+    "type": "funny",
+    "is_foil_only": true
   }
 },
 {
@@ -5307,7 +5307,7 @@
     "url": "/en/Magic/Expansions/Store-Championship-Promos",
     "release_date": "2017-12-25",
     "code": "SCH",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -5387,7 +5387,7 @@
     "url": "/en/Magic/Expansions/Commander-Anthology-II",
     "release_date": "2018-06-08",
     "code": "CM2",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -5467,7 +5467,7 @@
     "url": "/en/Magic/Expansions/Dominaria-Promos",
     "release_date": "2018-04-21",
     "code": "PDOM",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -5483,8 +5483,8 @@
     "url": "/en/Magic/Expansions/Battlebond-Promos",
     "release_date": "2018-06-08",
     "code": "PBBD",
-    "type": null,
-    "is_foil_only": false
+    "type": "promo",
+    "is_foil_only": true
   }
 },
 {
@@ -5499,7 +5499,7 @@
     "url": "/en/Magic/Expansions/Core-2019-Promos",
     "release_date": "2018-07-07",
     "code": "PM19",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -5595,8 +5595,8 @@
     "url": "/en/Magic/Expansions/Guilds-of-Ravnica-Mythic-Edition",
     "release_date": "2018-10-03",
     "code": "MED",
-    "type": null,
-    "is_foil_only": false
+    "type": "masterpiece",
+    "is_foil_only": true
   }
 },
 {
@@ -5611,7 +5611,7 @@
     "url": "/en/Magic/Expansions/Guilds-of-Ravnica-Guild-Kits",
     "release_date": "2018-11-02",
     "code": "GK1",
-    "type": null,
+    "type": "box",
     "is_foil_only": false
   }
 },
@@ -5627,7 +5627,7 @@
     "url": "/en/Magic/Expansions/Magic-Game-Night",
     "release_date": "2018-11-16",
     "code": "GNT",
-    "type": null,
+    "type": "box",
     "is_foil_only": false
   }
 },
@@ -5803,7 +5803,7 @@
     "url": "/en/Magic/Expansions/Ravnica-Allegiance-Guild-Kits",
     "release_date": "2019-02-15",
     "code": "GK2",
-    "type": null,
+    "type": "box",
     "is_foil_only": false
   }
 },
@@ -6235,7 +6235,7 @@
     "url": "/en/Magic/Expansions/Throne-of-Eldraine-Promos",
     "release_date": "2019-09-27",
     "code": "PELD",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -6363,7 +6363,7 @@
     "url": "/en/Magic/Expansions/Secret-Lair-Drop-Series",
     "release_date": "2019-12-02",
     "code": "SLD",
-    "type": null,
+    "type": "box",
     "is_foil_only": false
   }
 },
@@ -6379,7 +6379,7 @@
     "url": "/en/Magic/Expansions/Commander-Ikoria",
     "release_date": "2020-05-15",
     "code": "C20",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -6427,7 +6427,7 @@
     "url": "/en/Magic/Expansions/Theros-Beyond-Death-Promos",
     "release_date": "2020-01-17",
     "code": "PTHB",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -6539,7 +6539,7 @@
     "url": "/en/Magic/Expansions/Ikoria-Lair-of-Behemoths-Promos",
     "release_date": "2020-05-15",
     "code": "PIKO",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -6603,7 +6603,7 @@
     "url": "/en/Magic/Expansions/Core-2021-Promos",
     "release_date": "2020-07-03",
     "code": "PM21",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -6667,7 +6667,7 @@
     "url": "/en/Magic/Expansions/Commander-Zendikar-Rising",
     "release_date": "2020-09-25",
     "code": "ZNC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -6795,7 +6795,7 @@
     "url": "/en/Magic/Expansions/Zendikar-Rising-Promos",
     "release_date": "2020-09-25",
     "code": "PZNR",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -6843,7 +6843,7 @@
     "url": "/en/Magic/Expansions/Commander-Kaldheim",
     "release_date": "2021-02-05",
     "code": "KHC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -6859,7 +6859,7 @@
     "url": "/en/Magic/Expansions/Kaldheim-Promos",
     "release_date": "2021-02-05",
     "code": "PKHM",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -6891,7 +6891,7 @@
     "url": "/en/Magic/Expansions/Mystical-Archive",
     "release_date": "2021-04-23",
     "code": "STA",
-    "type": null,
+    "type": "masterpiece",
     "is_foil_only": false
   }
 },
@@ -6907,7 +6907,7 @@
     "url": "/en/Magic/Expansions/Commander-Strixhaven",
     "release_date": "2021-04-23",
     "code": "C21",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -6987,7 +6987,7 @@
     "url": "/en/Magic/Expansions/Strixhaven-School-of-Mages-Promos",
     "release_date": "2021-04-23",
     "code": "PSTX",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7083,7 +7083,7 @@
     "url": "/en/Magic/Expansions/Modern-Horizons-2-Promos",
     "release_date": "2021-06-18",
     "code": "PMH2",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7131,7 +7131,7 @@
     "url": "/en/Magic/Expansions/Commander-Adventures-in-the-Forgotten-Realms",
     "release_date": "2021-07-23",
     "code": "AFC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -7147,7 +7147,7 @@
     "url": "/en/Magic/Expansions/Adventures-in-the-Forgotten-Realms-Promos",
     "release_date": "2021-07-23",
     "code": "PAFR",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7227,7 +7227,7 @@
     "url": "/en/Magic/Expansions/Commander-Innistrad-Midnight-Hunt",
     "release_date": "2021-09-24",
     "code": "MIC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -7243,7 +7243,7 @@
     "url": "/en/Magic/Expansions/Commander-Innistrad-Crimson-Vow",
     "release_date": "2021-11-19",
     "code": "VOC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -7259,7 +7259,7 @@
     "url": "/en/Magic/Expansions/Innistrad-Midnight-Hunt-Promos",
     "release_date": "2021-09-24",
     "code": "PMID",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7355,7 +7355,7 @@
     "url": "/en/Magic/Expansions/Innistrad-Crimson-Vow-Promos",
     "release_date": "2021-11-19",
     "code": "PVOW",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7435,7 +7435,7 @@
     "url": "/en/Magic/Expansions/Commander-Kamigawa-Neon-Dynasty",
     "release_date": "2022-02-18",
     "code": "NEC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -7451,7 +7451,7 @@
     "url": "/en/Magic/Expansions/Kamigawa-Neon-Dynasty-Promos",
     "release_date": "2022-02-18",
     "code": "PNEO",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7531,7 +7531,7 @@
     "url": "/en/Magic/Expansions/Commander-Streets-of-New-Capenna",
     "release_date": "2022-04-29",
     "code": "NCC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -7643,7 +7643,7 @@
     "url": "/en/Magic/Expansions/Streets-of-New-Capenna-Promos",
     "release_date": "2022-04-29",
     "code": "PSNC",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7787,7 +7787,7 @@
     "url": "/en/Magic/Expansions/Universes-Beyond-Warhammer-40000",
     "release_date": "2022-10-07",
     "code": "40K",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -7803,8 +7803,8 @@
     "url": "/en/Magic/Expansions/Commander-Streets-of-New-Capenna-Promos",
     "release_date": "2022-04-29",
     "code": "PNCC",
-    "type": null,
-    "is_foil_only": false
+    "type": "promo",
+    "is_foil_only": true
   }
 },
 {
@@ -7819,7 +7819,7 @@
     "url": "/en/Magic/Expansions/Commander-Legends-Battle-for-Baldurs-Gate-Promos",
     "release_date": "2022-06-10",
     "code": "PCLB",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7867,7 +7867,7 @@
     "url": "/en/Magic/Expansions/Game-Night-2022",
     "release_date": "2022-10-14",
     "code": "GN3",
-    "type": null,
+    "type": "box",
     "is_foil_only": false
   }
 },
@@ -7899,7 +7899,7 @@
     "url": "/en/Magic/Expansions/Dominaria-United-Promos",
     "release_date": "2022-09-09",
     "code": "PDMU",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -7915,7 +7915,7 @@
     "url": "/en/Magic/Expansions/Commander-Dominaria-United",
     "release_date": "2022-09-09",
     "code": "DMC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -8027,7 +8027,7 @@
     "url": "/en/Magic/Expansions/Commander-The-Brothers-War",
     "release_date": "2022-11-18",
     "code": "BRC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -8059,7 +8059,7 @@
     "url": "/en/Magic/Expansions/Retro-Frame-Artifacts",
     "release_date": "2022-11-18",
     "code": "BRR",
-    "type": null,
+    "type": "masterpiece",
     "is_foil_only": false
   }
 },
@@ -8091,7 +8091,7 @@
     "url": "/en/Magic/Expansions/Universes-Beyond-Transformers",
     "release_date": "2022-11-18",
     "code": "BOT",
-    "type": null,
+    "type": "masterpiece",
     "is_foil_only": false
   }
 },
@@ -8123,7 +8123,7 @@
     "url": "/en/Magic/Expansions/The-Brothers-War-Promos",
     "release_date": "2022-11-18",
     "code": "PBRO",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -8331,7 +8331,7 @@
     "url": "/en/Magic/Expansions/Phyrexia-All-Will-Be-One-Promos",
     "release_date": "2023-02-10",
     "code": "PONE",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -8411,7 +8411,7 @@
     "url": "/en/Magic/Expansions/Commander-Phyrexia-All-Will-Be-One",
     "release_date": "2023-02-10",
     "code": "ONC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -8571,7 +8571,7 @@
     "url": "/en/Magic/Expansions/Commander-March-of-the-Machine",
     "release_date": "2023-04-21",
     "code": "MOC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -8651,7 +8651,7 @@
     "url": "/en/Magic/Expansions/Commander-The-Lord-of-the-Rings-Tales-of-Middle-earth",
     "release_date": "2023-06-23",
     "code": "LTC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -8699,7 +8699,7 @@
     "url": "/en/Magic/Expansions/March-of-the-Machine-Promos",
     "release_date": "2023-04-21",
     "code": "PMOM",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -8811,7 +8811,7 @@
     "url": "/en/Magic/Expansions/Universes-Beyond-Doctor-Who",
     "release_date": "2023-10-13",
     "code": "WHO",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -8843,7 +8843,7 @@
     "url": "/en/Magic/Expansions/Commander-Wilds-of-Eldraine",
     "release_date": "2023-09-08",
     "code": "WOC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -8891,8 +8891,8 @@
     "url": "/en/Magic/Expansions/The-Lord-of-the-Rings-Tales-of-Middle-earth-Promos",
     "release_date": "2023-06-23",
     "code": "PLTR",
-    "type": null,
-    "is_foil_only": false
+    "type": "promo",
+    "is_foil_only": true
   }
 },
 {
@@ -9051,7 +9051,7 @@
     "url": "/en/Magic/Expansions/Enchanting-Tales",
     "release_date": "2023-09-08",
     "code": "WOT",
-    "type": null,
+    "type": "masterpiece",
     "is_foil_only": false
   }
 },
@@ -9067,7 +9067,7 @@
     "url": "/en/Magic/Expansions/Wilds-of-Eldraine-Promos",
     "release_date": "2023-09-08",
     "code": "PWOE",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -9179,7 +9179,7 @@
     "url": "/en/Magic/Expansions/Commander-The-Lost-Caverns-of-Ixalan",
     "release_date": "2023-11-17",
     "code": "LCC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -9259,7 +9259,7 @@
     "url": "/en/Magic/Expansions/The-Lost-Caverns-of-Ixalan-Promos",
     "release_date": "2023-11-17",
     "code": "PLCI",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -9275,7 +9275,7 @@
     "url": "/en/Magic/Expansions/Universes-Beyond-Jurassic-World-Collection",
     "release_date": "2023-11-17",
     "code": "REX",
-    "type": null,
+    "type": "masterpiece",
     "is_foil_only": false
   }
 },
@@ -9323,7 +9323,7 @@
     "url": "/en/Magic/Expansions/Universes-Beyond-Fallout",
     "release_date": "2024-03-08",
     "code": "PIP",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -9419,7 +9419,7 @@
     "url": "/en/Magic/Expansions/Commander-Murders-at-Karlov-Manor",
     "release_date": "2024-02-09",
     "code": "MKC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -9451,7 +9451,7 @@
     "url": "/en/Magic/Expansions/Ravnica-Clue-Edition",
     "release_date": "2024-02-23",
     "code": "CLU",
-    "type": null,
+    "type": "draft_innovation",
     "is_foil_only": false
   }
 },
@@ -9515,7 +9515,7 @@
     "url": "/en/Magic/Expansions/Murders-at-Karlov-Manor-Promos",
     "release_date": "2024-02-09",
     "code": "PMKM",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -9675,7 +9675,7 @@
     "url": "/en/Magic/Expansions/Commander-Outlaws-of-Thunder-Junction",
     "release_date": "2024-04-19",
     "code": "OTC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -9723,7 +9723,7 @@
     "url": "/en/Magic/Expansions/Commander-Modern-Horizons-3",
     "release_date": "2024-06-14",
     "code": "M3C",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -9739,7 +9739,7 @@
     "url": "/en/Magic/Expansions/Universes-Beyond-Assassins-Creed",
     "release_date": "2024-07-05",
     "code": "ACR",
-    "type": null,
+    "type": "draft_innovation",
     "is_foil_only": false
   }
 },
@@ -9819,7 +9819,7 @@
     "url": "/en/Magic/Expansions/Commander-Bloomburrow",
     "release_date": "2024-08-02",
     "code": "BLC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -9931,7 +9931,7 @@
     "url": "/en/Magic/Expansions/Outlaws-of-Thunder-Junction-Promos",
     "release_date": "2024-04-19",
     "code": "POTJ",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -10091,8 +10091,8 @@
     "url": "/en/Magic/Expansions/Modern-Horizons-3-Promos",
     "release_date": "2024-06-14",
     "code": "PMH3",
-    "type": null,
-    "is_foil_only": false
+    "type": "promo",
+    "is_foil_only": true
   }
 },
 {
@@ -10107,7 +10107,7 @@
     "url": "/en/Magic/Expansions/Bloomburrow-Promos",
     "release_date": "2024-08-02",
     "code": "PBLB",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
@@ -10203,7 +10203,7 @@
     "url": "/en/Magic/Expansions/Commander-Duskmourn-House-of-Horror",
     "release_date": "2024-09-27",
     "code": "DSC",
-    "type": null,
+    "type": "commander",
     "is_foil_only": false
   }
 },
@@ -10331,7 +10331,7 @@
     "url": "/en/Magic/Expansions/Duskmourn-House-of-Horror-Promos",
     "release_date": "2024-09-27",
     "code": "PDSK",
-    "type": null,
+    "type": "promo",
     "is_foil_only": false
   }
 },
