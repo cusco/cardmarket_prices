@@ -7,6 +7,7 @@ from datetime import timedelta
 from pathlib import Path
 
 import pytz
+from django.conf import settings
 from django.utils import timezone
 
 from prices.constants import LEGAL_STANDARD_SETS
@@ -15,7 +16,6 @@ from prices.services import update_cm_prices
 
 logger = logging.getLogger(__name__)
 germany_tz = pytz.timezone('Europe/Berlin')
-SLOPE_THRESHOLD = 0.4  # Move magic values to named constants
 MIN_PRICE_VALUE = 1
 MIN_PERCENTAGE = 1
 
@@ -38,7 +38,7 @@ def show_stats(days=7, cards_qs=None):
             result = future.result()
             if task_type == 'rising' and result:
                 always_rising[card_id] = result
-            elif task_type == 'trending' and result >= SLOPE_THRESHOLD:
+            elif task_type == 'trending' and result >= settings.SLOPE_THRESHOLD:
                 trending_cards[card_id] = result
 
     logger.info('Always Rising:')

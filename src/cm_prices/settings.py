@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # 'card',
     'prices',
     'lib',
+    'mtg',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,4 @@ SHELL_PLUS_POST_IMPORTS = (
 
 SCRAPING_RETRIES = 8
 SCRAPING_SLEEP_TIME = 15.5
+SLOPE_THRESHOLD = 0.4
