@@ -1,10 +1,14 @@
 from celery import group
 from celery.utils.log import get_task_logger
-
-from mtg.models import ScryfallCard
-from mtg.services import scryfall_download_bulk_data, scryfall_transform_card_data, scryfall_save_card
-from cm_prices.celery import app
 from tqdm.auto import tqdm
+
+from cm_prices.celery import app
+from mtg.models import ScryfallCard
+from mtg.services import (
+    scryfall_download_bulk_data,
+    scryfall_save_card,
+    scryfall_transform_card_data,
+)
 
 logger = get_task_logger('tasks.common')
 
