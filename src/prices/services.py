@@ -164,6 +164,8 @@ def update_cm_prices(local_content=None):
         # List all existing cards within the current JSON
         all_cm_ids = [item['idProduct'] for item in data['priceGuides']]
         existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(field_name='cm_id')
+        existing_prices = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list('cm_id', flat=True)
+        existing_price_ids = set(existing_prices)
 
         for price_item in data['priceGuides']:
             cm_id = price_item['idProduct']
@@ -175,6 +177,10 @@ def update_cm_prices(local_content=None):
                 # card = MTGCard(cm_id=cm_id)
                 # insert_cards.append(card)
                 logger.warning('Card with idProduct %s not found in MTGCard.', cm_id)
+                continue
+
+            if cm_id in existing_price_ids:
+                logger.warning('Pricing for card %s on date %s already exists.', cm_id, catalog_date)
                 continue
 
             mtg_card_price = MTGCardPrice(

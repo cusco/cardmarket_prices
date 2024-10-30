@@ -47,11 +47,7 @@ class Migration(migrations.Migration):
                 ("image_normal", models.URLField(blank=True, null=True)),
             ],
             options={
-                "indexes": [
-                    models.Index(
-                        fields=["cardmarket_id"], name="idx_scryfallcard_cm_id"
-                    )
-                ],
+                "indexes": [models.Index(fields=["cardmarket_id"], name="idx_scryfallcard_cm_id")],
             },
         ),
     ]
