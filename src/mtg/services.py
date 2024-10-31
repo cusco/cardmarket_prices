@@ -1,6 +1,8 @@
+import json
 import unicodedata
 
 import requests
+from tqdm.auto import tqdm
 
 from .constants import BASIC_TYPES, SCRYFALL_BULK_DATA_URL
 from .models import ScryfallCard
@@ -25,7 +27,7 @@ def process_card_types(card_data):
             continue
 
         # If there is a ' - ', that means we have subtypes to the right, supertypes to the left
-        if ' — ' in type_line:
+        if ' - ' in type_line:
             main_types, subtypes = type_line.split(' - ')
         else:
             main_types, subtypes = type_line, None
@@ -45,12 +47,23 @@ def scryfall_download_bulk_data():
     response = requests.get(SCRYFALL_BULK_DATA_URL, timeout=10)
     response.raise_for_status()  # Raise an error for bad responses
     url = response.json()
+
+    # Find bulk data url
     url = next(item for item in url['data'] if item['type'] == 'default_cards')
     url = url['download_uri']
 
-    response = requests.get(url, timeout=10)
+    # Download in chunks
+    response = requests.get(url, timeout=10, stream=True)
     response.raise_for_status()
-    return response.json()
+
+    total_size = int(response.headers.get('Content-Length', 0)) if 'Content-Length' in response.headers else None
+    with tqdm(total=total_size, unit='B', unit_scale=True, desc='Downloading') as progress_bar:
+        json_data = []
+        for chunk in response.iter_content(chunk_size=8192):
+            json_data.append(chunk)
+            progress_bar.update(len(chunk))
+
+    return json.loads(b''.join(json_data))
 
 
 def scryfall_process_data(data):
@@ -65,13 +78,19 @@ def scryfall_transform_card_data(raw_card_data):
     """Convert raw Scryfall data to model-compatible format, applying constants-based filters and transformations."""
 
     # Skipping unwanted stuff
+    skipping_ids = {'90f17b85-a866-48e8-aae0-55330109550e'}
     if not raw_card_data.get('cardmarket_id'):
         return None
     if raw_card_data.get('name').split(' ')[0] in BASIC_TYPES:
         return None
     if '(' in raw_card_data.get('name'):
         return None
+    if raw_card_data.get('id') in skipping_ids:
+        return None
 
+    scryfall_id = raw_card_data.get('id')
+    oracle_id = raw_card_data.get('oracle_id')
+    cardmarket_id = raw_card_data.get('cardmarket_id')
     card_name = raw_card_data.get('name', '')
     card_name = ''.join(c for c in unicodedata.normalize('NFD', card_name) if unicodedata.category(c) != 'Mn')
     card_types, card_subtypes = process_card_types(raw_card_data)
@@ -82,7 +101,7 @@ def scryfall_transform_card_data(raw_card_data):
     image_small = None
     image_normal = None
     color_identity = raw_card_data.get('color_identity')
-    cardmarket_id = raw_card_data.get('cardmarket_id')
+    cmc = raw_card_data.get('cmc')
 
     # Split cards
     if ' // ' in card_name:
@@ -115,15 +134,16 @@ def scryfall_transform_card_data(raw_card_data):
         image_normal = image_uris.get('image_normal' if 'image_uris' in raw_card_data else 'normal', None)
 
     transformed_data = {
-        'oracle_id': raw_card_data.get('oracle_id'),
+        'id': scryfall_id,
+        'oracle_id': oracle_id,
         'name': card_name,
-        'mana_cost': mana_cost,
-        'cmc': raw_card_data.get('cmc'),
-        'types': card_types,
-        'subtypes': card_subtypes,
-        'colors': list(colors),
-        'color_identity': color_identity,
-        'oracle_text': oracle_text,
+        'mana_cost': json.dumps(mana_cost),
+        'cmc': cmc,
+        'types': json.dumps(card_types),
+        'subtypes': json.dumps(card_subtypes),
+        'colors': json.dumps(list(colors)),
+        'color_identity': json.dumps(color_identity),
+        'oracle_text': json.dumps(oracle_text),
         'cardmarket_id': cardmarket_id,
         'image_small': image_small,
         'image_normal': image_normal,
