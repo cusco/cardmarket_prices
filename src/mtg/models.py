@@ -2,23 +2,23 @@ from django.db import models
 
 from lib.models import BaseAbstractModel
 
-
-class ScryfallCardManager(models.Manager):
-    # Taken from https://github.com/baronvonvaderham/django-mtg-card-catalog
-
-    def get_or_create_card(self, card_data):
-        """Fetch or create a card based on the provided data dictionary."""
-        card, created = self.update_or_create(
-            cardmarket_id=card_data["cardmarket_id"],
-            defaults=card_data,
-        )
-        return created, card
+# class ScryfallCardManager(models.Manager):
+#     # Taken from https://github.com/baronvonvaderham/django-mtg-card-catalog
+#
+#     def get_or_create_card(self, card_data):
+#         """Fetch or create a card based on the provided data dictionary."""
+#         card, created = self.update_or_create(
+#             id=card_data["id"],
+#             defaults=card_data,
+#         )
+#         return created, card
 
 
 class ScryfallCard(BaseAbstractModel):
     """Class to contain a local version of the scryfall data to limit the need for external API calls."""
 
-    cardmarket_id = models.PositiveIntegerField(blank=False, primary_key=True)
+    id = models.UUIDField(primary_key=True, editable=True)
+    cardmarket_id = models.PositiveIntegerField()
     oracle_id = models.CharField(max_length=128, null=True)  # NOQA nosemgrep
     name = models.CharField(max_length=256, null=True)  # nosemgrep
     mana_cost = models.CharField(max_length=128, blank=True, null=True)  # NOQA nosemgrep
@@ -33,7 +33,7 @@ class ScryfallCard(BaseAbstractModel):
     image_small = models.URLField(blank=True, null=True)  # NOQA nosemgrep
     image_normal = models.URLField(blank=True, null=True)  # NOQA nosemgrep
 
-    objects = ScryfallCardManager()
+    # objects = ScryfallCardManager()
 
     class Meta:
         indexes = [models.Index(fields=['cardmarket_id'], name='idx_scryfallcard_cm_id')]
