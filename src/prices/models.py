@@ -66,6 +66,14 @@ class Catalog(BaseAbstractModel):
     catalog_type = models.PositiveSmallIntegerField(choices=CATALOG_TYPES)
     md5sum = models.CharField(max_length=32, verbose_name='MD5sum', unique=True)
 
+    def __str__(self):
+        """Return string representation of Catalog item."""
+
+        id_str = self.get_catalog_id_display()
+        type_str = self.get_catalog_type_display()
+
+        return f'{id_str} - {type_str} | {self.catalog_date} - ({self.md5sum})'
+
 
 class MTGSet(BaseAbstractModel):
     """Model representing SET NAMES of MTG cards."""

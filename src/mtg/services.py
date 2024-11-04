@@ -1,11 +1,15 @@
 import json
+import logging
 import unicodedata
 
 import requests
+from django.utils import timezone
 from tqdm.auto import tqdm
 
 from .constants import BASIC_TYPES, SCRYFALL_BULK_DATA_URL
 from .models import ScryfallCard
+
+logger = logging.getLogger(__name__)
 
 # Inspired on https://github.com/baronvonvaderham/django-mtg-card-catalog
 
@@ -42,7 +46,7 @@ def process_card_types(card_data):
     return card_types, card_subtypes
 
 
-def scryfall_download_bulk_data():
+def scryfall_download_bulk_data(disable_progress=False):
     """Download the bulk data file from Scryfall."""
     response = requests.get(SCRYFALL_BULK_DATA_URL, timeout=10)
     response.raise_for_status()  # Raise an error for bad responses
@@ -57,21 +61,13 @@ def scryfall_download_bulk_data():
     response.raise_for_status()
 
     total_size = int(response.headers.get('Content-Length', 0)) if 'Content-Length' in response.headers else None
-    with tqdm(total=total_size, unit='B', unit_scale=True, desc='Downloading') as progress_bar:
+    with tqdm(total=total_size, unit='B', unit_scale=True, desc='Downloading', disable=disable_progress) as pg_bar:
         json_data = []
         for chunk in response.iter_content(chunk_size=8192):
             json_data.append(chunk)
-            progress_bar.update(len(chunk))
+            pg_bar.update(len(chunk))
 
     return json.loads(b''.join(json_data))
-
-
-def scryfall_process_data(data):
-    """Parse each process each card entry from data."""
-    for raw_card_data in data:
-        transformed_data = scryfall_transform_card_data(raw_card_data)
-        if transformed_data:
-            scryfall_save_card(transformed_data)
 
 
 def scryfall_transform_card_data(raw_card_data):
@@ -152,15 +148,73 @@ def scryfall_transform_card_data(raw_card_data):
     return transformed_data
 
 
-def scryfall_save_card(card_data):
-    """Save a new card or update an existing card in the database."""
-    _, created = ScryfallCard.objects.update_or_create(cardmarket_id=card_data['cardmarket_id'], defaults=card_data)
-    return created
+def bulk_update_if_changed(update_cards):
+    """Bulk update only cards that are different."""
+    # Create a mapping of cardmarket_id to existing card data
+    fields_to_update = [
+        'oracle_id',
+        'name',
+        'mana_cost',
+        'cmc',
+        'types',
+        'subtypes',
+        'colors',
+        'color_identity',
+        'oracle_text',
+        'image_small',
+        'image_normal',
+        'legalities',
+        'cardmarket_id',
+    ]
+    scryfall_ids = [card.id for card in update_cards]
+    existing_cards = {str(card.id): card for card in ScryfallCard.objects.filter(id__in=scryfall_ids)}
+
+    cards_to_update = []
+
+    for update_card in update_cards:
+        existing_card = existing_cards.get(update_card.id)
+        # Compare fields to see if there are changes
+        has_changes = any(getattr(existing_card, field) != getattr(update_card, field) for field in fields_to_update)
+
+        if has_changes:
+            update_card.date_updated = timezone.now()
+            cards_to_update.append(update_card)
+
+    # Perform the bulk update only if there are changes
+    if cards_to_update:
+        update_fields = fields_to_update + ['date_updated']
+        ScryfallCard.objects.bulk_update(cards_to_update, update_fields)
+        logger.info('Updated %d cards.', len(cards_to_update))
+
+    return len(cards_to_update)
 
 
-def update_scryfall_data():
+def update_scryfall_data(disable_progress=False):
     """Update Scryfall data in the local database."""
-    data = scryfall_download_bulk_data()
 
-    # Process and save data
-    scryfall_process_data(data)
+    scryfall_data = scryfall_download_bulk_data(disable_progress)
+    updated_cards = 0
+    new_cards = []
+    existing_cards = []
+    existing_card_ids = set(str(card_id) for card_id in ScryfallCard.objects.values_list('id', flat=True))
+
+    for raw_card_data in tqdm(scryfall_data, unit='card', disable=disable_progress):
+        card_data = scryfall_transform_card_data(raw_card_data)
+        if card_data:
+            # Check if the card already exists by cardmarket_id
+            if card_data['id'] in existing_card_ids:
+                existing_cards.append(ScryfallCard(**card_data))
+            else:
+                timestamp = timezone.now()
+                card_data['date_updated'] = timestamp
+                card_data['date_created'] = timestamp
+                new_cards.append(ScryfallCard(**card_data))
+
+    # Bulk create and update
+    if new_cards:
+        ScryfallCard.objects.bulk_create(new_cards)
+        logger.info('%d new cards inserted.', len(new_cards))
+    if existing_cards:
+        updated_cards = bulk_update_if_changed(existing_cards)
+
+    return {'new_cards': len(new_cards), 'updated_cards': updated_cards}

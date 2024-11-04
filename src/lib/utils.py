@@ -29,6 +29,7 @@ def show_stats(days=7, cards_qs=None):
     trending_cards = {}
     logger.info('Processing stats for %d cards', cards_qs.count())
 
+    # parallelism
     with ProcessPoolExecutor() as executor:
         futures = {executor.submit(rank_card_by_price, card, days): ('rising', card.pk) for card in cards_qs}
         futures.update({executor.submit(price_slope, card, days): ('trending', card.pk) for card in cards_qs})
@@ -94,7 +95,7 @@ def price_increase_ranking(card, price_field, days=None):
 def fetch_prices(card, field, days):
     """Fetch filtered prices for a specific field and days."""
     if days:
-        days_ago = timezone.now() - timedelta(days=days)
+        days_ago = (timezone.now() - timedelta(days=days)).replace(hour=0, minute=0, second=0, microsecond=0)
         return list(
             card.prices.filter(catalog_date__gte=days_ago, **{f"{field}__isnull": False})
             .order_by('catalog_date')
