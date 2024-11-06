@@ -9,6 +9,6 @@ logger = get_task_logger('tasks.common')
 @app.task(name='sync_scryfall_task')
 def sync_scryfall(*args, **kwargs):
     """Run Scryfall update bulk task."""
-    logger.info('BEGINNING SCRYFALL SYNC TASK')
+    # logger.info('BEGINNING SCRYFALL SYNC TASK')
     update = update_scryfall_data(disable_progress=True)
     logger.info(update)

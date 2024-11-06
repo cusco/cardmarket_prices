@@ -50,7 +50,7 @@ def update_cm_products():
         existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRODUCTS)
         if existing_catalog.exists():
             catalog_date = existing_catalog.first().catalog_date
-            logger.info('Products (MTG Singles) already up to date since %s (%s)', catalog_date, md5sum)
+            # logger.info('Products (MTG Singles) already up to date since %s (%s)', catalog_date, md5sum)
             return 0, 0
 
         data = response.json()
@@ -140,7 +140,7 @@ def update_cm_prices(local_content=None):
     existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRICES)
     if existing_catalog.exists():
         catalog_date = existing_catalog.first().catalog_date
-        logger.info('Prices already up to date since %s (%s)', catalog_date, md5sum)
+        # logger.info('Prices already up to date since %s (%s)', catalog_date, md5sum)
         return 0
 
     data = content
@@ -200,7 +200,7 @@ def update_cm_prices(local_content=None):
             logger.info('%d new prices inserted.', len(insert_prices))
 
         if unknown_cards:
-            logger.warning('Prices with unknown cards: %s', unknown_cards)
+            logger.warning('Prices with unknown cards: %s', len(unknown_cards))
 
     return len(insert_prices)
 
@@ -231,7 +231,8 @@ def create_cm_sets():
             new_set = MTGSet(name=set_name, expansion_id=set_id)
             new_set.save()
             created_sets += 1
-    logger.info('Created %d sets', created_sets)
+    if created_sets:
+        logger.info('Created %d sets', created_sets)
     return created_sets
 
 
