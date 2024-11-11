@@ -10243,14 +10243,14 @@
   "model": "prices.mtgset",
   "pk": 5852,
   "fields": {
-    "date_updated": "2024-10-22T20:13:00.845Z",
+    "date_updated": "2024-10-28T21:03:12.462Z",
     "date_created": "2024-10-22T20:13:00.845Z",
     "obs": "",
     "active": true,
     "name": "Magic: The Gathering Foundations",
     "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations",
     "release_date": "2024-11-15",
-    "code": null,
+    "code": "FDN",
     "type": null,
     "is_foil_only": false
   }
@@ -10411,6 +10411,118 @@
     "url": "/en/Magic/Expansions/Secret-Lair-Drop-Series-Marvel-Superdrop",
     "release_date": "2024-12-01",
     "code": "SLDMVL",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5930,
+  "fields": {
+    "date_updated": "2024-10-28T12:10:55.824Z",
+    "date_created": "2024-10-28T12:10:55.824Z",
+    "obs": "",
+    "active": true,
+    "name": "Innistrad Remastered",
+    "url": "/en/Magic/Expansions/Innistrad-Remastered",
+    "release_date": "2025-01-24",
+    "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5931,
+  "fields": {
+    "date_updated": "2024-10-28T21:02:46.522Z",
+    "date_created": "2024-10-28T20:23:19.047Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering Foundations: Extras",
+    "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Extras",
+    "release_date": "2024-11-15",
+    "code": "XFDN",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5932,
+  "fields": {
+    "date_updated": "2024-11-04T14:42:30.636Z",
+    "date_created": "2024-10-29T17:57:12.606Z",
+    "obs": "",
+    "active": true,
+    "name": "Foundations Jumpstart",
+    "url": "/en/Magic/Expansions/Foundations-Jumpstart",
+    "release_date": "2024-11-15",
+    "code": "J25",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5938,
+  "fields": {
+    "date_updated": "2024-11-04T14:42:32.326Z",
+    "date_created": "2024-10-30T16:52:37.310Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering Foundations: Starter Collection",
+    "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Starter-Collection",
+    "release_date": "2024-11-15",
+    "code": "SFDN",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5940,
+  "fields": {
+    "date_updated": "2024-11-04T14:42:34.177Z",
+    "date_created": "2024-10-31T16:26:23.754Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering Foundations: Promos",
+    "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Promos",
+    "release_date": "2024-11-15",
+    "code": "PFDN",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5941,
+  "fields": {
+    "date_updated": "2024-11-04T14:42:35.994Z",
+    "date_created": "2024-11-02T06:24:08.427Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering Foundations: Tokens",
+    "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Tokens",
+    "release_date": "2024-11-15",
+    "code": "TFDN",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5942,
+  "fields": {
+    "date_updated": "2024-11-04T14:42:37.645Z",
+    "date_created": "2024-11-04T12:57:53.994Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering Foundations: Beginner Box",
+    "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Beginner-Box",
+    "release_date": "2024-11-15",
+    "code": "BFDN",
     "type": null,
     "is_foil_only": false
   }

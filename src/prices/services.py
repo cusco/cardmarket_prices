@@ -1,7 +1,10 @@
+import gzip
 import hashlib
+import io
 import json
 import logging
 from datetime import datetime
+from pathlib import Path
 
 import pytz
 import requests
@@ -9,6 +12,7 @@ from bs4 import BeautifulSoup
 from curl_cffi import requests as curl
 from dateutil import parser
 
+from lib.utils import update_card_slopes
 from prices.models import Catalog, MTGCard, MTGCardPrice, MTGSet
 
 logging.basicConfig(level=logging.INFO)  # temporary
@@ -24,6 +28,9 @@ def update_mtg():
     updated_sets = update_sets_extra_info()
     new_cards, updated_cards = update_cm_products()
     updated_prices = update_cm_prices()
+
+    if updated_sets:
+        update_card_slopes()
 
     return {
         'new_sets': new_sets,
@@ -283,6 +290,19 @@ def update_sets_extra_info():
             logger.info('Updated %d sets', len(update_sets))
 
     return len(update_sets)
+
+
+def update_from_local_files():
+    """Update prices from local JSON files compressed in .gz."""
+    directory = Path("../local/catalogs")
+    catalog_files = sorted(directory.glob("202*json.gz"), key=lambda f: f.name)
+    for catalog_file in catalog_files:
+        try:
+            with gzip.open(catalog_file, "rb") as gz_file:
+                content = io.TextIOWrapper(gz_file, encoding='utf-8').read()
+            update_cm_prices(local_content=content)
+        except (OSError, IOError, ValueError) as err:
+            logger.error("Failed to update from %s: %s", catalog_file, err)
 
 
 def not_used_old_update_cm_sets_extra():
