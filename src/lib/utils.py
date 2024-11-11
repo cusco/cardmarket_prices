@@ -1,18 +1,14 @@
-import gzip
-import io
 import logging
 import statistics
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import timedelta
-from pathlib import Path
 
 import pytz
 from django.conf import settings
 from django.utils import timezone
 
 from prices.constants import LEGAL_STANDARD_SETS
-from prices.models import MTGCard
-from prices.services import update_cm_prices
+from prices.models import MTGCard, MTGCardPriceSlope
 
 logger = logging.getLogger(__name__)
 germany_tz = pytz.timezone('Europe/Berlin')
@@ -59,7 +55,8 @@ def log_sorted_cards(card_dict, label):
 def simple_trend(price_dates, price_values):
     """Calculate the rate of price change (slope) over time using basic linear regression."""
     num_values = len(price_dates)
-    time_values = [(date - price_dates[0]).days for date in price_dates]
+    # time_values = [(date - price_dates[0]).days for date in price_dates]
+    time_values = [(date - price_dates[0]).total_seconds() / 86400 for date in price_dates]
     sum_time = sum(time_values)
     sum_price = sum(price_values)
     sum_time_price = sum(t * p for t, p in zip(time_values, price_values))
@@ -94,29 +91,29 @@ def price_increase_ranking(card, price_field, days=None):
 
 def fetch_prices(card, field, days):
     """Fetch filtered prices for a specific field and days."""
+
+    # ############# quick hack, 1 entry per day, lets count entries
     if days:
-        days_ago = (timezone.now() - timedelta(days=days)).replace(hour=0, minute=0, second=0, microsecond=0)
         return list(
-            card.prices.filter(catalog_date__gte=days_ago, **{f"{field}__isnull": False})
-            .order_by('catalog_date')
-            .values_list('catalog_date', field)
+            card.prices.filter(**{f"{field}__isnull": False})
+            .order_by('-catalog_date')
+            .values_list('catalog_date', field)[:days:-1]
         )
+
     return list(
         card.prices.filter(**{f"{field}__isnull": False}).order_by('catalog_date').values_list('catalog_date', field)
     )
 
-
-def update_from_local_files():
-    """Update prices from local JSON files compressed in .gz."""
-    directory = Path("../local/catalogs")
-    catalog_files = sorted(directory.glob("202*json.gz"), key=lambda f: f.name)
-    for catalog_file in catalog_files:
-        try:
-            with gzip.open(catalog_file, "rb") as gz_file:
-                content = io.TextIOWrapper(gz_file, encoding='utf-8').read()
-            update_cm_prices(local_content=content)
-        except (OSError, IOError, ValueError) as err:
-            logger.error("Failed to update from %s: %s", catalog_file, err)
+    # if days:
+    #     days_ago = (timezone.now() - timedelta(days=days)).replace(hour=0, minute=0, second=0, microsecond=0)
+    #     return list(
+    #         card.prices.filter(catalog_date__gte=days_ago, **{f"{field}__isnull": False})
+    #         .order_by('catalog_date')
+    #         .values_list('catalog_date', field)
+    #     )
+    # return list(
+    #     card.prices.filter(**{f"{field}__isnull": False}).order_by('catalog_date').values_list('catalog_date', field)
+    # )
 
 
 def rank_card_by_price(card, days=None):
@@ -145,3 +142,69 @@ def rank_card_by_price(card, days=None):
 
     # Return the mean of the increases if all price fields meet the threshold
     return statistics.mean(increase_list) if increase_list else 0
+
+
+def update_card_slopes(card_qs=None):
+    """Update slopes and percentage changes for all cards based on recent prices."""
+    intervals = [2, 7, 30]
+    field = 'trend'  # Adjust this field as necessary
+
+    slopes_to_update = []
+    slopes_to_create = []
+    now = timezone.now()
+
+    if not card_qs:
+        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
+
+    # Prefetch prices to reduce the number of queries
+    price_data = {
+        card.cm_id: list(
+            card.prices.filter(**{f"{field}__isnull": False})
+            .order_by('-catalog_date')
+            .values_list('catalog_date', field)
+        )
+        for card in card_qs
+    }
+
+    # Retrieve all slopes at once to minimize queries
+    existing_slopes = MTGCardPriceSlope.objects.filter(card__in=card_qs).only(
+        'card', 'interval_days', 'slope', 'percent_change', 'date_updated'
+    )
+    slope_dict = {(slope.card.cm_id, slope.interval_days): slope for slope in existing_slopes}
+
+    for card in card_qs:
+        card_prices = price_data.get(card.cm_id, [])
+
+        for days in intervals:
+            # price_data = fetch_prices(card, field, days)
+            recent_prices = card_prices[:days][::-1]
+            if len(recent_prices) < 2:
+                continue
+
+            price_dates, price_values = zip(*recent_prices)
+
+            # Calculate the slope and percentage change
+            slope = simple_trend(price_dates, price_values)
+            initial_price = price_values[0]
+            percent_change = (slope / initial_price) * 100 if initial_price != 0 else 0
+
+            slope_key = (card.cm_id, days)
+            if slope_key in slope_dict:  # Update
+                # Update existing entry
+                slope_instance = slope_dict[slope_key]
+                slope_instance.slope = slope
+                slope_instance.percent_change = percent_change
+                slope_instance.date_updated = now
+                slopes_to_update.append(slope_instance)
+            else:  # Create
+                slopes_to_create.append(
+                    MTGCardPriceSlope(card=card, interval_days=days, slope=slope, percent_change=percent_change)
+                )
+
+    # Perform bulk operations to save database trips
+    if slopes_to_create:
+        MTGCardPriceSlope.objects.bulk_create(slopes_to_create)
+    if slopes_to_update:
+        MTGCardPriceSlope.objects.bulk_update(slopes_to_update, ['slope', 'percent_change', 'date_updated'])
+
+    return len(slopes_to_create), len(slopes_to_update)

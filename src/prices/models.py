@@ -152,3 +152,20 @@ class MTGCardPrice(BaseAbstractModel):
 
         catalog_date = self.catalog_date.date()
         return f"{self.card.name} - {catalog_date} (T: {self.trend}, L: {self.low}, A: {self.avg})"
+
+
+class MTGCardPriceSlope(BaseAbstractModel):
+    """MTGCard price slope and percentage model."""
+
+    card = models.ForeignKey(MTGCard, on_delete=models.CASCADE, related_name="price_slopes")
+    interval_days = models.PositiveSmallIntegerField()  # e.g., 2, 7, or 30 days
+    slope = models.FloatField()  # Raw slope value for calculations
+    percent_change = models.FloatField()  # Slope represented as a percentage changer
+
+    class Meta:
+        unique_together = ('card', 'interval_days')
+
+    def __str__(self):
+        """Return representation in string format."""
+
+        return f"{self.card.name} - {self.interval_days} days = {self.slope} | {self.percent_change}"
