@@ -29,16 +29,23 @@ def update_mtg():
     new_cards, updated_cards = update_cm_products()
     updated_prices = update_cm_prices()
 
-    if updated_sets:
-        update_card_slopes()
-
-    return {
+    result = {
         'new_sets': new_sets,
         'updated_sets': updated_sets,
         'new_cards': new_cards,
         'updated_cards': updated_cards,
         'updated_prices': updated_prices,
     }
+
+    if updated_sets:
+        catalog_date = MTGCardPrice.objects.order_by('catalog_date').last().catalog_date
+        card_ids = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list('cm_id', flat=True)
+        card_qs = MTGCard.objects.filter(cm_id__in=card_ids)
+        new_slopes, updated_slopes = update_card_slopes(card_qs=card_qs)
+        result['new_slopes'] = new_slopes
+        result['updated_slopes'] = updated_slopes
+
+    return result
 
 
 def update_cm_products():
