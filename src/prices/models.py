@@ -116,10 +116,10 @@ class MTGCard(BaseAbstractModel):
         """Return representation in string format."""
 
         latest_price = self.prices.order_by('-catalog_date').first()
-        trend_price = latest_price.trend if latest_price else 'No Price'
+        low_price = latest_price.low if latest_price else 'No Price'
         set_name = self.expansion.name if self.expansion else 'Unknown Set'
 
-        return f"{self.name} - {set_name} - Trend: {trend_price}"
+        return f"{self.name} - {set_name} - From: {low_price}"
 
 
 class MTGCardPrice(BaseAbstractModel):
