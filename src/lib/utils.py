@@ -1,11 +1,12 @@
 import logging
 import statistics
+from collections import defaultdict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import timedelta
 
 import pytz
 from django.conf import settings
-from django.db.models import OuterRef, Subquery
+from django.db.models import F, OuterRef, Subquery
 from django.utils import timezone
 
 from prices.constants import LEGAL_STANDARD_SETS
@@ -151,26 +152,37 @@ def rank_card_by_price(card, days=None):
     return statistics.mean(increase_list) if increase_list else 0
 
 
+def build_price_data(card_qs, field):
+    """Efficiently build price data using a bulk query."""
+    price_data = defaultdict(list)
+
+    # Fetch all relevant prices in a single query
+    all_prices = (
+        MTGCardPrice.objects.filter(card__in=card_qs, **{f"{field}__isnull": False})
+        .annotate(card_cm_id=F('card__cm_id'))
+        .order_by('card_cm_id', '-catalog_date')
+    )
+
+    # Process results in a single pass
+    for price in all_prices:
+        card_id = price.card_cm_id
+        price_data[card_id].append((price.catalog_date, getattr(price, field)))
+
+    return price_data
+
+
 def update_card_slopes(card_qs=None):
     """Update slopes and percentage changes for all cards based on recent prices."""
     intervals = [2, 7, 30]
     field = 'low'  # The price field to use for slope calculations
     slopes_to_update = []
     slopes_to_create = []
-    now = timezone.now()
+    current_time = timezone.now()
 
     if not card_qs:
         card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
 
-    # Prefetch prices to reduce the number of queries
-    price_data = {
-        card.cm_id: list(
-            card.prices.filter(**{f"{field}__isnull": False})
-            .order_by('-catalog_date')
-            .values_list('catalog_date', field)
-        )
-        for card in card_qs
-    }
+    price_data = build_price_data(card_qs, field)
 
     # Retrieve all slopes at once to minimize queries
     existing_slopes = MTGCardPriceSlope.objects.filter(card__in=card_qs).only(
@@ -201,7 +213,7 @@ def update_card_slopes(card_qs=None):
                 slope_instance = slope_dict[slope_key]
                 slope_instance.slope = slope
                 slope_instance.percent_change = percent_change
-                slope_instance.date_updated = now
+                slope_instance.date_updated = current_time
                 slopes_to_update.append(slope_instance)
             else:  # Create
                 slopes_to_create.append(
@@ -227,7 +239,8 @@ def get_top_20_cards_by_slope(card_qs, min_price=3, interval_days=7, only_positi
 
     # Retrieve pre-calculated slopes and get a larger initial set
     slopes = MTGCardPriceSlope.objects.filter(card__in=filtered_qs, interval_days=interval_days).order_by(
-        '-percent_change')[:50]
+        '-percent_change'
+    )[:50]
 
     top_cards = []
     for slope in slopes:

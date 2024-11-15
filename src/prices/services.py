@@ -37,7 +37,7 @@ def update_mtg():
         'updated_prices': updated_prices,
     }
 
-    if updated_sets:
+    if updated_prices:
         catalog_date = MTGCardPrice.objects.order_by('catalog_date').last().catalog_date
         card_ids = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list('cm_id', flat=True)
         card_qs = MTGCard.objects.filter(cm_id__in=card_ids)
