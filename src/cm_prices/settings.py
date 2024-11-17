@@ -136,8 +136,11 @@ SHELL_PLUS_POST_IMPORTS = (
     # 'module.submodule4',
     ('prices.services', '*'),
     ('lib.utils', '*'),
+    ('prices.constants', '*'),
 )
 
 SCRAPING_RETRIES = 8
 SCRAPING_SLEEP_TIME = 15.5
 SLOPE_THRESHOLD = 0.4
+
+PRICE_FIELD = 'low'

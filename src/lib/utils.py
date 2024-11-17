@@ -9,7 +9,7 @@ from django.conf import settings
 from django.db.models import F, OuterRef, Subquery
 from django.utils import timezone
 
-from prices.constants import LEGAL_STANDARD_SETS
+from prices.constants import LEGAL_PIONEER_SETS, LEGAL_STANDARD_SETS
 from prices.models import MTGCard, MTGCardPrice, MTGCardPriceSlope
 
 logger = logging.getLogger(__name__)
@@ -76,7 +76,7 @@ def simple_trend(price_dates, price_values):
 
 def price_slope(card, days=None):
     """Calculate trending slope for card prices over a period."""
-    prices = fetch_prices(card, "low", days)
+    prices = fetch_prices(card, settings.PRICE_FIELD, days)
     if len(prices) <= 1:
         return 0
 
@@ -127,6 +127,7 @@ def fetch_prices(card, field, days):
 def rank_card_by_price(card, days=None):
     """Calculate the mean percentage increase across multiple price metrics for a card over a period."""
 
+    price_field = settings.PRICE_FIELD
     price_fields = ['avg', 'avg1', 'low', 'trend']
     min_value = 1  # Minimum threshold for last price to be considered significant
     min_percentage = 1  # Minimum threshold for percentage increase
@@ -137,13 +138,13 @@ def rank_card_by_price(card, days=None):
     )
 
     # Skip card if the last low price is below min_value or missing
-    if not last_prices or (last_prices.low and last_prices.low < min_value):
+    if not last_prices or (getattr(last_prices, price_field) and getattr(last_prices, price_field) < min_value):
         return 0
 
     # List to hold percentage increases for each price field
     increase_list = []
-    for price_field in price_fields:
-        increase = price_increase_ranking(card, price_field, days)
+    for p_field in price_fields:
+        increase = price_increase_ranking(card, p_field, days)
         if increase < min_percentage:
             return 0  # Discard if any increase is below threshold
         increase_list.append(increase)
@@ -174,7 +175,7 @@ def build_price_data(card_qs, field):
 def update_card_slopes(card_qs=None):
     """Update slopes and percentage changes for all cards based on recent prices."""
     intervals = [2, 7, 30]
-    field = 'low'  # The price field to use for slope calculations
+    p_field = settings.PRICE_FIELD  # The price field to use for slope calculations
     slopes_to_update = []
     slopes_to_create = []
     current_time = timezone.now()
@@ -182,7 +183,7 @@ def update_card_slopes(card_qs=None):
     if not card_qs:
         card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
 
-    price_data = build_price_data(card_qs, field)
+    price_data = build_price_data(card_qs, p_field)
 
     # Retrieve all slopes at once to minimize queries
     existing_slopes = MTGCardPriceSlope.objects.filter(card__in=card_qs).only(
@@ -232,8 +233,9 @@ def update_card_slopes(card_qs=None):
 def get_top_20_cards_by_slope(card_qs, min_price=3, interval_days=7, only_positive=True):
     """Return up to the top 20 cards with the highest slopes, filtering only positive changes if specified."""
 
+    p_field = settings.PRICE_FIELD
     # Fetch latest price for filtering cards based on min_price
-    latest_price = MTGCardPrice.objects.filter(card=OuterRef('pk')).order_by('-catalog_date').values('low')[:1]
+    latest_price = MTGCardPrice.objects.filter(card=OuterRef('pk')).order_by('-catalog_date').values(p_field)[:1]
     annotated_qs = card_qs.annotate(latest_price=Subquery(latest_price))
     filtered_qs = annotated_qs.filter(latest_price__gte=min_price)
 
@@ -248,12 +250,13 @@ def get_top_20_cards_by_slope(card_qs, min_price=3, interval_days=7, only_positi
         if len(interval_prices) < 2:
             continue
 
-        first_price = interval_prices[-1].low
-        last_price = interval_prices[0].low
+        first_price = getattr(interval_prices[-1], p_field)
+        last_price = getattr(interval_prices[0], p_field)
 
         if first_price is None or last_price is None:
             continue  # Skip if prices are missing
 
+        price_change = last_price - first_price
         if first_price == last_price:
             percent_change = 0
             slope_value = 0
@@ -266,7 +269,15 @@ def get_top_20_cards_by_slope(card_qs, min_price=3, interval_days=7, only_positi
             continue
 
         top_cards.append(
-            (slope.card.name, percent_change, slope_value, first_price, last_price, slope.card.expansion.code)
+            (
+                slope.card.name,
+                round(percent_change, 1),
+                slope_value,
+                first_price,
+                last_price,
+                price_change,
+                slope.card.expansion.code,
+            )
         )
 
         if len(top_cards) == 20:  # Stop once we have the top 20
@@ -278,7 +289,20 @@ def get_top_20_cards_by_slope(card_qs, min_price=3, interval_days=7, only_positi
 def show_changes(card_qs=None, days=7, min_price=3):
     """Display the top 20 cards based on slope and percentage change."""
     if not card_qs:
-        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
+        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PIONEER_SETS)
+        card_qs = card_qs.exclude(expansion__code__startswith='X')
+
     top_20_cards = get_top_20_cards_by_slope(card_qs, min_price, days)
-    for name, percent_change, slope, first_price, last_price, code in top_20_cards:
-        print(f" {percent_change:.2f}% ({slope:.2f}) | {name} - {code} | prices: {first_price} -> {last_price}")
+
+    # Ensure the results are sorted by percent_change (index 1 in the tuple)
+    top_20_cards = sorted(top_20_cards, key=lambda x: x[1], reverse=True)
+
+    print(f"{'Name':<40} | {'Expansion Code':<14} | {'% Change':<8} | {'Slope':<6} | Price Change")
+    print("-" * 90)
+
+    for name, percent_change, slope, first_price, last_price, price_change, code in top_20_cards:
+        truncated_name = name[:37] + '...' if len(name) > 37 else name
+        print(
+            f"{truncated_name:<40} | {code:<14} | {percent_change:+6.1f}% | {slope:+6.2f} | "
+            f"{first_price:.2f} -> {last_price:.2f} ({price_change:+.2f}€)"
+        )
