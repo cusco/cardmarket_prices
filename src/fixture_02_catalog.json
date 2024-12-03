@@ -1,0 +1,1150 @@
+[
+{
+  "model": "prices.catalog",
+  "pk": "020a1f18-0304-4d7e-b56b-c7eb59ddc7b1",
+  "fields": {
+    "date_updated": "2024-11-19T02:43:03.238Z",
+    "date_created": "2024-11-19T02:43:03.238Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-19T01:46:37Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "c10bb9d8e9b58a95d7af1a124c452aae"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "0612cedb-010b-4521-9244-8a4537b55b06",
+  "fields": {
+    "date_updated": "2024-11-06T16:43:03.133Z",
+    "date_created": "2024-11-06T16:43:03.133Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-06T16:21:34Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "b5d7faac471b15b717c7e76b2738391b"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "08ed186d-aa36-40b2-ad72-a1abacf49941",
+  "fields": {
+    "date_updated": "2024-11-04T21:48:16.802Z",
+    "date_created": "2024-11-04T21:48:16.802Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-19T00:45:52Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "9fb5fe2784bcadb2f0bd85b7156bc728"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "09a73da0-33ae-4cf6-a739-298d74e3b09f",
+  "fields": {
+    "date_updated": "2024-11-25T02:43:03.458Z",
+    "date_created": "2024-11-25T02:43:03.458Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-25T01:44:50Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "f90d09b0094c4b0042f7a50867a08c15"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "0c757a33-5262-4504-acea-90eed8d4175a",
+  "fields": {
+    "date_updated": "2024-11-04T21:47:13.484Z",
+    "date_created": "2024-11-04T21:47:13.484Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-11T11:15:19Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "fffa18c90c61adf130d6d7542142ae2b"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "0dc36d4f-e159-4fe3-86c7-4735c2ec58f7",
+  "fields": {
+    "date_updated": "2024-11-04T21:49:46.845Z",
+    "date_created": "2024-11-04T21:49:46.845Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-29T01:41:33Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "e74e5075480eb8520f578aa6ef3e1bb3"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "0e11532f-e24a-4478-851c-c9fafd2ec01c",
+  "fields": {
+    "date_updated": "2024-11-19T12:43:02.951Z",
+    "date_created": "2024-11-19T12:43:02.951Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-19T12:15:48Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "d06ae20496410a03a5cbf74cabcddebd"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "10a4e56a-ca4e-4aac-bfe6-49c7b5a9ff0b",
+  "fields": {
+    "date_updated": "2024-12-02T02:43:03.378Z",
+    "date_created": "2024-12-02T02:43:03.378Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-12-02T01:44:54Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "267e5de20ee3af2cc9d799479b726f10"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "1976495c-1b42-425b-b41b-28c0030d88c3",
+  "fields": {
+    "date_updated": "2024-12-03T10:43:12.394Z",
+    "date_created": "2024-12-03T10:43:12.395Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-12-03T09:34:31Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "b84a3d66e7f984ede89ddb0bba3e84e2"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "1a12a898-4227-4f95-822a-7fd025d33410",
+  "fields": {
+    "date_updated": "2024-11-09T02:43:03.897Z",
+    "date_created": "2024-11-09T02:43:03.897Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-09T01:41:52Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "61ef9db19859f9b00f9732a39cb35a6e"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "211fcb13-e4d5-42d8-88c9-9159235567b6",
+  "fields": {
+    "date_updated": "2024-11-04T21:47:31.270Z",
+    "date_created": "2024-11-04T21:47:31.270Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-13T09:49:27Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "a24f0b166c1d855b83ea4a11c02dca7f"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "2469b32d-a1bd-44a0-8233-9e34115bff52",
+  "fields": {
+    "date_updated": "2024-11-04T21:49:01.383Z",
+    "date_created": "2024-11-04T21:49:01.383Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-24T00:43:17Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "cf80093aa1dcd7cb18f24bb85b8bbc11"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "28500cb0-e797-4d3d-ab60-70d03eb14a92",
+  "fields": {
+    "date_updated": "2024-11-04T21:47:05.684Z",
+    "date_created": "2024-11-04T21:47:05.684Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-10T11:24:53Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "5c48ae3f49a02866eec21e67d8e407bb"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "28fde960-7bd2-462f-a699-68500af4851d",
+  "fields": {
+    "date_updated": "2024-11-17T02:43:03.705Z",
+    "date_created": "2024-11-17T02:43:03.705Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-17T01:46:32Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "2a52f16ac7645102c0aefd25d332900a"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "2a31a260-2a57-4dce-82ad-80c357e9b260",
+  "fields": {
+    "date_updated": "2024-11-21T02:43:04.134Z",
+    "date_created": "2024-11-21T02:43:04.134Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-21T01:46:45Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "bdc20a4372a6792231b361aeedc087f4"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "3246c49c-1f1f-4499-b8ee-3ee4487a6649",
+  "fields": {
+    "date_updated": "2024-11-04T21:47:49.971Z",
+    "date_created": "2024-11-04T21:47:49.971Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-16T00:42:45Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "e98989f8d2ff815a208b692725fb573f"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "3251573d-d296-471d-9039-50bfc24223f7",
+  "fields": {
+    "date_updated": "2024-11-29T10:43:03.936Z",
+    "date_created": "2024-11-29T10:43:03.936Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-29T09:30:19Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "f6f585d02491f9e5dd9cf663f62fb2c2"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "35f00886-1f18-446e-b83d-6f8bc4de1861",
+  "fields": {
+    "date_updated": "2024-11-08T14:43:04.074Z",
+    "date_created": "2024-11-08T14:43:04.074Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-08T13:50:57Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "6a891ff444ab1c68a3ac3d9f4cfa0704"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "370b0ef6-ca2b-4f54-ad3a-02fd8dba14e5",
+  "fields": {
+    "date_updated": "2024-11-04T21:48:43.053Z",
+    "date_created": "2024-11-04T21:48:43.053Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-22T00:44:28Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "54dfa5c0a1eb245013fe9210794245d7"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "3e318748-9d3f-4c38-8fd3-d6c007f512e9",
+  "fields": {
+    "date_updated": "2024-11-04T21:45:53.430Z",
+    "date_created": "2024-11-04T21:45:53.430Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-04T15:25:08Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "f134511a2f2738e053fc74f688e427ee"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "3f66f15d-00ce-4e5c-b03e-0845e625afe5",
+  "fields": {
+    "date_updated": "2024-11-04T21:50:06.029Z",
+    "date_created": "2024-11-04T21:50:06.029Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-01T01:42:17Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "8a45f27416eba27e729c1372b1c5897f"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "40e14c8e-064a-4cc8-bc98-67911d6793c7",
+  "fields": {
+    "date_updated": "2024-11-30T02:43:04.148Z",
+    "date_created": "2024-11-30T02:43:04.148Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-30T01:47:50Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "772f1dcd3fbf2a29bf97a6687c940791"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "419ae8be-b106-4b34-9c6e-176f31671ea7",
+  "fields": {
+    "date_updated": "2024-11-08T12:43:03.574Z",
+    "date_created": "2024-11-08T12:43:03.574Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-08T11:42:11Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "36c6b2fee45d65fb543726fa0b1cae69"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "4234a4dd-8e78-4f3d-9891-83bab0f852c2",
+  "fields": {
+    "date_updated": "2024-11-11T08:43:03.010Z",
+    "date_created": "2024-11-11T08:43:03.010Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-11T08:36:13Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "38d55a9cd8254a08f1c083b34dbe674a"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "47f30442-c902-42a1-8755-16da0beaf6f1",
+  "fields": {
+    "date_updated": "2024-11-04T21:49:18.420Z",
+    "date_created": "2024-11-04T21:49:18.420Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-26T00:43:39Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "df389c637fd8703fa0868ca0ebcd875d"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "49c17c44-67ea-4ebf-a7e9-24fb8acc9b08",
+  "fields": {
+    "date_updated": "2024-12-02T10:43:03.150Z",
+    "date_created": "2024-12-02T10:43:03.150Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-12-02T09:43:10Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "e63d797cb91fe9ca0bdfd2baba533be9"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "4aea08f1-bb65-432d-9974-4562f5213f47",
+  "fields": {
+    "date_updated": "2024-11-28T12:43:03.098Z",
+    "date_created": "2024-11-28T12:43:03.098Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-28T10:41:32Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "d82c3743caf3a322da73d3de079ca8af"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "4b112631-611e-4c34-a207-9f41c03d3bae",
+  "fields": {
+    "date_updated": "2024-11-16T02:43:03.571Z",
+    "date_created": "2024-11-16T02:43:03.571Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-16T01:41:34Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "c336e82c7a08ae849fbc74422077be80"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "4ea26828-bf76-4da6-a309-ecb479031145",
+  "fields": {
+    "date_updated": "2024-11-15T02:43:03.531Z",
+    "date_created": "2024-11-15T02:43:03.531Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-15T01:42:04Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "6c197027aff679cc08190363acc7f7b2"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "520c1cc2-2ec6-4e18-825e-ecc8641df329",
+  "fields": {
+    "date_updated": "2024-11-05T18:43:03.300Z",
+    "date_created": "2024-11-05T18:43:03.300Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-05T17:20:59Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "f2e7454580f2e0c04c199044f6d10216"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "520cea51-dc9b-4fa5-9fb2-60422ef805c7",
+  "fields": {
+    "date_updated": "2024-11-27T02:43:03.865Z",
+    "date_created": "2024-11-27T02:43:03.865Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-27T01:43:31Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "80310b41312cb22864ed8a3b70378a21"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "5624b0f0-6637-4cb3-9361-9424ebc880c3",
+  "fields": {
+    "date_updated": "2024-11-14T14:43:03.631Z",
+    "date_created": "2024-11-14T14:43:03.631Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-14T13:07:14Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "49b82669e44c73a4bf99036d9b471256"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "57f0f07a-605d-4c0b-9437-1844c564a8d8",
+  "fields": {
+    "date_updated": "2024-12-01T10:43:04.471Z",
+    "date_created": "2024-12-01T10:43:04.471Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-12-01T09:13:51Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "a2c2966dc6db8fde2ce9f23eb02fd354"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "58e30d01-15b3-46c5-9dc4-3260963e9b21",
+  "fields": {
+    "date_updated": "2024-11-18T14:43:03.833Z",
+    "date_created": "2024-11-18T14:43:03.833Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-18T14:19:18Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "807e509171867c160f73a0fe0bfaffa2"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "59a59705-7b48-4bf3-8572-f7531fe3eaa0",
+  "fields": {
+    "date_updated": "2024-11-13T12:43:03.359Z",
+    "date_created": "2024-11-13T12:43:03.359Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-13T11:54:03Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "9a5b0faffbff4854d976d675789555e1"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "5c36a33e-fee7-4b5c-880a-f668c2dc115d",
+  "fields": {
+    "date_updated": "2024-11-05T14:43:03.501Z",
+    "date_created": "2024-11-05T14:43:03.501Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-05T14:37:16Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "385178fcf9481ae0b0ae3ebc730ab00c"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "5fbf14bd-8cf2-4b37-a239-d3886ed46752",
+  "fields": {
+    "date_updated": "2024-11-08T02:43:03.103Z",
+    "date_created": "2024-11-08T02:43:03.103Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-08T01:42:18Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "41a6e527fa9ac44db6725e5da88dbe88"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "60129a43-3c12-4f72-abec-5e2625429d27",
+  "fields": {
+    "date_updated": "2024-11-14T02:43:04.001Z",
+    "date_created": "2024-11-14T02:43:04.001Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-14T01:42:25Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "7efe1de16fbdabead6fdc0664d984d55"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "646b36bf-144a-4034-a26c-f08fd290994b",
+  "fields": {
+    "date_updated": "2024-11-26T10:43:03.534Z",
+    "date_created": "2024-11-26T10:43:03.534Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-26T08:46:18Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "4b450f92c12cf4aaa3c99f37895badaf"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "6a85c701-ec3c-4e84-9cea-37fcb05d7e24",
+  "fields": {
+    "date_updated": "2024-11-04T21:48:24.692Z",
+    "date_created": "2024-11-04T21:48:24.692Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-20T00:46:59Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "dbcc11a48cdbb5ba79b071e72c94a94b"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "6f1f168e-f19d-4bf8-a49e-1f6110ef75ba",
+  "fields": {
+    "date_updated": "2024-11-04T21:46:48.404Z",
+    "date_created": "2024-11-04T21:46:48.404Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-08T10:43:40Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "2c66dedbb164edcc76ffd4d4c729aff8"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "737a7d0d-3f44-417d-8bc5-e97c3ac5603c",
+  "fields": {
+    "date_updated": "2024-11-06T14:43:03.122Z",
+    "date_created": "2024-11-06T14:43:03.122Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-06T13:59:44Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "90be31b5d38ffc892ba0d84bd212049c"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "75fe9041-a67b-441b-a7c3-5e1edb466b97",
+  "fields": {
+    "date_updated": "2024-11-13T02:43:03.711Z",
+    "date_created": "2024-11-13T02:43:03.711Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-13T01:44:02Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "8fe2277479a527b40ba4ced155c95b03"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "765e4edc-bd95-4639-8827-1fce65621503",
+  "fields": {
+    "date_updated": "2024-11-06T18:43:03.376Z",
+    "date_created": "2024-11-06T18:43:03.376Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-06T17:27:16Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "68dba7534fa4ea85d73ed9a8aff82580"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "79203985-f022-405a-8f4d-731e8eb1fc7e",
+  "fields": {
+    "date_updated": "2024-11-04T21:49:36.974Z",
+    "date_created": "2024-11-04T21:49:36.974Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-28T01:43:20Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "3dc226668335b8d9690fbaef6a2126ba"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "7a4fe668-33aa-4c3e-bc77-d7455858c470",
+  "fields": {
+    "date_updated": "2024-11-04T21:49:28.021Z",
+    "date_created": "2024-11-04T21:49:28.021Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-27T00:47:47Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "e9d27b3df201ea4bc77ab6db52f4b223"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "7a759430-7739-44e7-b99a-784645bc8a98",
+  "fields": {
+    "date_updated": "2024-11-04T21:51:28.208Z",
+    "date_created": "2024-11-04T21:51:28.208Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-04T01:43:53Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "f107dee4eba1f74c419296142896e3a3"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "7e1fccfe-7204-4a1c-bef4-1243e6fe1392",
+  "fields": {
+    "date_updated": "2024-11-04T21:49:10.279Z",
+    "date_created": "2024-11-04T21:49:10.279Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-25T00:43:08Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "8d8b0dc78418e864b5c5282ff75c10bb"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "823a7bd4-a5e3-4a67-a9f4-2184916bac51",
+  "fields": {
+    "date_updated": "2024-11-25T12:43:03.755Z",
+    "date_created": "2024-11-25T12:43:03.755Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-25T11:05:10Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "87bdc68b3560aa8e7fc1208ff170def1"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "824f73d0-41ba-4611-80be-e626317ed0d4",
+  "fields": {
+    "date_updated": "2024-11-18T16:43:03.228Z",
+    "date_created": "2024-11-18T16:43:03.228Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-18T15:27:10Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "14b6ec8f6ffa66ef49a26729566793fc"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "8d89bcbe-9c34-4554-9e86-0205515a0b73",
+  "fields": {
+    "date_updated": "2024-11-30T10:43:03.727Z",
+    "date_created": "2024-11-30T10:43:03.727Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-30T09:21:50Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "c3b59ee355a38d5e16ad9724337d3476"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "8feb0ecf-9240-4262-88af-18f3a5c849dd",
+  "fields": {
+    "date_updated": "2024-11-04T21:47:59.446Z",
+    "date_created": "2024-11-04T21:47:59.446Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-17T00:44:58Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "534cd323cf6903bbc7d22a182fcd74b1"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "9110dabd-9415-4d9f-925a-29fa9d472230",
+  "fields": {
+    "date_updated": "2024-11-12T02:43:03.712Z",
+    "date_created": "2024-11-12T02:43:03.712Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-12T01:42:01Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "fd0f8c0508e7eff80cb24b52b6318e89"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "92f0ec48-c451-48cf-9677-dbf04bd7694a",
+  "fields": {
+    "date_updated": "2024-11-05T12:43:03.175Z",
+    "date_created": "2024-11-05T12:43:03.175Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-05T11:01:52Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "07c2f0fc392e217d67165e1d9700e781"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "948f5a0d-88c9-44ce-9f19-bcf4d18a5fe5",
+  "fields": {
+    "date_updated": "2024-11-19T10:43:03.598Z",
+    "date_created": "2024-11-19T10:43:03.598Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-19T10:36:01Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "473d95a55752d419a4af753f64600500"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "9571d617-fb4f-4e2e-a571-cb0fe0e123f1",
+  "fields": {
+    "date_updated": "2024-11-26T02:43:03.668Z",
+    "date_created": "2024-11-26T02:43:03.668Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-26T01:45:46Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "cbbb9376e65c790c7b53476a2a74352e"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "98a8b881-5a42-45a6-86b4-56f9fe6c4539",
+  "fields": {
+    "date_updated": "2024-11-04T21:47:40.653Z",
+    "date_created": "2024-11-04T21:47:40.653Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-14T07:56:51Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "c0c75ea980497768ace6377ac6a46ca8"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "98b8ecf0-9f7c-499b-b89f-8b87c3ceb960",
+  "fields": {
+    "date_updated": "2024-11-04T21:47:22.340Z",
+    "date_created": "2024-11-04T21:47:22.340Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-12T10:16:15Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "70986d27ab6140628ae00e48a0878078"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "99729a10-b1e7-4f15-84e5-9930251fbadb",
+  "fields": {
+    "date_updated": "2024-11-04T21:46:38.992Z",
+    "date_created": "2024-11-04T21:46:38.992Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-07T10:50:42Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "f4863574e95bfe4cacf2941045009970"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "9a10e0a2-afb1-4263-a71e-3a51422eb12f",
+  "fields": {
+    "date_updated": "2024-11-06T02:43:03.938Z",
+    "date_created": "2024-11-06T02:43:03.938Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-06T01:44:43Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "e62d662af599a09b0d05d10ccb8e018b"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "9d2514af-0080-477e-bb1f-9865d7bd1cb3",
+  "fields": {
+    "date_updated": "2024-12-03T02:43:03.939Z",
+    "date_created": "2024-12-03T02:43:03.939Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-12-03T01:44:33Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "b82a25f8c9293881f126f85f38d5d45c"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "a13b2ed6-2eb3-46e4-b742-1437ea46b10b",
+  "fields": {
+    "date_updated": "2024-11-20T12:43:03.263Z",
+    "date_created": "2024-11-20T12:43:03.263Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-20T10:18:16Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "28f2eb89288d45af852efc50a46353e7"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "a176cbbe-89a9-4fea-b071-d210681af4ea",
+  "fields": {
+    "date_updated": "2024-12-01T02:43:03.789Z",
+    "date_created": "2024-12-01T02:43:03.789Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-12-01T01:45:36Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "29edd87f47d2c71b528da8101f0e8ae0"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "a85ad387-52da-423c-96b8-6ee5e61a8648",
+  "fields": {
+    "date_updated": "2024-11-04T21:51:03.636Z",
+    "date_created": "2024-11-04T21:51:03.636Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-03T01:47:02Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "43ef3b21e641e7ffed7c7d319a610118"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "ab0eaf1c-e2b1-43b5-8b85-ff5d8423c312",
+  "fields": {
+    "date_updated": "2024-11-04T21:48:52.269Z",
+    "date_created": "2024-11-04T21:48:52.269Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-23T00:46:38Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "58011c84d966a86bac55c2100342e6f6"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "ad334dee-dd9f-40ff-87a1-0adee61e350c",
+  "fields": {
+    "date_updated": "2024-11-05T02:43:03.353Z",
+    "date_created": "2024-11-05T02:43:03.353Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-05T01:44:07Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "ad194aa28e8c4205ac462929881b8368"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "c4044691-533d-417e-8f79-0ae022e2a960",
+  "fields": {
+    "date_updated": "2024-11-05T16:43:03.294Z",
+    "date_created": "2024-11-05T16:43:03.294Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-05T15:40:26Z",
+    "catalog_id": 1,
+    "catalog_type": 1,
+    "md5sum": "9dc4557c9478e0d25127d982f3240a04"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "c78f902a-01ac-4b54-81e7-5ff4d8aff8e8",
+  "fields": {
+    "date_updated": "2024-11-04T21:48:34.163Z",
+    "date_created": "2024-11-04T21:48:34.163Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-21T00:46:32Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "6d9ce487e0c6423f8447823dda668a45"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "cb2ab6a4-dbac-4d27-bd64-0aee8b249901",
+  "fields": {
+    "date_updated": "2024-11-18T02:43:03.499Z",
+    "date_created": "2024-11-18T02:43:03.499Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-18T01:42:49Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "6c3ae54b441ab7442a7805b009be6d2e"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "cdd0a548-364a-44c1-8d69-7d3388e81807",
+  "fields": {
+    "date_updated": "2024-11-24T02:43:03.970Z",
+    "date_created": "2024-11-24T02:43:03.970Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-24T01:43:05Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "2925696d7f596efa22274b49858aedac"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "d8b5eeac-33ac-441c-a217-db65033d0d48",
+  "fields": {
+    "date_updated": "2024-11-04T21:46:57.537Z",
+    "date_created": "2024-11-04T21:46:57.537Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-09T11:07:58Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "a7b5763492299fe4815e78996905b5c2"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "db82c9f7-e5ea-4fd5-8b1a-81e92571f725",
+  "fields": {
+    "date_updated": "2024-11-04T21:50:39.740Z",
+    "date_created": "2024-11-04T21:50:39.740Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-02T01:44:57Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "8849027736c9a4f9d1b1506a21289b89"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "dd28d17e-3872-4d4f-9a33-e346adf25d51",
+  "fields": {
+    "date_updated": "2024-11-07T02:43:03.180Z",
+    "date_created": "2024-11-07T02:43:03.180Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-07T01:42:16Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "11ce6619096cf04b379c9d3c833a9d2d"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "df81e32b-a0d9-4cb1-93cd-0fbd5e5b03e5",
+  "fields": {
+    "date_updated": "2024-11-28T02:43:03.356Z",
+    "date_created": "2024-11-28T02:43:03.356Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-28T01:41:34Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "30c5890745b5cbb9b5d36d8513f3d0eb"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "dfcdb014-fd99-468d-bb86-5e0953cd3403",
+  "fields": {
+    "date_updated": "2024-11-29T02:43:04.131Z",
+    "date_created": "2024-11-29T02:43:04.132Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-29T01:46:42Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "a152f29a94eda0be4c8f81a8f348882b"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "e44c740e-9123-4b3a-91e1-72ad835c8d32",
+  "fields": {
+    "date_updated": "2024-11-11T02:43:03.944Z",
+    "date_created": "2024-11-11T02:43:03.944Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-11T01:43:53Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "1e028bc55da86d6965dbde8583e8852a"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "e4f0523c-3576-4b29-a6a7-7eec2c872913",
+  "fields": {
+    "date_updated": "2024-11-23T02:43:03.489Z",
+    "date_created": "2024-11-23T02:43:03.489Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-23T01:43:48Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "7bfef8c1ce6fadede660264fe5ed8561"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "e749203b-0343-45ad-9246-89198ee1bcf1",
+  "fields": {
+    "date_updated": "2024-11-10T02:43:03.898Z",
+    "date_created": "2024-11-10T02:43:03.898Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-10T01:45:38Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "6eb93e1d69cc173cf780642c1da12692"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "e8a67726-a637-4bdd-8a28-8c0e8b550c82",
+  "fields": {
+    "date_updated": "2024-11-04T21:48:07.332Z",
+    "date_created": "2024-11-04T21:48:07.332Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-18T00:44:21Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "636c4e337e5a214df8514fe2b6d009e0"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "f4fae006-8aef-4a2d-8b55-b54c0b8f2f36",
+  "fields": {
+    "date_updated": "2024-11-22T02:43:03.505Z",
+    "date_created": "2024-11-22T02:43:03.505Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-22T01:44:17Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "6db674a66f2d005a82ab8d43bd244938"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "f8799a23-743a-467e-81b5-9ae13f938aed",
+  "fields": {
+    "date_updated": "2024-11-04T21:49:55.585Z",
+    "date_created": "2024-11-04T21:49:55.585Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-10-30T01:46:18Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "806b7b28c341eb0c8c0283d97a0fcfd0"
+  }
+},
+{
+  "model": "prices.catalog",
+  "pk": "f92292b0-636f-4282-a934-05b6be6d71a6",
+  "fields": {
+    "date_updated": "2024-11-20T02:43:03.360Z",
+    "date_created": "2024-11-20T02:43:03.360Z",
+    "obs": "",
+    "active": true,
+    "catalog_date": "2024-11-20T01:44:16Z",
+    "catalog_id": 1,
+    "catalog_type": 2,
+    "md5sum": "aff4aa54d2d83cceb640dad8cbe4e857"
+  }
+}
+]
