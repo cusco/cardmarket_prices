@@ -274,10 +274,9 @@ def update_sets_extra_info():
             exp_name = exp_row.attrs.get('data-local-name', None)
             exp_release_date = exp_row.find_all('div')[5].text
 
-            local_set = MTGSet.objects.filter(name=exp_name)
-            if not local_set.exists():
+            local_set = MTGSet.objects.filter(name=exp_name).first()
+            if not local_set:
                 continue
-            local_set = local_set.first()
 
             to_update = False
 
