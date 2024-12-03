@@ -67,10 +67,10 @@ LEGAL_PIONEER_SETS = [
     1830,  # Explorers of Ixalan | 2017-11-24
     1835,  # Core 2019 | 2018-07-13
     1847,  # Ixalan: Promos | 2017-09-23
-    2023,  # Store Championship Promos | 2017-12-25
-    2063,  # Rivals of Ixalan: Promos | 2018-01-13
-    2315,  # Dominaria: Promos | 2018-04-21
-    2337,  # Core 2019: Promos | 2018-07-07
+    # 2023,  # Store Championship Promos | 2017-12-25
+    # 2063,  # Rivals of Ixalan: Promos | 2018-01-13
+    # 2315,  # Dominaria: Promos | 2018-04-21
+    # 2337,  # Core 2019: Promos | 2018-07-07
     2348,  # Guilds of Ravnica | 2018-10-05
     2371,  # Guilds of Ravnica: Extras | 2018-09-29
     2373,  # Guilds of Ravnica: Mythic Edition | 2018-10-03
@@ -128,7 +128,7 @@ LEGAL_PIONEER_SETS = [
     5428,  # Wilds of Eldraine: Extras | 2023-09-08
     5490,  # The Lost Caverns of Ixalan | 2023-11-17
     5491,  # The Lost Caverns of Ixalan: Extras | 2023-11-17
-    5561,  # Murders at Karlov Manor | 2024-02-09
+    5561,  # Murders at Karlov Manor | 2024-02-09r
     5599,  # Murders at Karlov Manor: Extras | 2024-02-09
     5647,  # Outlaws of Thunder Junction | 2024-04-19
     5658,  # Bloomburrow | 2024-08-02
