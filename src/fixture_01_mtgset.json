@@ -10426,7 +10426,7 @@
     "name": "Innistrad Remastered",
     "url": "/en/Magic/Expansions/Innistrad-Remastered",
     "release_date": "2025-01-24",
-    "code": null,
+    "code": "INR",
     "type": null,
     "is_foil_only": false
   }
@@ -10458,7 +10458,7 @@
     "name": "Foundations Jumpstart",
     "url": "/en/Magic/Expansions/Foundations-Jumpstart",
     "release_date": "2024-11-15",
-    "code": null,
+    "code": "J25",
     "type": null,
     "is_foil_only": false
   }
@@ -10474,7 +10474,7 @@
     "name": "Magic: The Gathering Foundations: Starter Collection",
     "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Starter-Collection",
     "release_date": "2024-11-15",
-    "code": null,
+    "code": "SFDN",
     "type": null,
     "is_foil_only": false
   }
@@ -10490,7 +10490,7 @@
     "name": "Magic: The Gathering Foundations: Promos",
     "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Promos",
     "release_date": "2024-11-15",
-    "code": null,
+    "code": "PFDN",
     "type": null,
     "is_foil_only": false
   }
@@ -10506,7 +10506,7 @@
     "name": "Magic: The Gathering Foundations: Tokens",
     "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Tokens",
     "release_date": "2024-11-15",
-    "code": null,
+    "code": "TFDN",
     "type": null,
     "is_foil_only": false
   }
@@ -10522,7 +10522,7 @@
     "name": "Magic: The Gathering Foundations: Beginner Box",
     "url": "/en/Magic/Expansions/Magic-The-Gathering-Foundations-Beginner-Box",
     "release_date": "2024-11-15",
-    "code": null,
+    "code": "BFDN",
     "type": null,
     "is_foil_only": false
   }
@@ -10539,6 +10539,22 @@
     "url": "/en/Magic/Expansions/Secret-Lair-Commander-Deck-20-Ways-to-Win",
     "release_date": "2025-12-20",
     "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5977,
+  "fields": {
+    "date_updated": "2024-12-04T13:33:40.095Z",
+    "date_created": "2024-12-04T10:43:02.550Z",
+    "obs": "",
+    "active": true,
+    "name": "Innistrad Remastered: Extras",
+    "url": "/en/Magic/Expansions/Innistrad-Remastered-Extras",
+    "release_date": "2025-01-24",
+    "code": "XINR",
     "type": null,
     "is_foil_only": false
   }
