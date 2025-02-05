@@ -18,16 +18,6 @@ jobs:
   Validate_and_Test:
     runs-on: ubuntu-latest
 
-#    services:
-#      postgres:
-#        image: postgres:15
-#        env:
-#          POSTGRES_USER: db_user
-#          POSTGRES_PASSWORD: db_password
-#          POSTGRES_DB: db_name
-#        ports: [ '5432:5432' ]
-#        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
     permissions:
       statuses: write
       checks: write
@@ -42,20 +32,14 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: 3.11
-        cache: 'pip'
 
-#    - uses: actions/cache@v3
-#      id: cache
-#      with:
-#        path: |
-#          ~/.cache/pip
-#          ${{ env.pythonLocation }}
-##        key: ${{ runner.os }}-pip-${{ hashFiles('py-requirements/base.txt') }}
-#        key: ${{ env.pythonLocation }}-pip-${{ hashFiles('requirements.txt') }}
-
-#        restore-keys: |
-#          ${{ runner.os }}-pip-
-#          ${{ runner.os }}-
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Set-up Requirements
 #      if: steps.cache.outputs.cache-hit != 'true'
@@ -90,10 +74,3 @@ jobs:
         name: Report - Static Validation
         path: report_*.xml
         reporter: java-junit
-
-#    - name: Test Backend
-#      env:
-#        SECRETKEY: django-insecure-k1l0gdyz@0ql=k8x!f1=4y67_gak-q!1d43fd0r21vaf@8-aze
-#        DJANGO_SETTINGS_MODULE: cm_prices.settings.ci
-#      run: |
-#        ./scripts/test_ci_backend.sh
