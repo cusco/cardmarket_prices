@@ -74,7 +74,7 @@ def scryfall_transform_card_data(raw_card_data):
     """Convert raw Scryfall data to model-compatible format, applying constants-based filters and transformations."""
 
     # Skipping unwanted stuff
-    skipping_ids = {'90f17b85-a866-48e8-aae0-55330109550e'}
+    skipping_ids = {'90f17b85-a866-48e8-aae0-55330109550e', '2a2b9db1-c091-4ccc-b7b6-061de7132a18'}
     if not raw_card_data.get('cardmarket_id'):
         return None
     if raw_card_data.get('name').split(' ')[0] in BASIC_TYPES:
@@ -82,6 +82,8 @@ def scryfall_transform_card_data(raw_card_data):
     if '(' in raw_card_data.get('name'):
         return None
     if raw_card_data.get('id') in skipping_ids:
+        return None
+    if raw_card_data.get('cmc') and raw_card_data.get('cmc') > 30000:
         return None
 
     scryfall_id = raw_card_data.get('id')
