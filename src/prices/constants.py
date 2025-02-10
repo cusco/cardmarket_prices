@@ -1,3 +1,6 @@
+# for s in MTGSet.objects.all():
+#     print(str(s.pk) + ',' + '  #', s.name, '|', s.release_date)
+
 LEGAL_STANDARD_SETS = [
     5072,  # Dominaria United
     5073,  # Dominaria United: Extras
@@ -24,6 +27,8 @@ LEGAL_STANDARD_SETS = [
     5807,  # Duskmourn: House of Horror: Extras
     5852,  # Magic: The Gathering Foundations | 2024-11-15
     5931,  # Magic: The Gathering Foundations: Extras | 2024-11-15
+    5982,  # Aetherdrift | 2025-02-14
+    6011,  # Aetherdrift: Extras | 2025-02-14
 ]
 
 LEGAL_PIONEER_SETS = [
@@ -139,4 +144,6 @@ LEGAL_PIONEER_SETS = [
     5807,  # Duskmourn: House of Horror: Extras | 2024-09-27
     5852,  # Magic: The Gathering Foundations | 2024-11-15
     5931,  # Magic: The Gathering Foundations: Extras | 2024-11-15
+    5982,  # Aetherdrift | 2025-02-14
+    6011,  # Aetherdrift: Extras | 2025-02-14
 ]

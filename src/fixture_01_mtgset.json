@@ -10538,7 +10538,7 @@
     "name": "Secret Lair Commander Deck: 20 Ways to Win",
     "url": "/en/Magic/Expansions/Secret-Lair-Commander-Deck-20-Ways-to-Win",
     "release_date": "2025-12-20",
-    "code": null,
+    "code": "SLD20WTW",
     "type": null,
     "is_foil_only": false
   }
@@ -10555,6 +10555,182 @@
     "url": "/en/Magic/Expansions/Innistrad-Remastered-Extras",
     "release_date": "2025-01-24",
     "code": "XINR",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5980,
+  "fields": {
+    "date_updated": "2024-12-10T14:43:02.966Z",
+    "date_created": "2024-12-10T14:43:02.966Z",
+    "obs": "",
+    "active": true,
+    "name": "Vanlubow",
+    "url": "/en/Magic/Expansions/Vanlubow",
+    "release_date": "1993-01-01",
+    "code": "VLBT",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5982,
+  "fields": {
+    "date_updated": "2024-12-11T10:43:02.369Z",
+    "date_created": "2024-12-11T10:43:02.369Z",
+    "obs": "",
+    "active": true,
+    "name": "Aetherdrift",
+    "url": "/en/Magic/Expansions/Aetherdrift",
+    "release_date": "2025-02-14",
+    "code": "DFT",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5988,
+  "fields": {
+    "date_updated": "2024-12-11T12:43:03.346Z",
+    "date_created": "2024-12-11T12:43:03.346Z",
+    "obs": "",
+    "active": true,
+    "name": "Commander: Aetherdrift",
+    "url": "/en/Magic/Expansions/Commander-Aetherdrift",
+    "release_date": "2025-02-14",
+    "code": "DRC",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5991,
+  "fields": {
+    "date_updated": "2024-12-12T12:43:02.993Z",
+    "date_created": "2024-12-12T12:43:02.993Z",
+    "obs": "",
+    "active": true,
+    "name": "Aetherdrift: Promos",
+    "url": "/en/Magic/Expansions/Aetherdrift-Promos",
+    "release_date": "2025-02-14",
+    "code": "DFTP",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 5993,
+  "fields": {
+    "date_updated": "2024-12-23T16:43:02.704Z",
+    "date_created": "2024-12-23T16:43:02.704Z",
+    "obs": "",
+    "active": true,
+    "name": "Secret Lair Drop Series: Chaos Vault",
+    "url": "/en/Magic/Expansions/Secret-Lair-Drop-Series-Chaos-Vault",
+    "release_date": "2025-12-24",
+    "code": "SLDCV",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6007,
+  "fields": {
+    "date_updated": "2025-01-10T10:43:03.116Z",
+    "date_created": "2025-01-10T10:43:03.116Z",
+    "obs": "",
+    "active": true,
+    "name": "Innistrad Remastered: Tokens",
+    "url": "/en/Magic/Expansions/Innistrad-Remastered-Tokens",
+    "release_date": "2025-01-24",
+    "code": "TINR",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6011,
+  "fields": {
+    "date_updated": "2025-01-22T14:43:06.268Z",
+    "date_created": "2025-01-22T14:43:06.268Z",
+    "obs": "",
+    "active": true,
+    "name": "Aetherdrift: Extras",
+    "url": "/en/Magic/Expansions/Aetherdrift-Extras",
+    "release_date": "2025-02-14",
+    "code": "DFTX",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6012,
+  "fields": {
+    "date_updated": "2025-01-22T14:43:06.418Z",
+    "date_created": "2025-01-22T14:43:06.418Z",
+    "obs": "",
+    "active": true,
+    "name": "Aetherdrift: First-Place",
+    "url": "/en/Magic/Expansions/Aetherdrift-First-Place",
+    "release_date": "2025-02-14",
+    "code": "DFTFP",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6022,
+  "fields": {
+    "date_updated": "2025-02-03T12:43:02.772Z",
+    "date_created": "2025-02-03T12:43:02.772Z",
+    "obs": "",
+    "active": true,
+    "name": "Commander: Aetherdrift: Extras",
+    "url": "/en/Magic/Expansions/Commander-Aetherdrift-Extras",
+    "release_date": "2025-02-14",
+    "code": "XDFT",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6035,
+  "fields": {
+    "date_updated": "2025-02-06T12:41:11.295Z",
+    "date_created": "2025-02-06T12:41:11.295Z",
+    "obs": "",
+    "active": true,
+    "name": "Nils Hamm Tokens",
+    "url": "/en/Magic/Expansions/Nils-Hamm-Tokens",
+    "release_date": "1993-01-01",
+    "code": "NHT",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6036,
+  "fields": {
+    "date_updated": "2025-02-07T10:43:02.748Z",
+    "date_created": "2025-02-07T10:43:02.748Z",
+    "obs": "",
+    "active": true,
+    "name": "Aetherdrift: Tokens",
+    "url": "/en/Magic/Expansions/Aetherdrift-Tokens",
+    "release_date": "2025-02-14",
+    "code": "DFTT",
     "type": null,
     "is_foil_only": false
   }
