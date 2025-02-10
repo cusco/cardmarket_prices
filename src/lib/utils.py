@@ -309,41 +309,59 @@ def show_changes(card_qs=None, days=7, min_price=3):
 
 
 # ####### GEMINI
-def find_spiking_cards(card_qs=None, min_price=3):
-    """Find cards with potential price spikes based on 3-day increasing trend (skipping None values)."""
-    surging_cards = []
+def find_spiking_cards(
+    card_qs=None,
+    min_price=3,
+    last_entries=3,
+    min_percentage_change=5,
+    accelerating_increase_factor=1.0,
+    min_price_difference=0.50,
+):
+    """Find cards with potential price spikes based on increasing trend."""
+    if not 2 <= last_entries <= 30:
+        raise ValueError("last_entries must be between 2 and 30.")
 
     if not card_qs:
         card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PIONEER_SETS)
-        card_qs = card_qs.exclude(expansion__code__startswith='X')
 
-    for card in card_qs:
-        prices = list(card.prices.order_by('-catalog_date')[:3])
-        if len(prices) < 3:
-            continue
+    # filter cards with trend != 0
+    valid_card_ids = {
+        card.pk
+        for card in card_qs
+        if len(card.prices.order_by('-catalog_date')[:last_entries]) == last_entries
+        and all(p.trend is not None for p in card.prices.order_by('-catalog_date')[:last_entries])
+    }
+    valid_cards_qs = card_qs.filter(pk__in=valid_card_ids)
 
-        p0 = prices[0]
-        p1 = prices[1]
-        p2 = prices[2]
+    spiking_cards = []
 
-        if p0.trend is None or p1.trend is None or p2.trend is None:
-            continue  # Skip this card if any price is None
+    for card in valid_cards_qs:
+        prices = list(card.prices.order_by('-catalog_date')[:last_entries])
+        current_price = prices[0].trend
+        previous_price = prices[1].trend
+        earliest_price = prices[2].trend
 
-        if p0.trend > p1.trend > p2.trend:
-            if p0.trend >= min_price:
-                price_difference = p0.trend - p2.trend
-                surging_cards.append((card, p0.trend, p1.trend, p2.trend, price_difference))
+        percentage_change = ((current_price - previous_price) / previous_price) * 100 if previous_price != 0 else 0
 
-    # Sort by price_difference (largest first)
-    surging_cards.sort(key=lambda x: x[4], reverse=True)  # Sort by the 5th element (price_difference)
+        if current_price > min_price:
+            if percentage_change >= min_percentage_change:
+                trend_increase_day1 = previous_price - earliest_price
+                trend_increase_day2 = current_price - previous_price
 
-    return surging_cards
+                if trend_increase_day2 >= accelerating_increase_factor * trend_increase_day1:
+                    price_difference = current_price - earliest_price
+
+                    if price_difference > min_price_difference:
+                        spiking_cards.append((card, current_price, previous_price, earliest_price, price_difference))
+
+    spiking_cards.sort(key=lambda x: x[4], reverse=True)
+    return spiking_cards
 
 
-def display_spiking_cards(surging_cards):
+def display_spiking_cards(spiking_cards):
     """Display spiking cards with detailed information, sorted by price difference."""
 
-    if not surging_cards:
+    if not spiking_cards:
         print("No spiking cards found.")
         return
 
@@ -352,7 +370,7 @@ def display_spiking_cards(surging_cards):
     )
     print("-" * 100)
 
-    for card, price_0, price_1, price_2, price_difference in surging_cards:
+    for card, price_0, price_1, price_2, price_difference in spiking_cards:
         truncated_name = card.name[:37] + '...' if len(card.name) > 37 else card.name
 
         print(
