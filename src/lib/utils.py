@@ -310,7 +310,7 @@ def show_changes(card_qs=None, days=7, min_price=3):
 
 # ####### GEMINI
 def find_spiking_cards(card_qs=None, min_price=3):
-    """Finds cards with potential price spikes based on 3-day increasing trend (skipping None values)."""
+    """Find cards with potential price spikes based on 3-day increasing trend (skipping None values)."""
     surging_cards = []
 
     if not card_qs:
@@ -341,14 +341,14 @@ def find_spiking_cards(card_qs=None, min_price=3):
 
 
 def display_spiking_cards(surging_cards):
-    """Displays spiking cards with detailed information, sorted by price difference."""
+    """Display spiking cards with detailed information, sorted by price difference."""
 
     if not surging_cards:
         print("No spiking cards found.")
         return
 
     print(
-        f"{'Name':<40} || {'Expansion Code':<14} | {'Price_0':<8} | {'Price_1':<8} | {'Price_2':<8} | {'Price Difference':<8}"
+        f"{'Name':<40} || {'Expansion Code':<14} | {'Price_0':<8} | {'Price_1':<8} | {'Price_2':<8} | {'Price Difference':<8}"  # NOQA
     )
     print("-" * 100)
 
@@ -356,7 +356,7 @@ def display_spiking_cards(surging_cards):
         truncated_name = card.name[:37] + '...' if len(card.name) > 37 else card.name
 
         print(
-            f"{truncated_name:<40} || {card.expansion.code:<14} | {price_0:+6.2f}€ | {price_1:+6.2f}€ | {price_2:+6.2f}€ | {price_difference:+6.2f}€"
+            f"{truncated_name:<40} || {card.expansion.code:<14} | {price_0:+6.2f}€ | {price_1:+6.2f}€ | {price_2:+6.2f}€ | {price_difference:+6.2f}€"  # NOQA
         )
 
 
