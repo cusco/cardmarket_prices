@@ -146,6 +146,7 @@ class MTGCardPrice(BaseAbstractModel):
     class Meta:
         constraints = [models.UniqueConstraint(fields=['catalog_date', 'cm_id'], name='Unique card price per day')]
         indexes = [
+            models.Index(fields=['card', 'trend', 'catalog_date']),  # Composite index
             models.Index(fields=['cm_id'], name='idx_mtgprice_cm_id'),
             models.Index(fields=['catalog_date'], name='idx_mtgprice_catalog_date'),
             models.Index(fields=['cm_id', 'catalog_date'], name='idx_mtgprice_cm_id_date'),
