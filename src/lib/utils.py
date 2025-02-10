@@ -306,3 +306,59 @@ def show_changes(card_qs=None, days=7, min_price=3):
             f"{truncated_name:<40} | {code:<14} | {percent_change:+6.1f}% | {slope:+6.2f} | "
             f"{first_price:.2f} -> {last_price:.2f} ({price_change:+.2f}€)"
         )
+
+
+# ####### GEMINI
+def find_spiking_cards(card_qs=None, min_price=3):
+    """Finds cards with potential price spikes based on 3-day increasing trend (skipping None values)."""
+    surging_cards = []
+
+    if not card_qs:
+        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PIONEER_SETS)
+        card_qs = card_qs.exclude(expansion__code__startswith='X')
+
+    for card in card_qs:
+        prices = list(card.prices.order_by('-catalog_date')[:3])
+        if len(prices) < 3:
+            continue
+
+        p0 = prices[0]
+        p1 = prices[1]
+        p2 = prices[2]
+
+        if p0.trend is None or p1.trend is None or p2.trend is None:
+            continue  # Skip this card if any price is None
+
+        if p0.trend > p1.trend > p2.trend:
+            if p0.trend >= min_price:
+                price_difference = p0.trend - p2.trend
+                surging_cards.append((card, p0.trend, p1.trend, p2.trend, price_difference))
+
+    # Sort by price_difference (largest first)
+    surging_cards.sort(key=lambda x: x[4], reverse=True)  # Sort by the 5th element (price_difference)
+
+    return surging_cards
+
+
+def display_spiking_cards(surging_cards):
+    """Displays spiking cards with detailed information, sorted by price difference."""
+
+    if not surging_cards:
+        print("No spiking cards found.")
+        return
+
+    print(f"{'Name':<40} || {'Expansion Code':<14} | {'Price_0':<8} | {'Price_1':<8} | {'Price_2':<8} | {'Price Difference':<8}")
+    print("-" * 100)
+
+    for card, price_0, price_1, price_2, price_difference in surging_cards:
+        truncated_name = card.name[:37] + '...' if len(card.name) > 37 else card.name
+
+        print(
+            f"{truncated_name:<40} || {card.expansion.code:<14} | {price_0:+6.2f}€ | {price_1:+6.2f}€ | {price_2:+6.2f}€ | {price_difference:+6.2f}€"
+        )
+
+
+# Example usage:
+# card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
+# spiking_cards = find_spiking_cards(card_qs, min_price=2)
+# display_spiking_cards(spiking_cards)
