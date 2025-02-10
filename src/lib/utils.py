@@ -347,7 +347,9 @@ def display_spiking_cards(surging_cards):
         print("No spiking cards found.")
         return
 
-    print(f"{'Name':<40} || {'Expansion Code':<14} | {'Price_0':<8} | {'Price_1':<8} | {'Price_2':<8} | {'Price Difference':<8}")
+    print(
+        f"{'Name':<40} || {'Expansion Code':<14} | {'Price_0':<8} | {'Price_1':<8} | {'Price_2':<8} | {'Price Difference':<8}"
+    )
     print("-" * 100)
 
     for card, price_0, price_1, price_2, price_difference in surging_cards:
