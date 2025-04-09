@@ -1,12 +1,11 @@
 import logging
 import statistics
-from collections import defaultdict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import timedelta
 
 import pytz
 from django.conf import settings
-from django.db.models import F, OuterRef, Subquery
+from django.db.models import OuterRef, Subquery
 from django.utils import timezone
 
 from prices.constants import LEGAL_PIONEER_SETS, LEGAL_STANDARD_SETS
@@ -153,81 +152,84 @@ def rank_card_by_price(card, days=None):
     return statistics.mean(increase_list) if increase_list else 0
 
 
-def build_price_data(card_qs, field):
-    """Efficiently build price data using a bulk query."""
-    price_data = defaultdict(list)
-
-    # Fetch all relevant prices in a single query
-    all_prices = (
-        MTGCardPrice.objects.filter(card__in=card_qs, **{f"{field}__isnull": False})
-        .annotate(card_cm_id=F('card__cm_id'))
-        .order_by('card_cm_id', '-catalog_date')
-    )
-
-    # Process results in a single pass
-    for price in all_prices:
-        card_id = price.card_cm_id
-        price_data[card_id].append((price.catalog_date, getattr(price, field)))
-
-    return price_data
-
-
-def update_card_slopes(card_qs=None):
-    """Update slopes and percentage changes for all cards based on recent prices."""
-    intervals = [2, 7, 30]
-    p_field = settings.PRICE_FIELD  # The price field to use for slope calculations
-    slopes_to_update = []
-    slopes_to_create = []
-    current_time = timezone.now()
+def update_card_slopes(card_qs=None, chunk_size=100):
+    """Calculate and store slopes for a queryset of MTGCards in chunks, and returns created/updated counts."""
 
     if not card_qs:
         card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
 
-    price_data = build_price_data(card_qs, p_field)
+    cards = list(card_qs)
+    created_count = 0
+    deleted_count = 0
+    for i in range(0, len(cards), chunk_size):
+        end_index = min(i + chunk_size, len(cards))
+        chunk = cards[i:end_index]
+        slopes_to_create = []
+        cards_ids_to_delete = []
 
-    # Retrieve all slopes at once to minimize queries
-    existing_slopes = MTGCardPriceSlope.objects.filter(card__in=card_qs).only(
-        'card', 'interval_days', 'slope', 'percent_change', 'date_updated'
-    )
-    slope_dict = {(slope.card.cm_id, slope.interval_days): slope for slope in existing_slopes}
+        for card in chunk:
+            cards_ids_to_delete.append(card.cm_id)
+            slopes_to_create.extend(calculate_card_slopes(card))
 
-    for card in card_qs:
-        card_prices = price_data.get(card.cm_id, [])
-
-        for days in intervals:
-            # Filter the recent prices to match the required interval
-            recent_prices = card_prices[:days][::-1]
-            if len(recent_prices) < 2:
-                continue
-
-            # Extract dates and values
-            price_dates, price_values = zip(*recent_prices)
-
-            # Calculate the slope and percentage change
-            slope = simple_trend(price_dates, price_values)
-            initial_price = price_values[0]
-            final_price = price_values[-1]
-            percent_change = (final_price - initial_price) / initial_price * 100 if initial_price != 0 else 0
-
-            slope_key = (card.cm_id, days)
-            if slope_key in slope_dict:  # Update
-                slope_instance = slope_dict[slope_key]
-                slope_instance.slope = slope
-                slope_instance.percent_change = percent_change
-                slope_instance.date_updated = current_time
-                slopes_to_update.append(slope_instance)
-            else:  # Create
-                slopes_to_create.append(
-                    MTGCardPriceSlope(card=card, interval_days=days, slope=slope, percent_change=percent_change)
-                )
-
-    # Perform bulk operations to save database trips
-    if slopes_to_create:
+        deleted_count += MTGCardPriceSlope.objects.filter(card__cm_id__in=cards_ids_to_delete).delete()[0]
+        created_count += len(slopes_to_create)
         MTGCardPriceSlope.objects.bulk_create(slopes_to_create)
-    if slopes_to_update:
-        MTGCardPriceSlope.objects.bulk_update(slopes_to_update, ['slope', 'percent_change', 'date_updated'])
 
-    return len(slopes_to_create), len(slopes_to_update)
+    return created_count, deleted_count
+
+
+def calculate_card_slopes(card):
+    """Calculate and return a list of MTGCardPriceSlope instances for a single MTGCard."""
+
+    intervals = [2, 7, 30]
+    slopes = []
+
+    latest_price = card.prices.filter(**{f"{settings.PRICE_FIELD}__isnull": False}).order_by("-catalog_date").first()
+
+    if not latest_price:
+        return []
+
+    end_date = latest_price.catalog_date.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    prices = list(
+        card.prices.filter(catalog_date__lte=end_date, **{f"{settings.PRICE_FIELD}__isnull": False})
+        .order_by("catalog_date")
+        .values_list("catalog_date", settings.PRICE_FIELD)
+    )
+
+    for days in intervals:
+        start_date = end_date - timedelta(days=days)
+
+        interval_prices = [(date, price) for date, price in prices if date >= start_date]
+
+        if len(interval_prices) < 2:
+            continue
+
+        price_dates = [item[0] for item in interval_prices]
+        price_values = [item[1] for item in interval_prices]
+
+        final_price = price_values[-1]
+        initial_price = price_values[0]
+
+        if initial_price == 0:
+            percent_change = 0
+        else:
+            percent_change = ((final_price - initial_price) / initial_price) * 100
+
+        slope = simple_trend(price_dates, price_values)
+
+        slopes.append(
+            MTGCardPriceSlope(
+                card=card,
+                interval_days=days,
+                slope=slope,
+                percent_change=percent_change,
+                initial_price=initial_price,
+                final_price=final_price,
+            )
+        )
+
+    return slopes
 
 
 def get_top_20_cards_by_slope(card_qs, min_price=3, interval_days=7, only_positive=True):
