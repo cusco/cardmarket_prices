@@ -43,8 +43,7 @@ Some data has been added to the `local/catalogs` directory. To load this data in
 
 2. Run the following command:
    ```python
-   from prices.services import update_mtg
-   from src.lib.utils import update_from_local_files
+   from prices.services import update_mtg, update_from_local_files
    update_mtg()
    update_from_local_files()
    ```
