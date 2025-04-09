@@ -167,6 +167,8 @@ class MTGCardPriceSlope(BaseAbstractModel):
     interval_days = models.PositiveSmallIntegerField()  # e.g., 2, 7, or 30 days
     slope = models.FloatField()  # Raw slope value for calculations
     percent_change = models.FloatField()  # Slope represented as a percentage changer
+    initial_price = models.FloatField()  # nosemgrep
+    final_price = models.FloatField()  # nosemgrep
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=['card', 'interval_days'], name='unique_card_interval')]

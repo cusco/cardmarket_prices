@@ -147,3 +147,35 @@ LEGAL_PIONEER_SETS = [
     5982,  # Aetherdrift | 2025-02-14
     6011,  # Aetherdrift: Extras | 2025-02-14
 ]
+
+LEGAL_PREMODERN_SETS = [
+    10,  # Fourth Edition | 1995-04-01
+    11,  # Ice Age | 1995-06-01
+    12,  # Chronicles | 1995-09-01
+    14,  # Homelands | 1995-11-01
+    15,  # Alliances | 1996-06-01
+    16,  # Mirage | 1996-10-01
+    17,  # Visions | 1997-02-01
+    18,  # Weatherlight | 1997-06-01
+    19,  # Tempest | 1997-10-01
+    20,  # Stronghold | 1998-03-01
+    21,  # Exodus | 1998-06-15
+    23,  # Fifth Edition | 1997-03-01
+    26,  # Urza's Saga | 1998-10-01
+    27,  # Urza's Legacy | 1999-02-01
+    28,  # Urza's Destiny | 1999-06-01
+    29,  # Sixth Edition | 1999-04-01
+    31,  # Mercadian Masques | 1999-10-01
+    32,  # Nemesis | 2000-02-01
+    33,  # Prophecy | 2000-06-01
+    34,  # Invasion | 2000-10-01
+    35,  # Planeshift | 2001-02-01
+    36,  # Apocalypse | 2001-06-01
+    37,  # Seventh Edition | 2001-04-01
+    38,  # Odyssey | 2001-10-01
+    39,  # Torment | 2002-02-01
+    40,  # Judgment | 2002-05-01
+    41,  # Onslaught | 2002-10-01
+    42,  # Legions | 2003-02-01
+    43,  # Scourge | 2003-06-01
+]
