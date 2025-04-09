@@ -152,7 +152,7 @@ def rank_card_by_price(card, days=None):
     return statistics.mean(increase_list) if increase_list else 0
 
 
-def update_card_slopes(card_qs=None, chunk_size=100):
+def update_card_slopes(card_qs=None, chunk_size=990):
     """Calculate and store slopes for a queryset of MTGCards in chunks, and returns created/updated counts."""
 
     if not card_qs:

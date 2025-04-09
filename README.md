@@ -14,6 +14,7 @@ Cardmarket publishes its "Product Catalogue" and "Price Guide" daily: [Cardmarke
 ## Setup
 
 This project uses Django with Celery for task scheduling.
+You will need Python 3.10 or greater.
 
 ### Local Setup
 
@@ -46,6 +47,12 @@ Some data has been added to the `local/catalogs` directory. To load this data in
    from prices.services import update_mtg, update_from_local_files
    update_mtg()
    update_from_local_files()
+   ```
+
+You may also download some extra data made available on https://ovh.tretas.eu/~cusco/catalogs/
+   ```bash
+   cd local/catalogs
+   wget -4 -r -A "*.gz" -nd -l 1 https://ovh.tretas.eu/~cusco/catalogs/
    ```
 
 ### Celery Automation
