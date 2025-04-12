@@ -10734,5 +10734,261 @@
     "type": null,
     "is_foil_only": false
   }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6042,
+  "fields": {
+    "date_updated": "2025-02-10T14:43:03.234Z",
+    "date_created": "2025-02-10T14:43:03.234Z",
+    "obs": "",
+    "active": true,
+    "name": "Secret Lair Drop Series: Winter Superdrop 2025",
+    "url": "/en/Magic/Expansions/Secret-Lair-Drop-Series-Winter-Superdrop-2025",
+    "release_date": "2025-02-24",
+    "code": "SLDW25",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6046,
+  "fields": {
+    "date_updated": "2025-02-11T14:43:03.749Z",
+    "date_created": "2025-02-11T14:43:03.749Z",
+    "obs": "",
+    "active": true,
+    "name": "2025 Lunar New Year Promos",
+    "url": "/en/Magic/Expansions/2025-Lunar-New-Year-Promos",
+    "release_date": "2025-02-14",
+    "code": "25LNY",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6057,
+  "fields": {
+    "date_updated": "2025-02-19T10:43:02.741Z",
+    "date_created": "2025-02-19T10:43:02.741Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering—FINAL FANTASY",
+    "url": "/en/Magic/Expansions/Magic-The-GatheringFINAL-FANTASY",
+    "release_date": "2025-06-13",
+    "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6058,
+  "fields": {
+    "date_updated": "2025-02-19T10:43:02.856Z",
+    "date_created": "2025-02-19T10:43:02.856Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering—FINAL FANTASY Commander",
+    "url": "/en/Magic/Expansions/Magic-The-GatheringFINAL-FANTASY-Commander",
+    "release_date": "2025-06-13",
+    "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6059,
+  "fields": {
+    "date_updated": "2025-02-19T10:43:02.964Z",
+    "date_created": "2025-02-19T10:43:02.964Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering—FINAL FANTASY Through the Ages",
+    "url": "/en/Magic/Expansions/Magic-The-GatheringFINAL-FANTASY-Through-the-Ages",
+    "release_date": "2025-06-13",
+    "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6060,
+  "fields": {
+    "date_updated": "2025-02-24T08:43:02.633Z",
+    "date_created": "2025-02-24T08:43:02.633Z",
+    "obs": "",
+    "active": true,
+    "name": "Tarkir: Dragonstorm",
+    "url": "/en/Magic/Expansions/Tarkir-Dragonstorm",
+    "release_date": "2025-04-11",
+    "code": "TDM",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6062,
+  "fields": {
+    "date_updated": "2025-02-24T10:43:03.122Z",
+    "date_created": "2025-02-24T10:43:03.122Z",
+    "obs": "",
+    "active": true,
+    "name": "Commander: Tarkir: Dragonstorm",
+    "url": "/en/Magic/Expansions/Commander-Tarkir-Dragonstorm",
+    "release_date": "2025-04-11",
+    "code": "TDC",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6063,
+  "fields": {
+    "date_updated": "2025-02-24T12:43:02.617Z",
+    "date_created": "2025-02-24T12:43:02.617Z",
+    "obs": "",
+    "active": true,
+    "name": "Edge of Eternities",
+    "url": "/en/Magic/Expansions/Edge-of-Eternities",
+    "release_date": "2025-08-01",
+    "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6064,
+  "fields": {
+    "date_updated": "2025-02-24T12:43:02.540Z",
+    "date_created": "2025-02-24T12:43:02.540Z",
+    "obs": "",
+    "active": true,
+    "name": "Commander: Edge of Eternities",
+    "url": "/en/Magic/Expansions/Commander-Edge-of-Eternities",
+    "release_date": "2025-08-01",
+    "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6070,
+  "fields": {
+    "date_updated": "2025-03-03T10:43:02.624Z",
+    "date_created": "2025-03-03T10:43:02.624Z",
+    "obs": "",
+    "active": true,
+    "name": "Magic: The Gathering | Marvel's Spider-Man",
+    "url": "/en/Magic/Expansions/Magic-The-Gathering-Marvels-Spider-Man",
+    "release_date": "2025-09-26",
+    "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6091,
+  "fields": {
+    "date_updated": "2025-03-19T14:43:02.524Z",
+    "date_created": "2025-03-19T14:43:02.524Z",
+    "obs": "",
+    "active": true,
+    "name": "Tarkir: Dragonstorm: Extras",
+    "url": "/en/Magic/Expansions/Tarkir-Dragonstorm-Extras",
+    "release_date": "2025-04-11",
+    "code": "XTDM",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6095,
+  "fields": {
+    "date_updated": "2025-03-24T18:43:02.667Z",
+    "date_created": "2025-03-24T18:43:02.667Z",
+    "obs": "",
+    "active": true,
+    "name": "Secret Lair Drop Series: Our Boss Is on Vacation Superdrop",
+    "url": "/en/Magic/Expansions/Secret-Lair-Drop-Series-Our-Boss-Is-on-Vacation-Superdrop",
+    "release_date": "2025-04-25",
+    "code": "SLDBV",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6100,
+  "fields": {
+    "date_updated": "2025-03-28T18:43:02.510Z",
+    "date_created": "2025-03-28T18:43:02.510Z",
+    "obs": "",
+    "active": true,
+    "name": "Commander: Tarkir: Dragonstorm: Extras",
+    "url": "/en/Magic/Expansions/Commander-Tarkir-Dragonstorm-Extras",
+    "release_date": "2025-04-11",
+    "code": "XTDC",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6102,
+  "fields": {
+    "date_updated": "2025-04-01T11:43:02.928Z",
+    "date_created": "2025-04-01T11:43:02.928Z",
+    "obs": "",
+    "active": true,
+    "name": "Tarkir: Dragonstorm: Tokens",
+    "url": "/en/Magic/Expansions/Tarkir-Dragonstorm-Tokens",
+    "release_date": "2025-04-11",
+    "code": "TTDM",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6103,
+  "fields": {
+    "date_updated": "2025-04-01T15:43:02.672Z",
+    "date_created": "2025-04-01T15:43:02.672Z",
+    "obs": "",
+    "active": true,
+    "name": "Tarkir: Dragonstorm: Promos",
+    "url": "/en/Magic/Expansions/Tarkir-Dragonstorm-Promos",
+    "release_date": "2025-04-11",
+    "code": "PTDM",
+    "type": null,
+    "is_foil_only": false
+  }
+},
+{
+  "model": "prices.mtgset",
+  "pk": 6106,
+  "fields": {
+    "date_updated": "2025-04-04T09:43:03.000Z",
+    "date_created": "2025-04-04T09:43:03.000Z",
+    "obs": "",
+    "active": true,
+    "name": "Edge of Eternities: Promos",
+    "url": "/en/Magic/Expansions/Edge-of-Eternities-Promos",
+    "release_date": "2025-08-01",
+    "code": null,
+    "type": null,
+    "is_foil_only": false
+  }
 }
 ]
