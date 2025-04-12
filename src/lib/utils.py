@@ -185,14 +185,16 @@ def calculate_card_slopes(card):
     slopes = []
 
     latest_price = card.prices.filter(**{f"{settings.PRICE_FIELD}__isnull": False}).order_by("-catalog_date").first()
-
     if not latest_price:
         return []
+
+    earliest_date = latest_price.catalog_date + timedelta(-(max(intervals) + 2))
+    earliest_date = earliest_date.replace(hour=0, minute=0, second=0, microsecond=0)
 
     end_date = latest_price.catalog_date.replace(hour=0, minute=0, second=0, microsecond=0)
 
     prices = list(
-        card.prices.filter(catalog_date__lte=end_date, **{f"{settings.PRICE_FIELD}__isnull": False})
+        card.prices.filter(catalog_date__gte=earliest_date, **{f"{settings.PRICE_FIELD}__isnull": False})
         .order_by("catalog_date")
         .values_list("catalog_date", settings.PRICE_FIELD)
     )
