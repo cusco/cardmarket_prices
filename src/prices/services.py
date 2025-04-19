@@ -11,6 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 from curl_cffi import requests as curl
 from dateutil import parser
+from django.utils import timezone
 
 from lib.utils import update_card_slopes
 from prices.models import Catalog, MTGCard, MTGCardPrice, MTGSet
@@ -96,6 +97,7 @@ def update_cm_products():
                 expansion_id=expansion_id,
                 metacard_id=metacard_id,
                 cm_date_added=date_added,
+                date_updated=timezone.now(),
             )
 
             existing_card = existing_cards.get(cm_id)  # Exists?

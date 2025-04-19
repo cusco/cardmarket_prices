@@ -29,8 +29,9 @@ pip install -r requirements.txt
 # Apply migrations and load initial data
 cd src
 ./manage.py migrate
-./manage.py loaddata fixture_01_mtgset.json
-./manage.py loaddata fixture_02_mtgcard.json
+./manage.py loaddata fixture_01_mtgset.json.gz
+./manage.py loaddata fixture_02_mtgcard.json.gz
+./manage.py loaddata fixture_03_mtgcardpriceslope.json.gz
 ```
 
 ### Load Historical Data
@@ -45,11 +46,12 @@ Some data has been added to the `local/catalogs` directory. To load this data in
 2. Run the following command:
    ```python
    from prices.services import update_mtg, update_from_local_files
-   update_mtg()
    update_from_local_files()
+   update_mtg()
    ```
 
 You may also download some extra data made available on https://ovh.tretas.eu/~cusco/catalogs/
+Place it in `local/catalogs` before running update_from_local_files()
    ```bash
    cd local/catalogs
    wget -4 -r -A "*.gz" -nd -l 1 https://ovh.tretas.eu/~cusco/catalogs/
