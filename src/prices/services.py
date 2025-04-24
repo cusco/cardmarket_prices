@@ -372,7 +372,12 @@ def get_set_code(url, proxies=None):
         if not table:
             return None
         span = table.find('span', attrs={'class': 'is-magic'})
-        title = span['title']
+        if 'title' in span.attrs:
+            title = span['title']
+        elif 'data-bs-title' in span.attrs:
+            title = span['data-bs-title']
+        else:
+            return None
         code = title.split('/')[4]
 
         return code
