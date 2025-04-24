@@ -148,6 +148,8 @@ LEGAL_PIONEER_SETS = [
     5931,  # Magic: The Gathering Foundations: Extras | 2024-11-15
     5982,  # Aetherdrift | 2025-02-14
     6011,  # Aetherdrift: Extras | 2025-02-14
+    6060,  # Tarkir: Dragonstorm | 2025-04-11
+    6091,  # Tarkir: Dragonstorm: Extras | 2025-04-11
 ]
 
 LEGAL_PREMODERN_SETS = [
