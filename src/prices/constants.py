@@ -1,4 +1,4 @@
-# for s in MTGSet.objects.all():
+# for s in MTGSet.objects.order_by('release_date'):
 #     print(str(s.pk) + ',' + '  #', s.name, '|', s.release_date)
 
 LEGAL_STANDARD_SETS = [
@@ -31,6 +31,10 @@ LEGAL_STANDARD_SETS = [
     6011,  # Aetherdrift: Extras | 2025-02-14
     6060,  # Tarkir: Dragonstorm | 2025-04-11
     6091,  # Tarkir: Dragonstorm: Extras | 2025-04-11
+    6057,  # Magic: The Gathering—FINAL FANTASY | 2025-06-13
+    6137,  # Magic: The Gathering - FINAL FANTASY: Extras | 2025-06-13
+    6063,  # Edge of Eternities | 2025-08-01
+    6070,  # Magic: The Gathering | Marvel's Spider-Man | 2025-09-26
 ]
 
 LEGAL_PIONEER_SETS = [
@@ -150,6 +154,10 @@ LEGAL_PIONEER_SETS = [
     6011,  # Aetherdrift: Extras | 2025-02-14
     6060,  # Tarkir: Dragonstorm | 2025-04-11
     6091,  # Tarkir: Dragonstorm: Extras | 2025-04-11
+    6057,  # Magic: The Gathering—FINAL FANTASY | 2025-06-13
+    6137,  # Magic: The Gathering - FINAL FANTASY: Extras | 2025-06-13
+    6063,  # Edge of Eternities | 2025-08-01
+    6070,  # Magic: The Gathering | Marvel's Spider-Man | 2025-09-26
 ]
 
 LEGAL_PREMODERN_SETS = [
