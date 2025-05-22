@@ -64,7 +64,7 @@ def update_cm_products():
         md5sum = hashlib.md5(response.text.encode('utf-8'), usedforsecurity=False).hexdigest()  # nosemgrep
         existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRODUCTS)
         if existing_catalog.exists():
-            catalog_date = existing_catalog.first().catalog_date
+            # catalog_date = existing_catalog.first().catalog_date
             # logger.info('Products (MTG Singles) already up to date since %s (%s)', catalog_date, md5sum)
             return 0, 0
 
@@ -106,7 +106,7 @@ def update_cm_products():
                 insert_cards.append(card)
 
             else:
-                # for some reason, expansion id of newly added cards changed the next day... (happened in SL extra life)
+                # for some reason, expansion_id of newly added cards changed the next day... (happened in SL extra life)
                 # UPDATE
                 fields = ['name', 'expansion_id', 'category_id', 'metacard_id', 'cm_date_added']
                 has_changes = any(getattr(existing_card, field) != getattr(card, field) for field in fields)
@@ -133,7 +133,7 @@ def update_cm_prices(local_content=None):
     # Lists to be used in bulk_create
     insert_prices = []
 
-    # ############ previously downloaded json files
+    # ############ previously downloaded JSON files
     if local_content:
         md5sum = hashlib.md5(local_content.encode('utf-8'), usedforsecurity=False).hexdigest()  # nosemgrep
         try:
@@ -155,7 +155,7 @@ def update_cm_prices(local_content=None):
 
     existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRICES)
     if existing_catalog.exists():
-        catalog_date = existing_catalog.first().catalog_date
+        # catalog_date = existing_catalog.first().catalog_date
         # logger.info('Prices already up to date since %s (%s)', catalog_date, md5sum)
         return 0
 
@@ -222,7 +222,7 @@ def update_cm_prices(local_content=None):
 
 
 def create_cm_sets():
-    """Read cardmarket set names and ids from its select/option html element."""
+    """Read cardmarket set names and ids from its select/option HTML element."""
 
     # url = "https://www.cardmarket.com/en/Magic/Products/Singles"
     url = "https://www.cardmarket.com/en/Magic/Products/Search?idExpansion=0&idRarity=0&perSite=20"
@@ -253,7 +253,7 @@ def create_cm_sets():
 
 
 def update_sets_extra_info():
-    """Scrape SETS release_date and set_url from cardmarket."""
+    """Scrape SETS release_date and set_url from Cardmarket."""
 
     missing_info = MTGSet.objects.filter(url__isnull=True) | MTGSet.objects.filter(release_date__isnull=True)
     if not missing_info.exists():
@@ -307,6 +307,7 @@ def update_from_local_files():
     for catalog_file in catalog_files:
         try:
             with gzip.open(catalog_file, "rb") as gz_file:
+                # noinspection PyTypeChecker
                 content = io.TextIOWrapper(gz_file, encoding='utf-8').read()
             update_cm_prices(local_content=content)
         except (OSError, IOError, ValueError) as err:
@@ -317,7 +318,7 @@ def not_used_old_update_cm_sets_extra():
     """
     Update cardmarket set extra info based on mtgjson.com.
 
-    After some verification, data in mtgjson is not all linked to cardmarket.
+    After some verification, data in mtgjson is not completely linked with Cardmarket.
     Skipping this for now, but maybe it gets fixed in the future.
     See: https://github.com/mtgjson/mtgjson/issues/1236#issuecomment-2430108124
     """
@@ -366,20 +367,20 @@ def get_set_code(url, proxies=None):
     # url = f'https://www.cardmarket.com/en/Magic/Products/Singles/{set_name}'
     # url = url.replace("Magic/Expansions", "Magic/Products/Singles")
     response = curl.get(url=url, impersonate='safari', proxies=proxies)
-    if response.ok:
-        soup = BeautifulSoup(response.text, 'html.parser')
-        table = soup.find('div', attrs={'class': 'table-body'})
-        if not table:
-            return None
-        span = table.find('span', attrs={'class': 'is-magic'})
-        if 'title' in span.attrs:
-            title = span['title']
-        elif 'data-bs-title' in span.attrs:
-            title = span['data-bs-title']
-        else:
-            return None
-        code = title.split('/')[4]
+    if not response.ok:
+        return -1
 
-        return code
+    soup = BeautifulSoup(response.text, 'html.parser')
+    table = soup.find('div', attrs={'class': 'table-body'})
+    if not table:
+        return None
+    span = table.find('span', attrs={'class': 'is-magic'})
+    if 'title' in span.attrs:
+        title = span['title']
+    elif 'data-bs-title' in span.attrs:
+        title = span['data-bs-title']
+    else:
+        return None
+    code = title.split('/')[4]
 
-    return None
+    return code
