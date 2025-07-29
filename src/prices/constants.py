@@ -2,16 +2,18 @@
 #     print(str(s.pk) + ',' + '  #', s.name, '|', s.release_date)
 
 LEGAL_STANDARD_SETS = [
-    5072,  # Dominaria United
-    5073,  # Dominaria United: Extras
-    5164,  # The Brothers' War
-    5165,  # The Brothers' War: Extras
-    5184,  # Phyrexia: All Will Be One
-    5191,  # Phyrexia: All Will Be One: Extras
-    5227,  # March of the Machine
-    5278,  # March of the Machine: Extras
-    5320,  # March of the Machine: The Aftermath
-    5208,  # March of the Machine: The Aftermath: Extras
+    # 5072,  # Dominaria United
+    # 5073,  # Dominaria United: Extras
+    # 5164,  # The Brothers' War
+    # 5165,  # The Brothers' War: Extras
+    # 5184,  # Phyrexia: All Will Be One
+    # 5191,  # Phyrexia: All Will Be One: Extras
+    # 5227,  # March of the Machine
+    # 5278,  # March of the Machine: Extras
+    # 5320,  # March of the Machine: The Aftermath
+    # 5208,  # March of the Machine: The Aftermath: Extras
+    #
+    # Legal until early 2027
     5359,  # Wilds of Eldraine
     5428,  # Wilds of Eldraine: Extras
     5490,  # The Lost Caverns of Ixalan
@@ -25,8 +27,12 @@ LEGAL_STANDARD_SETS = [
     5659,  # Bloomburrow: Extras
     5806,  # Duskmourn: House of Horror
     5807,  # Duskmourn: House of Horror: Extras
+    #
+    # Legal until early 2030
     5852,  # Magic: The Gathering Foundations | 2024-11-15
     5931,  # Magic: The Gathering Foundations: Extras | 2024-11-15
+    #
+    # Legal until early 2028
     5982,  # Aetherdrift | 2025-02-14
     6011,  # Aetherdrift: Extras | 2025-02-14
     6060,  # Tarkir: Dragonstorm | 2025-04-11
@@ -34,7 +40,14 @@ LEGAL_STANDARD_SETS = [
     6057,  # Magic: The Gathering—FINAL FANTASY | 2025-06-13
     6137,  # Magic: The Gathering - FINAL FANTASY: Extras | 2025-06-13
     6063,  # Edge of Eternities | 2025-08-01
+    6174,  # Edge of Eternities: Extras | 2025-08-01
     6070,  # Magic: The Gathering | Marvel's Spider-Man | 2025-09-26
+    # avatar
+    #
+    # Legal until early 2029
+    # Lorwyn Eclipsed
+    # Secrets of Strixhaven
+    # "Ziplining"
 ]
 
 LEGAL_PIONEER_SETS = [
@@ -157,6 +170,7 @@ LEGAL_PIONEER_SETS = [
     6057,  # Magic: The Gathering—FINAL FANTASY | 2025-06-13
     6137,  # Magic: The Gathering - FINAL FANTASY: Extras | 2025-06-13
     6063,  # Edge of Eternities | 2025-08-01
+    6174,  # Edge of Eternities: Extras | 2025-08-01
     6070,  # Magic: The Gathering | Marvel's Spider-Man | 2025-09-26
 ]
 
