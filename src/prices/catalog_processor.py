@@ -102,7 +102,7 @@ def update_from_local_files_with_retry(from_date=None, max_retries=3, delay_betw
             results['total_new_prices'] += file_result['new_prices']
         elif file_result['status'] == 'failed':
             results['failed'] += 1
-        else:  # skipped
+        else:  # This shouldn't happen anymore since we always process
             results['skipped'] += 1
 
     logger.info(
@@ -137,25 +137,19 @@ def process_single_catalog_file(catalog_file, max_retries=3, delay_between_retri
             with gzip.open(catalog_file, 'rb') as gz_file:
                 content = io.TextIOWrapper(gz_file, encoding='utf-8').read()
 
-            # Check if already processed (unless force_reprocess is True)
-            if not force_reprocess:
-                md5sum = hashlib.md5(content.encode('utf-8'), usedforsecurity=False).hexdigest()  # nosemgrep
-                existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRICES)
-                if existing_catalog.exists():
-                    catalog_date = existing_catalog.first().catalog_date
-                    logger.info(
-                        'File %s already processed on %s (md5: %s)', catalog_file.name, catalog_date, md5sum[:8]
-                    )
-                    result['status'] = 'skipped'
-                    return result
+            # Always try to process the content to insert individual prices
+            # Even if the catalog entry exists, there might be missing individual price records
 
             # Process the content
-            new_prices = update_cm_prices(local_content=content)
+            new_prices = update_cm_prices(local_content=content, force_reprocess=force_reprocess)
 
             if new_prices is not None:
                 result['status'] = 'processed'
                 result['new_prices'] = new_prices
-                logger.info('Successfully processed %s: %d new prices', catalog_file.name, new_prices)
+                if new_prices > 0:
+                    logger.info('Successfully processed %s: %d new prices inserted', catalog_file.name, new_prices)
+                else:
+                    logger.info('Processed %s: no new prices (all already exist)', catalog_file.name)
                 return result
 
             raise ValueError('update_cm_prices returned None')
@@ -175,58 +169,9 @@ def process_single_catalog_file(catalog_file, max_retries=3, delay_between_retri
     return result
 
 
-def update_cm_prices(local_content=None):
-    """
-    Enhanced version of the existing update_cm_prices function with better error handling.
-
-    This is an improved version with better error handling and duplicate prevention.
-    """
-    # Lists to be used in bulk_create
+def _create_price_records(data, catalog_date, existing_cards, existing_price_ids):
+    """Create MTGCardPrice objects from price guide data."""
     insert_prices = []
-
-    if local_content:
-        md5sum = hashlib.md5(local_content.encode('utf-8'), usedforsecurity=False).hexdigest()  # nosemgrep
-        try:
-            content = json.loads(local_content)
-        except json.JSONDecodeError as exc:
-            logger.error('Failed to decode JSON: %s', exc)
-            return None
-    else:
-        # This is the original HTTP fetch logic - keeping for compatibility
-        url = 'https://downloads.s3.cardmarket.com/productCatalog/priceGuide/price_guide_1.json'
-        try:
-            response = requests.get(url, timeout=10)
-            if response.ok:
-                content = response.json()
-                md5sum = hashlib.md5(response.text.encode('utf-8'), usedforsecurity=False).hexdigest()  # nosemgrep
-            else:
-                logger.error('Unable to download JSON: %s', response.text)
-                return None
-        except requests.RequestException as exc:
-            logger.error('Error fetching from URL: %s', exc)
-            return None
-
-    # Check if already processed
-    existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRICES)
-    if existing_catalog.exists():
-        return 0
-
-    data = content
-    if data.get('version') != 1:
-        logger.error('Unexpected JSON version: %s', data.get('version'))
-        return None
-
-    catalog_date = data['createdAt']
-    catalog_date = datetime.strptime(catalog_date, '%Y-%m-%dT%H:%M:%S%z')
-
-    # Create catalog entry
-    Catalog.objects.create(catalog_date=catalog_date, md5sum=md5sum, catalog_type=Catalog.PRICES)
-
-    # Get existing data for bulk operations
-    all_cm_ids = [item['idProduct'] for item in data['priceGuides']]
-    existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(field_name='cm_id')
-    existing_prices = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list('cm_id', flat=True)
-    existing_price_ids = set(existing_prices)
     unknown_cards = set()
 
     for price_item in data['priceGuides']:
@@ -262,15 +207,110 @@ def update_cm_prices(local_content=None):
 
         insert_prices.append(mtg_card_price)
 
-    # Bulk create all prices
+    return insert_prices, unknown_cards
+
+
+def _bulk_create_prices(insert_prices, catalog_date):
+    """Bulk create price records and return the count of created records."""
+    created_count = 0
     if insert_prices:
-        MTGCardPrice.objects.bulk_create(insert_prices, ignore_conflicts=True)
-        logger.info('%d new prices inserted for %s', len(insert_prices), catalog_date.date())
+        try:
+            MTGCardPrice.objects.bulk_create(insert_prices, ignore_conflicts=True)
+            created_count = len(insert_prices)
+
+            # Check how many were actually created by counting existing prices
+            actual_created = MTGCardPrice.objects.filter(
+                catalog_date=catalog_date, cm_id__in=[price.cm_id for price in insert_prices]
+            ).count()
+
+            if actual_created < created_count:
+                logger.info(
+                    '%d new prices attempted, %d actually created for %s',
+                    created_count,
+                    actual_created,
+                    catalog_date.date(),
+                )
+                created_count = actual_created
+            else:
+                logger.info('%d new prices inserted for %s', created_count, catalog_date.date())
+        except (ValueError, TypeError) as exc:
+            logger.error('Error bulk creating prices: %s', exc)
+            return None
+
+    return created_count
+
+
+def update_cm_prices(local_content=None, force_reprocess=False):
+    """
+    Enhanced version of the existing update_cm_prices function with better error handling.
+
+    This is an improved version with better error handling and duplicate prevention.
+    """
+    # Lists to be used in bulk_create
+    insert_prices = []
+
+    if local_content:
+        md5sum = hashlib.md5(local_content.encode('utf-8'), usedforsecurity=False).hexdigest()  # nosemgrep
+        try:
+            content = json.loads(local_content)
+        except json.JSONDecodeError as exc:
+            logger.error('Failed to decode JSON: %s', exc)
+            return None
+    else:
+        # This is the original HTTP fetch logic - keeping for compatibility
+        url = 'https://downloads.s3.cardmarket.com/productCatalog/priceGuide/price_guide_1.json'
+        try:
+            response = requests.get(url, timeout=10)
+            if response.ok:
+                content = response.json()
+                md5sum = hashlib.md5(response.text.encode('utf-8'), usedforsecurity=False).hexdigest()  # nosemgrep
+            else:
+                logger.error('Unable to download JSON: %s', response.text)
+                return None
+        except requests.RequestException as exc:
+            logger.error('Error fetching from URL: %s', exc)
+            return None
+
+    # Check if already processed (only skip if force_reprocess is False)
+    existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRICES)
+    catalog_already_exists = existing_catalog.exists()
+
+    if catalog_already_exists and not force_reprocess:
+        logger.debug('Catalog with md5 %s already exists, checking for missing individual prices', md5sum[:8])
+    elif catalog_already_exists:
+        logger.info('Force reprocessing catalog with md5 %s', md5sum[:8])
+
+    data = content
+    if data.get('version') != 1:
+        logger.error('Unexpected JSON version: %s', data.get('version'))
+        return None
+
+    catalog_date = data['createdAt']
+    catalog_date = datetime.strptime(catalog_date, '%Y-%m-%dT%H:%M:%S%z')
+
+    # Create a catalog entry only if it doesn't exist yet
+    if not catalog_already_exists:
+        Catalog.objects.create(catalog_date=catalog_date, md5sum=md5sum, catalog_type=Catalog.PRICES)
+        logger.debug('Created new catalog entry for %s', catalog_date.date())
+
+    # Get existing data for bulk operations
+    all_cm_ids = [item['idProduct'] for item in data['priceGuides']]
+    existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(field_name='cm_id')
+    existing_prices = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list('cm_id', flat=True)
+    existing_price_ids = set(existing_prices)
+
+    # Create price records
+    insert_prices, unknown_cards = _create_price_records(data, catalog_date, existing_cards, existing_price_ids)
+
+    # Bulk create all prices
+    created_count = _bulk_create_prices(insert_prices, catalog_date)
+    if created_count is None:
+        return None
 
     if unknown_cards:
         logger.warning('Prices with unknown cards: %d (examples: %s)', len(unknown_cards), list(unknown_cards)[:5])
 
-    return len(insert_prices)
+    return created_count
 
 
 # Convenience functions for common use cases
