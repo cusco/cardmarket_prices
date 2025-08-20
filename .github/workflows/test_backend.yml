@@ -19,11 +19,12 @@ jobs:
     permissions:
       statuses: write
       checks: write
-      contents: read  # More restrictive than 'write'
+      contents: read
       pull-requests: write
 
     steps:
-    - uses: actions/checkout@v5  # Updated from v4
+    - name: Checkout code
+      uses: actions/checkout@v5
       with:
         ref: ${{ github.event.pull_request.head.sha }}
 
@@ -32,19 +33,28 @@ jobs:
       with:
         python-version: 3.11
 
-    - name: Cache pip
-      uses: actions/cache@v4  # Updated from v3
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v4
       with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        path: |
+          ~/.cache/pip
+          .venv
+        key: ${{ runner.os }}-python-3.11-${{ hashFiles('requirements.txt') }}
         restore-keys: |
-          ${{ runner.os }}-pip-
+          ${{ runner.os }}-python-3.11-
+          ${{ runner.os }}-python-
 
-    - name: Set-up Requirements
-      if: steps.cache.outputs.cache-hit != 'true'  # Uncommented this line
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
+    - name: Verify installation
+      run: |
+        python --version
+        pip list | head -20
 
 #    - name: upterm
 #      uses: lhotari/action-upterm@v1
@@ -64,11 +74,21 @@ jobs:
       run: |
         ./scripts/static_validate_ci_backend.sh
 
+    - name: Upload validation reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: validation-reports
+        path: |
+          report_*.xml
+          htmlcov/
+        retention-days: 30
+
     - name: Test Reporter
       uses: dorny/test-reporter@v1
-      if: always()  # Changed from 'success() || failure()' - cleaner syntax
+      if: always()
       with:
         name: Report - Static Validation
         path: report_*.xml
         reporter: java-junit
-        fail-on-error: false  # Added this to prevent build failure if no reports
+        fail-on-error: false
