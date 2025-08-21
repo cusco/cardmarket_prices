@@ -1,24 +1,80 @@
-version: 2
-updates:
-  # Enable version updates for Python dependencies
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    open-pull-requests-limit: 5
-    reviewers:
-      - "cusco"
-    commit-message:
-      prefix: "deps"
-      include: "scope"
+# .github/workflows/auto-merge-dependabot.yml
+name: Auto-merge Dependabot PRs
 
-  # Enable version updates for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    open-pull-requests-limit: 3
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    
+    steps:
+    - name: Check if auto-mergeable
+      id: check
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { data: pr } = await github.rest.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number
+          });
+          
+          const title = pr.title.toLowerCase();
+          const isDependency = pr.user.login === 'dependabot[bot]';
+          
+          // Safe packages to auto-merge (patch + minor versions)
+          const safePackages = [
+            'black', 'isort', 'prospector', 'bandit', 'semgrep',
+            'pytz', 'python-dateutil', 'tqdm', 'pyyaml',
+            'actions/'  // GitHub Actions
+          ];
+          
+          // Check if it's a patch or minor update for safe packages
+          const isSafeUpdate = safePackages.some(pkg => title.includes(pkg)) &&
+                              !title.includes('major') &&
+                              !title.includes('breaking');
+          
+          console.log(`PR: ${title}`);
+          console.log(`Is dependency: ${isDependency}`);
+          console.log(`Is safe update: ${isSafeUpdate}`);
+          
+          return isDependency && isSafeUpdate;
+        result-encoding: string
+    
+    - name: Wait for CI to pass
+      if: steps.check.outputs.result == 'true'
+      uses: fountainhead/action-wait-for-check@v1.1.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        checkName: "Validate_and_Test"
+        ref: ${{ github.event.pull_request.head.sha }}
+        timeoutSeconds: 600
+        intervalSeconds: 30
+    
+    - name: Enable auto-merge
+      if: steps.check.outputs.result == 'true'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          await github.rest.pulls.createReview({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+            event: 'APPROVE'
+          });
+          
+          await github.rest.pulls.merge({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+            merge_method: 'squash'
+          });
+          
+          console.log('Auto-merged dependabot PR');
