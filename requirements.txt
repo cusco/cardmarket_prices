@@ -19,7 +19,7 @@ tqdm==4.67.1
 
 # dev
 black==25.1.0
-isort==5.13.2
+isort==6.0.1
 prospector==1.11.0
 bandit==1.8.6
 semgrep==1.118.0
