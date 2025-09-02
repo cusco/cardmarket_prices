@@ -1,0 +1,28 @@
+name: Test GitHub Repo Info Action
+
+on: [push]
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get current repo PRs
+      id: current-repo
+      uses: cusco/scalabit@master
+      with:
+        operation: 1
+        count: 5
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get some repo's contributors
+      id: repo-contributors
+      uses: cusco/scalabit@master
+      with:
+        repo: cusco/ctt
+        operation: 3
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Show results
+      run: |
+        echo "Current repo PRs: ${{ steps.current-repo.outputs.result }}"
+        echo "VSCode contributors: ${{ steps.vscode-contributors.outputs.result }}"
