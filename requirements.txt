@@ -13,7 +13,7 @@ django-unfold==0.65.0
 ptpython==3.0.31
 pytz==2025.2
 
-celery~=5.5.1
+celery~=5.5.3
 PyYAML~=6.0.2
 tqdm==4.67.1
 
