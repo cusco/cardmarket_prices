@@ -17,6 +17,8 @@ celery~=5.5.3
 PyYAML~=6.0.2
 tqdm==4.67.1
 
+gspread==6.2.1
+
 # dev
 black==25.1.0
 isort==5.13.2
