@@ -14,6 +14,7 @@ from dateutil import parser
 from django.utils import timezone
 
 from lib.utils import update_card_slopes
+from prices.export import update_top_200_price_matrix
 from prices.models import Catalog, MTGCard, MTGCardPrice, MTGSet
 
 logging.basicConfig(level=logging.INFO)  # temporary
@@ -45,6 +46,10 @@ def update_mtg():
         new_slopes, updated_slopes = update_card_slopes(card_qs=card_qs)
         result['new_slopes'] = new_slopes
         result['updated_slopes'] = updated_slopes
+
+        # update google spreadsheet 
+        msg = update_top_200_price_matrix()
+        logger.info(msg)
 
     return result
 

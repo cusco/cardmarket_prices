@@ -148,3 +148,6 @@ SCRAPING_SLEEP_TIME = 15.5
 SLOPE_THRESHOLD = 0.4
 
 PRICE_FIELD = 'trend'
+
+GOOGLE_SECRET_CREDENTIALS = os.path.join(BASE_DIR, '../google_secrets.json')
+
