@@ -4,6 +4,7 @@ import gspread
 import pandas as pd
 from django.conf import settings
 from django.db.models import Min
+from django.db.models.functions import TruncDate
 
 from prices.constants import LEGAL_PREMODERN_SETS
 from prices.models import MTGCard, MTGCardPrice, Catalog
@@ -53,14 +54,9 @@ def update_top_200_price_matrix():
 
     # 5. Fetch 30-day history (The minimum trend per day for each metacard)
     start_date = cur_date - timedelta(days=30)
-    history_qs = (
-        MTGCardPrice.objects.filter(
-            card__metacard_id__in=top_metacard_ids, catalog_date__gte=start_date, trend__gt=0.01
-        )
-        .values('card__metacard_id', 'catalog_date')
-        .annotate(min_daily_trend=Min('trend'))
-        .order_by('catalog_date')
-    )
+    history_qs = (MTGCardPrice.objects.filter(card__metacard_id__in=top_metacard_ids, catalog_date__gte=start_date,
+                                              trend__gt=0.01).annotate(date_only=TruncDate('catalog_date')).values(
+        'card__metacard_id', 'date_only').annotate(min_daily_trend=Min('trend')).order_by('date_only'))
 
     # 6. Transform data using Pandas
     df = pd.DataFrame(list(history_qs))
@@ -70,10 +66,10 @@ def update_top_200_price_matrix():
     df['set_code'] = df['card__metacard_id'].map(lambda x: top_200_details[x]['set_code'])
 
     # Pivot the table: Rows are Cards, Columns are Dates
-    pivot_df = df.pivot_table(index=['set_code', 'card_name'], columns='catalog_date', values='min_daily_trend')
+    pivot_df = df.pivot_table(index=['set_code', 'card_name'], columns='date_only', values='min_daily_trend')
 
     # order by most expensive on the latest date
-    pivot_df = pivot_df.sort_values(by=cur_date, ascending=False)
+    pivot_df = pivot_df.sort_values(by=cur_date.date(), ascending=False)
 
     # Sort columns so the latest date is the first column after the name
     pivot_df = pivot_df.reindex(sorted(pivot_df.columns, reverse=True), axis=1)
