@@ -41,7 +41,7 @@ def update_top_200_price_matrix():
     # We build a filter for the exact (metacard_id + price) pairs found in Step 3
     lookup_filters = Q()
     for item in metacard_floors:
-            lookup_filters |= Q(
+        lookup_filters |= Q(
             metacard_id=item["card__metacard_id"],
             prices__trend=item["cheapest_trend"],
             prices__catalog_date=cur_date,
@@ -65,19 +65,28 @@ def update_top_200_price_matrix():
                 "set_name": detail["expansion__name"],
             }
 
-    # 5. Fetch 30-day history (The minimum trend per day for each metacard)
-    start_date = cur_date - timedelta(days=30)
-    history_qs = (
-        MTGCardPrice.objects.filter(
-            card__metacard_id__in=top_metacard_ids,
-            catalog_date__gte=start_date,
-            trend__gt=0.01,
+        # 5. Fetch the last 60 unique entry dates available in the DB
+        recent_dates = (
+            MTGCardPrice.objects.annotate(date_only=TruncDate("catalog_date"))
+            .values_list("date_only", flat=True)
+            .distinct()
+            .order_by("-date_only")[:60]
         )
-        .annotate(date_only=TruncDate("catalog_date"))
-        .values("card__metacard_id", "date_only")
-        .annotate(min_daily_trend=Min("trend"))
-        .order_by("date_only")
-    )
+
+        # Convert to a list to use in a filter
+        target_dates = list(recent_dates)
+
+        history_qs = (
+            MTGCardPrice.objects.filter(
+                card__metacard_id__in=top_metacard_ids,
+                catalog_date__date__in=target_dates,
+                trend__gt=0.01,
+            )
+            .annotate(date_only=TruncDate("catalog_date"))
+            .values("card__metacard_id", "date_only")
+            .annotate(min_daily_trend=Min("trend"))
+            .order_by("date_only")
+        )
 
     # 6. Transform data using Pandas
     df = pd.DataFrame(list(history_qs))
@@ -114,6 +123,25 @@ def update_top_200_price_matrix():
         # Update the sheet
         worksheet.clear()
         worksheet.update(data_to_upload)
+
+        # 8. status
+        try:
+            status_ws = sh.worksheet("status")
+        except gspread.exceptions.WorksheetNotFound:
+            status_ws = sh.add_worksheet(title="status", rows="20", cols="5")
+
+        status_data = [
+            ["Metric", "Value"],
+            ["Last Script Run (UTC)", pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")],
+            ["Latest Price Data Date", cur_date.strftime("%Y-%m-%d")],
+            ["Total Premodern Legal Cards", pm_metacard_ids.count()],
+            ["Top 200 Cutoff Price", f"€{metacard_floors[199]['cheapest_trend']:.2f}"],
+            ["Data Window (Columns)", f"{len(target_dates)} entries"],
+            ["Oldest Data Date", target_dates[-1].strftime("%Y-%m-%d") if target_dates else "N/A"],
+        ]
+
+        status_ws.clear()
+        status_ws.update(status_data)
 
         return f"Done! {len(final_df)} cards uploaded to GDrive."
     except Exception as e:
