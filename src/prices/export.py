@@ -27,7 +27,6 @@ def update_top_200_price_matrix():
     cur_date = latest_catalog.catalog_date
 
     # 3. Find the top 200 Meta cards by their "Floor" price (the cheapest print)
-    # We look at ALL prints of the Premodern-legal meta-cards
     metacard_floors = (
         MTGCardPrice.objects.filter(catalog_date=cur_date, card__metacard_id__in=pm_metacard_ids, trend__gt=0.1)
         .values('card__metacard_id')
@@ -35,15 +34,27 @@ def update_top_200_price_matrix():
         .order_by('-cheapest_trend')[:200]
     )
 
+    # Extract the IDs for the history query and for the detail lookup
     top_metacard_ids = [item['card__metacard_id'] for item in metacard_floors]
 
-    # 4. Associate Meta cards with a representative Set and Name
-    # Since SQLite doesn't support DISTINCT ON, we fetch all relevant prints
-    # and use a Python dictionary to pick the first one we encounter.
+    # 4. Associate Meta cards with the SPECIFIC card that hit that low price
+    # We build a filter for the exact (metacard_id + price) pairs found in Step 3
+    from django.db.models import Q
+
+    lookup_filters = Q()
+    for item in metacard_floors:
+        lookup_filters |= Q(
+            metacard_id=item['card__metacard_id'],
+            mtgcardprice__trend=item['cheapest_trend'],
+            mtgcardprice__catalog_date=cur_date,
+        )
+
     top_200_details = {}
+    # We order by release_date descending, so if prices are tied, we pick the newest set
     details_qs = (
-        MTGCard.objects.filter(metacard_id__in=top_metacard_ids)
+        MTGCard.objects.filter(lookup_filters)
         .select_related('expansion')
+        .order_by('metacard_id', '-expansion__release_date')
         .values('metacard_id', 'name', 'expansion__name')
     )
 
