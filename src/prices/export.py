@@ -3,6 +3,7 @@ import pandas as pd
 from django.conf import settings
 from django.db.models import Min, Q
 from django.db.models.functions import TruncDate
+from django.utils import timezone
 
 from prices.constants import LEGAL_PREMODERN_SETS
 from prices.models import Catalog, MTGCard, MTGCardPrice
@@ -74,6 +75,8 @@ def update_top_200_price_matrix():
     target_dates = sorted(list(set(d.date() for d in recent_dates)), reverse=True)
 
     min_date = min(target_dates)
+    if timezone.is_naive(min_date):
+        min_date = timezone.make_aware(min_date)
 
     history_qs = (
         MTGCardPrice.objects.filter(
