@@ -1,5 +1,3 @@
-from datetime import timedelta
-
 import gspread
 import pandas as pd
 from django.conf import settings
@@ -65,28 +63,29 @@ def update_top_200_price_matrix():
                 "set_name": detail["expansion__name"],
             }
 
-        # 5. Fetch the last 60 unique entry dates available in the DB
-        recent_dates = (
-            MTGCardPrice.objects.annotate(date_only=TruncDate("catalog_date"))
-            .values_list("date_only", flat=True)
-            .distinct()
-            .order_by("-date_only")[:60]
-        )
+    # 5. Fetch the last 60 unique entry dates available in the DB
+    recent_dates = (
+        Catalog.objects.filter(catalog_id=Catalog.MTG, catalog_type=Catalog.PRICES)
+        .order_by("-catalog_date")
+        .values_list("catalog_date", flat=True)[:60]
+    )
 
-        # Convert to a list to use in a filter
-        target_dates = list(recent_dates)
+    # Extract the date part and ensure they are unique (just in case)
+    target_dates = sorted(list(set(d.date() for d in recent_dates)), reverse=True)
 
-        history_qs = (
-            MTGCardPrice.objects.filter(
-                card__metacard_id__in=top_metacard_ids,
-                catalog_date__date__in=target_dates,
-                trend__gt=0.01,
-            )
-            .annotate(date_only=TruncDate("catalog_date"))
-            .values("card__metacard_id", "date_only")
-            .annotate(min_daily_trend=Min("trend"))
-            .order_by("date_only")
+    min_date = min(target_dates)
+
+    history_qs = (
+        MTGCardPrice.objects.filter(
+            card__metacard_id__in=top_metacard_ids,
+            catalog_date__gte=min_date,
+            trend__gt=0.01,
         )
+        .annotate(date_only=TruncDate("catalog_date"))
+        .values("card__metacard_id", "date_only")
+        .annotate(min_daily_trend=Min("trend"))
+        .order_by("date_only")
+    )
 
     # 6. Transform data using Pandas
     df = pd.DataFrame(list(history_qs))
@@ -132,12 +131,11 @@ def update_top_200_price_matrix():
 
         status_data = [
             ["Metric", "Value"],
-            ["Last Script Run (UTC)", pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")],
-            ["Latest Price Data Date", cur_date.strftime("%Y-%m-%d")],
-            ["Total Premodern Legal Cards", pm_metacard_ids.count()],
-            ["Top 200 Cutoff Price", f"€{metacard_floors[199]['cheapest_trend']:.2f}"],
-            ["Data Window (Columns)", f"{len(target_dates)} entries"],
-            ["Oldest Data Date", target_dates[-1].strftime("%Y-%m-%d") if target_dates else "N/A"],
+            ["Last script run (UTC)", pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")],
+            ["Latest pricing date", cur_date.strftime("%Y-%m-%d")],
+            ["Oldest pricing date", target_dates[-1].strftime("%Y-%m-%d") if target_dates else "N/A"],
+            ["Total Premodern Cards", pm_metacard_ids.count()],
+            ["Data Window (Columns)", f"{len(target_dates)} day entries entries"],
         ]
 
         status_ws.clear()
