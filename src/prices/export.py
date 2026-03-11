@@ -77,7 +77,7 @@ def update_top_200_price_matrix():
     target_dates = sorted(list(set(d.date() for d in recent_dates)), reverse=True)
 
     min_date = min(target_dates)
-    min_date = germany_tz.localize(min_date)
+    min_date = min_date.replace(tzinfo=germany_tz)
 
     history_qs = (
         MTGCardPrice.objects.filter(
