@@ -11,6 +11,9 @@ from prices.models import Catalog, MTGCard, MTGCardPrice
 germany_tz = pytz.timezone('Europe/Berlin')
 
 
+TOP_N_COUNT = 500
+
+
 def update_top_200_price_matrix():
     """
     Fetches the top 200 Premodern cards based on the lowest print price,
@@ -29,60 +32,52 @@ def update_top_200_price_matrix():
 
     # 3. Find the top 200 Meta cards by their "Floor" price (the cheapest print)
     metacard_floors = (
-        MTGCardPrice.objects.filter(catalog_date=cur_date, card__metacard_id__in=pm_metacard_ids, trend__gt=0.1)
+        MTGCardPrice.objects.filter(
+            card__metacard_id__in=pm_metacard_ids,
+            catalog_date=cur_date,
+            trend__gt=0.01,
+        )
         .values("card__metacard_id")
         .annotate(cheapest_trend=Min("trend"))
-        .order_by("-cheapest_trend")[:200]
+        .order_by("-cheapest_trend")[:TOP_N_COUNT]
     )
 
-    # Extract the IDs for the history query and for the detail lookup
+    # 4. Get specific Card Printing details for the 200 cheapest versions
     top_metacard_ids = [item["card__metacard_id"] for item in metacard_floors]
 
-    # 4. Associate Meta cards with the SPECIFIC card that hit that low price
-    # We build a filter for the exact (metacard_id + price) pairs found in Step 3
-    lookup_filters = Q()
+    # Build the identity filter to match the EXACT printing that hit that price
+    identity_filter = Q()
     for item in metacard_floors:
-        lookup_filters |= Q(
-            metacard_id=item["card__metacard_id"],
-            prices__trend=item["cheapest_trend"],
-            prices__catalog_date=cur_date,
+        identity_filter |= Q(
+            metacard_id=item["card__metacard_id"], prices__trend=item["cheapest_trend"], prices__catalog_date=cur_date
         )
 
-    top_200_details = {}
-    # We order by release_date descending, so if prices are tied, we pick the newest set
-    # Using expansion__release_date as a common MTG field name
     details_qs = (
-        MTGCard.objects.filter(lookup_filters)
+        MTGCard.objects.filter(identity_filter)
         .select_related("expansion")
-        .order_by("metacard_id", "-expansion__release_date")
         .values("metacard_id", "name", "expansion__name")
     )
 
-    for detail in details_qs:
-        mid = detail["metacard_id"]
+    top_200_details = {}
+    for d in details_qs:
+        mid = d["metacard_id"]
+        # In case of price ties between sets, we just take the first one found
         if mid not in top_200_details:
-            top_200_details[mid] = {
-                "name": detail["name"],
-                "set_name": detail["expansion__name"],
-            }
+            top_200_details[mid] = {"name": d["name"], "set_name": d["expansion__name"]}
 
     # 5. Fetch the last 60 unique entry dates available in the DB
-    recent_dates = (
+    recent_catalogs = list(
         Catalog.objects.filter(catalog_id=Catalog.MTG, catalog_type=Catalog.PRICES)
         .order_by("-catalog_date")
         .values_list("catalog_date", flat=True)[:60]
     )
 
-    # Extract the date part and ensure they are unique (just in case)
-    target_dates = sorted(list(set(d.date() for d in recent_dates)), reverse=True)
-
-    min_date = min(target_dates)
-    min_date = min_date.replace(tzinfo=germany_tz)
+    start_timestamp = min(recent_catalogs)
 
     history_qs = (
         MTGCardPrice.objects.filter(
-            card__metacard_id__in=top_metacard_ids,
-            catalog_date__gte=min_date,
+            card__metacard_id__in=top_metacard_ids,  # Re-used here!
+            catalog_date__gte=start_timestamp,
             trend__gt=0.01,
         )
         .annotate(date_only=TruncDate("catalog_date"))
@@ -137,9 +132,9 @@ def update_top_200_price_matrix():
             ["Metric", "Value"],
             ["Last script run (UTC)", pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")],
             ["Latest pricing date", cur_date.strftime("%Y-%m-%d")],
-            ["Oldest pricing date", target_dates[-1].strftime("%Y-%m-%d") if target_dates else "N/A"],
+            ["Oldest pricing date", recent_catalogs[-1].strftime("%Y-%m-%d") if recent_catalogs else "N/A"],
             ["Total Premodern Cards", pm_metacard_ids.count()],
-            ["Data Window (Columns)", f"{len(target_dates)} day entries entries"],
+            ["Data Window (Columns)", f"{len(recent_catalogs)} day entries entries"],
         ]
 
         status_ws.clear()
