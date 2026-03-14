@@ -20,8 +20,8 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
-    'sync_scryfall': {'task': 'sync_scryfall_task', 'schedule': crontab(minute='38', hour='*/2')},
-    'update_mtg': {'task': 'update_mtg_task', 'schedule': crontab(minute='43', hour='*/2')},
+    'sync_scryfall': {'task': 'sync_scryfall_task', 'schedule': crontab(minute='28', hour='*/4')},
+    'update_mtg': {'task': 'update_mtg_task', 'schedule': crontab(minute='55', hour='*2')},
 }
 
 app.conf.timezone = 'Europe/London'

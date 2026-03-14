@@ -42,12 +42,13 @@ LEGAL_STANDARD_SETS = [
     6063,  # Edge of Eternities | 2025-08-01
     6174,  # Edge of Eternities: Extras | 2025-08-01
     6070,  # Magic: The Gathering | Marvel's Spider-Man | 2025-09-26
-    # avatar
-    #
-    # Legal until early 2029
-    # Lorwyn Eclipsed
-    # Secrets of Strixhaven
-    # "Ziplining"
+    6234,  # Magic: The Gathering | Marvel's Spider-Man: Extras | 2025-09-26
+    6261,  # Magic: The Gathering | Avatar: The Last Airbender | 2025-11-21
+    6263,  # Magic: The Gathering | Avatar: The Last Airbender: Extras | 2025-11-21
+    6325,  # Lorwyn Eclipsed | 2026-01-23
+    6421,  # Lorwyn Eclipsed: Extras | 2026-01-23
+    6345,  # Magic: The Gathering | Teenage Mutant Ninja Turtles | 2026-03-06
+    6470,  # Magic: The Gathering | Teenage Mutant Ninja Turtles: Extras | 2026-03-06
 ]
 
 LEGAL_PIONEER_SETS = [
@@ -172,6 +173,13 @@ LEGAL_PIONEER_SETS = [
     6063,  # Edge of Eternities | 2025-08-01
     6174,  # Edge of Eternities: Extras | 2025-08-01
     6070,  # Magic: The Gathering | Marvel's Spider-Man | 2025-09-26
+    6234,  # Magic: The Gathering | Marvel's Spider-Man: Extras | 2025-09-26
+    6261,  # Magic: The Gathering | Avatar: The Last Airbender | 2025-11-21
+    6263,  # Magic: The Gathering | Avatar: The Last Airbender: Extras | 2025-11-21
+    6325,  # Lorwyn Eclipsed | 2026-01-23
+    6421,  # Lorwyn Eclipsed: Extras | 2026-01-23
+    6345,  # Magic: The Gathering | Teenage Mutant Ninja Turtles | 2026-03-06
+    6470,  # Magic: The Gathering | Teenage Mutant Ninja Turtles: Extras | 2026-03-06
 ]
 
 LEGAL_PREMODERN_SETS = [

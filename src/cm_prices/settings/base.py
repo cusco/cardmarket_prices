@@ -141,6 +141,7 @@ SHELL_PLUS_POST_IMPORTS = (
     ('prices.services', '*'),
     ('lib.utils', '*'),
     ('prices.constants', '*'),
+    ('prices.catalog_processor', 'retry_recent_files'),
 )
 
 SCRAPING_RETRIES = 8
@@ -150,4 +151,3 @@ SLOPE_THRESHOLD = 0.4
 PRICE_FIELD = 'trend'
 
 GOOGLE_SECRET_CREDENTIALS = os.path.join(BASE_DIR, '../google_secrets.json')
-

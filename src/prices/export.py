@@ -14,11 +14,8 @@ germany_tz = pytz.timezone('Europe/Berlin')
 TOP_N_COUNT = 500
 
 
-def update_top_200_price_matrix():
-    """
-    Fetches the top 200 Premodern cards based on the lowest print price,
-    tracks 30-day history, and updates Google Sheets.
-    """
+def export_top_cards_to_gdrive():
+    """Find premodern lowest price print on premodern cards, upload top expensive ones to google spreadsheets."""
 
     # 1. Get the list of metacard_ids that are legal in Premodern
     # We define LEGAL_PREMODERN_SETS globally or import it
@@ -131,7 +128,7 @@ def update_top_200_price_matrix():
         status_data = [
             ["Metric", "Value"],
             ["Last script run (UTC)", pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")],
-            ["Latest pricing date", cur_date.strftime("%Y-%m-%d")],
+            ["Latest pricing date", cur_date.strftime("%Y-%m-%d %H:%M:%S")],
             ["Oldest pricing date", recent_catalogs[-1].strftime("%Y-%m-%d") if recent_catalogs else "N/A"],
             ["Total Premodern Cards", pm_metacard_ids.count()],
             ["Data Window (Columns)", f"{len(recent_catalogs)} day entries entries"],
@@ -141,5 +138,5 @@ def update_top_200_price_matrix():
         status_ws.update(status_data)
 
         return f"Done! {len(final_df)} cards uploaded to GDrive."
-    except Exception as e:
-        return f"Error: {str(e)}"
+    except Exception as err:  # NOQA
+        return f"Error: {str(err)}"

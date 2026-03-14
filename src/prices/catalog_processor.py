@@ -9,6 +9,7 @@ from pathlib import Path
 
 import pytz
 import requests
+from django.db import connection
 from django.utils import timezone
 
 from prices.models import Catalog, MTGCard, MTGCardPrice
@@ -17,14 +18,13 @@ logger = logging.getLogger(__name__)
 germany_tz = pytz.timezone('Europe/Berlin')
 
 
-def update_from_local_files_with_retry(from_date=None, max_retries=3, delay_between_retries=2, force_reprocess=False):
+def update_from_local_files_with_retry(from_date=None, max_retries=3, force_reprocess=False):
     """
     Update prices from local JSON files compressed in .gz with retry logic and date filtering.
 
     Args:
         from_date: datetime or date object to filter files from that date onwards
         max_retries: Maximum number of retry attempts per file
-        delay_between_retries: Seconds to wait between retries
         force_reprocess: If True, reprocess files even if they were already processed
 
     Returns
@@ -38,7 +38,6 @@ def update_from_local_files_with_retry(from_date=None, max_retries=3, delay_betw
         logger.error('Catalog directory does not exist: %s', directory)
         return {'error': 'Directory not found', 'processed': 0, 'failed': 0, 'skipped': 0}
 
-    # Get all catalog files
     catalog_files = sorted(directory.glob('202*json.gz'), key=lambda f: f.name)
 
     if not catalog_files:
@@ -83,7 +82,7 @@ def update_from_local_files_with_retry(from_date=None, max_retries=3, delay_betw
         file_result = process_single_catalog_file(
             catalog_file,
             max_retries=max_retries,
-            delay_between_retries=delay_between_retries,
+            delay_between_retries=2,
             force_reprocess=force_reprocess,
         )
 
@@ -211,33 +210,46 @@ def _create_price_records(data, catalog_date, existing_cards, existing_price_ids
 
 
 def _bulk_create_prices(insert_prices, catalog_date):
-    """Bulk create price records and return the count of created records."""
-    created_count = 0
-    if insert_prices:
-        try:
-            MTGCardPrice.objects.bulk_create(insert_prices, ignore_conflicts=True)
-            created_count = len(insert_prices)
+    """Bulk create price records efficiently using WAL and synchronous NORMAL."""
+    if not insert_prices:
+        return 0
 
-            # Check how many were actually created by counting existing prices
-            actual_created = MTGCardPrice.objects.filter(
-                catalog_date=catalog_date, cm_id__in=[price.cm_id for price in insert_prices]
-            ).count()
+    try:
+        # 1. Enable 'Turbo Mode' within safe limits
+        with connection.cursor() as cursor:
+            # WAL mode makes concurrent reads/writes possible and is much faster
+            cursor.execute("PRAGMA journal_mode = WAL;")
+            cursor.execute("PRAGMA synchronous = NORMAL;")
+            cursor.execute("PRAGMA cache_size = -200000;")
 
-            if actual_created < created_count:
-                logger.info(
-                    '%d new prices attempted, %d actually created for %s',
-                    created_count,
-                    actual_created,
-                    catalog_date.date(),
-                )
-                created_count = actual_created
-            else:
-                logger.info('%d new prices inserted for %s', created_count, catalog_date.date())
-        except (ValueError, TypeError) as exc:
-            logger.error('Error bulk creating prices: %s', exc)
-            return None
+        # 2. Get count BEFORE (using a simple count query)
+        pre_count = MTGCardPrice.objects.filter(catalog_date=catalog_date).count()
 
-    return created_count
+        # 3. Perform the bulk create
+        MTGCardPrice.objects.bulk_create(insert_prices, batch_size=2000, ignore_conflicts=True)
+
+        # 4. Get count AFTER
+        post_count = MTGCardPrice.objects.filter(catalog_date=catalog_date).count()
+        actual_created = post_count - pre_count
+
+        logger.info(
+            '%d new prices attempted, %d actually created for %s',
+            len(insert_prices),
+            actual_created,
+            catalog_date.date(),
+        )
+
+        return actual_created
+
+    except (ValueError, TypeError) as exc:
+        logger.error('Error bulk creating prices: %s', exc)
+        return None
+
+    finally:
+        # Restore the database to the slow-but-steady default
+        with connection.cursor() as cursor:
+            cursor.execute("PRAGMA journal_mode = DELETE;")
+            cursor.execute("PRAGMA synchronous = FULL;")
 
 
 def update_cm_prices(local_content=None, force_reprocess=False):
