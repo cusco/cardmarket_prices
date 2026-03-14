@@ -215,20 +215,11 @@ def _bulk_create_prices(insert_prices, catalog_date):
         return 0
 
     try:
-        # 1. Enable 'Turbo Mode' within safe limits
-        with connection.cursor() as cursor:
-            # WAL mode makes concurrent reads/writes possible and is much faster
-            cursor.execute("PRAGMA journal_mode = WAL;")
-            cursor.execute("PRAGMA synchronous = NORMAL;")
-            cursor.execute("PRAGMA cache_size = -200000;")
-
-        # 2. Get count BEFORE (using a simple count query)
         pre_count = MTGCardPrice.objects.filter(catalog_date=catalog_date).count()
 
-        # 3. Perform the bulk create
+        # Perform the bulk create
         MTGCardPrice.objects.bulk_create(insert_prices, batch_size=2000, ignore_conflicts=True)
 
-        # 4. Get count AFTER
         post_count = MTGCardPrice.objects.filter(catalog_date=catalog_date).count()
         actual_created = post_count - pre_count
 
@@ -246,10 +237,9 @@ def _bulk_create_prices(insert_prices, catalog_date):
         return None
 
     finally:
-        # Restore the database to the slow-but-steady default
+        # update query plan
         with connection.cursor() as cursor:
-            cursor.execute("PRAGMA journal_mode = DELETE;")
-            cursor.execute("PRAGMA synchronous = FULL;")
+            cursor.execute("PRAGMA optimize;")
 
 
 def update_cm_prices(local_content=None, force_reprocess=False):
