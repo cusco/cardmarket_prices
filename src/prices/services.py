@@ -41,9 +41,7 @@ def update_mtg():
 
     if updated_prices:
         catalog_date = MTGCardPrice.objects.order_by("catalog_date").last().catalog_date
-        card_ids = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list(
-            "cm_id", flat=True
-        )
+        card_ids = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list("cm_id", flat=True)
         card_qs = MTGCard.objects.filter(cm_id__in=card_ids)
         new_slopes, updated_slopes = update_card_slopes(card_qs=card_qs)
         result["new_slopes"] = new_slopes
@@ -68,12 +66,8 @@ def update_cm_products():
     response = requests.get(url, timeout=10)
     if response.ok:
         # skip catalog if already downloaded
-        md5sum = hashlib.md5(
-            response.text.encode("utf-8"), usedforsecurity=False
-        ).hexdigest()  # nosemgrep
-        existing_catalog = Catalog.objects.filter(
-            md5sum=md5sum, catalog_type=Catalog.PRODUCTS
-        )
+        md5sum = hashlib.md5(response.text.encode("utf-8"), usedforsecurity=False).hexdigest()  # nosemgrep
+        existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRODUCTS)
         if existing_catalog.exists():
             # catalog_date = existing_catalog.first().catalog_date
             # logger.info('Products (MTG Singles) already up to date since %s (%s)', catalog_date, md5sum)
@@ -83,15 +77,11 @@ def update_cm_products():
 
         catalog_date = data["createdAt"]
         catalog_date = datetime.strptime(catalog_date, "%Y-%m-%dT%H:%M:%S%z")
-        Catalog.objects.create(
-            catalog_date=catalog_date, md5sum=md5sum, catalog_type=Catalog.PRODUCTS
-        )
+        Catalog.objects.create(catalog_date=catalog_date, md5sum=md5sum, catalog_type=Catalog.PRODUCTS)
 
         # List all existing cards within the current JSON
         all_cm_ids = [item["idProduct"] for item in data["products"]]
-        existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(
-            field_name="cm_id"
-        )
+        existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(field_name="cm_id")
 
         for product_item in data["products"]:
             cm_id = product_item["idProduct"]
@@ -130,10 +120,7 @@ def update_cm_products():
                     "metacard_id",
                     "cm_date_added",
                 ]
-                has_changes = any(
-                    getattr(existing_card, field) != getattr(card, field)
-                    for field in fields
-                )
+                has_changes = any(getattr(existing_card, field) != getattr(card, field) for field in fields)
                 if has_changes:
                     update_cards.append(card)
 
@@ -166,9 +153,7 @@ def update_cm_prices(local_content=None):
 
     # ############ previously downloaded JSON files
     if local_content:
-        md5sum = hashlib.md5(
-            local_content.encode("utf-8"), usedforsecurity=False
-        ).hexdigest()  # nosemgrep
+        md5sum = hashlib.md5(local_content.encode("utf-8"), usedforsecurity=False).hexdigest()  # nosemgrep
         try:
             content = json.loads(local_content)
         except json.JSONDecodeError as e:
@@ -181,16 +166,12 @@ def update_cm_prices(local_content=None):
         response = requests.get(url, timeout=10)
         if response.ok:
             content = response.json()
-            md5sum = hashlib.md5(
-                response.text.encode("utf-8"), usedforsecurity=False
-            ).hexdigest()  # nosemgrep
+            md5sum = hashlib.md5(response.text.encode("utf-8"), usedforsecurity=False).hexdigest()  # nosemgrep
         else:
             logger.error("Unable to download JSON: %s", response.text)
             return 0
 
-    existing_catalog = Catalog.objects.filter(
-        md5sum=md5sum, catalog_type=Catalog.PRICES
-    )
+    existing_catalog = Catalog.objects.filter(md5sum=md5sum, catalog_type=Catalog.PRICES)
     if existing_catalog.exists():
         # catalog_date = existing_catalog.first().catalog_date
         # logger.info('Prices already up to date since %s (%s)', catalog_date, md5sum)
@@ -201,18 +182,12 @@ def update_cm_prices(local_content=None):
 
         catalog_date = data["createdAt"]
         catalog_date = datetime.strptime(catalog_date, "%Y-%m-%dT%H:%M:%S%z")
-        Catalog.objects.create(
-            catalog_date=catalog_date, md5sum=md5sum, catalog_type=Catalog.PRICES
-        )
+        Catalog.objects.create(catalog_date=catalog_date, md5sum=md5sum, catalog_type=Catalog.PRICES)
 
         # List all existing cards within the current JSON
         all_cm_ids = [item["idProduct"] for item in data["priceGuides"]]
-        existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(
-            field_name="cm_id"
-        )
-        existing_prices = MTGCardPrice.objects.filter(
-            catalog_date=catalog_date
-        ).values_list("cm_id", flat=True)
+        existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(field_name="cm_id")
+        existing_prices = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list("cm_id", flat=True)
         existing_price_ids = set(existing_prices)
         unknown_cards = set()
 
@@ -302,9 +277,7 @@ def create_cm_sets():
 def update_sets_extra_info():
     """Scrape SETS release_date and set_url from Cardmarket."""
 
-    missing_info = MTGSet.objects.filter(url__isnull=True) | MTGSet.objects.filter(
-        release_date__isnull=True
-    )
+    missing_info = MTGSet.objects.filter(url__isnull=True) | MTGSet.objects.filter(release_date__isnull=True)
     if not missing_info.exists():
         return 0
 

@@ -8,7 +8,7 @@ from django.db.models.functions import TruncDate
 from prices.constants import LEGAL_PREMODERN_SETS
 from prices.models import Catalog, MTGCard, MTGCardPrice
 
-germany_tz = pytz.timezone('Europe/Berlin')
+germany_tz = pytz.timezone("Europe/Berlin")
 
 
 TOP_N_COUNT = 500
@@ -41,12 +41,15 @@ def export_top_cards_to_gdrive():
 
     # 4. Get specific Card Printing details for the 200 cheapest versions
     top_metacard_ids = [item["card__metacard_id"] for item in metacard_floors]
+    relevant_card_pks = list(MTGCard.objects.filter(metacard_id__in=top_metacard_ids).values_list("cm_id", flat=True))
 
     # Build the identity filter to match the EXACT printing that hit that price
     identity_filter = Q()
     for item in metacard_floors:
         identity_filter |= Q(
-            metacard_id=item["card__metacard_id"], prices__trend=item["cheapest_trend"], prices__catalog_date=cur_date
+            metacard_id=item["card__metacard_id"],
+            prices__trend=item["cheapest_trend"],
+            prices__catalog_date=cur_date,
         )
 
     details_qs = (
@@ -73,25 +76,35 @@ def export_top_cards_to_gdrive():
 
     history_qs = (
         MTGCardPrice.objects.filter(
-            card__metacard_id__in=top_metacard_ids,  # Re-used here!
+            card_id__in=relevant_card_pks,
             catalog_date__gte=start_timestamp,
             trend__gt=0.01,
         )
-        .annotate(date_only=TruncDate("catalog_date"))
-        .values("card__metacard_id", "date_only")
-        .annotate(min_daily_trend=Min("trend"))
-        .order_by("date_only")
+        .values("card_id", "catalog_date", "trend")
+        .order_by("catalog_date")
     )
 
     # 6. Transform data using Pandas
     df = pd.DataFrame(list(history_qs))
 
+    # Process dates and map names in Python (much faster than SQL on HDD)
+    df["date_only"] = pd.to_datetime(df["catalog_date"]).dt.date
+
+    card_to_meta = dict(MTGCard.objects.filter(cm_id__in=relevant_card_pks).values_list("cm_id", "metacard_id"))
+
+    df["meta_id"] = df["card_id"].map(card_to_meta)
+    df["card_name"] = df["meta_id"].map(lambda x: top_200_details.get(x, {}).get("name", "Unknown"))
+    df["set_name"] = df["meta_id"].map(lambda x: top_200_details.get(x, {}).get("set_name", "Unknown"))
+
+    df = df.groupby(["set_name", "card_name", "date_only"])["trend"].min().reset_index()
+
     # Map the human-readable names and sets back to the IDs
-    df["card_name"] = df["card__metacard_id"].map(lambda x: top_200_details[x]["name"])
-    df["set_name"] = df["card__metacard_id"].map(lambda x: top_200_details[x]["set_name"])
+    # df["card_name"] = df["card__metacard_id"].map(lambda x: top_200_details[x]["name"])
+    # df["set_name"] = df["card__metacard_id"].map(lambda x: top_200_details[x]["set_name"])
 
     # Pivot the table: Rows are Cards, Columns are Dates
-    pivot_df = df.pivot_table(index=["set_name", "card_name"], columns="date_only", values="min_daily_trend")
+    # pivot_df = df.pivot_table(index=["set_name", "card_name"], columns="date_only", values="min_daily_trend")
+    pivot_df = df.pivot(index=["set_name", "card_name"], columns="date_only", values="trend")
 
     # order by most expensive on the latest date
     pivot_df = pivot_df.sort_values(by=cur_date.date(), ascending=False)
@@ -129,7 +142,10 @@ def export_top_cards_to_gdrive():
             ["Metric", "Value"],
             ["Last script run (UTC)", pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")],
             ["Latest pricing date", cur_date.strftime("%Y-%m-%d %H:%M:%S")],
-            ["Oldest pricing date", recent_catalogs[-1].strftime("%Y-%m-%d") if recent_catalogs else "N/A"],
+            [
+                "Oldest pricing date",
+                recent_catalogs[-1].strftime("%Y-%m-%d") if recent_catalogs else "N/A",
+            ],
             ["Total Premodern Cards", pm_metacard_ids.count()],
             ["Data Window (Columns)", f"{len(recent_catalogs)} day entries entries"],
         ]
