@@ -24,4 +24,4 @@ black==25.9.0
 isort==5.13.2
 prospector==1.11.0
 bandit==1.8.6
-semgrep==1.118.0
+semgrep==1.155.0
