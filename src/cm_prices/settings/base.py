@@ -83,7 +83,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {'timeout': 15},
+        'OPTIONS': {
+            'timeout': 15,
+            'init_command': (
+                'PRAGMA journal_mode=WAL;'      # Allows simultaneous reads and writes
+                'PRAGMA synchronous=NORMAL;'    # Significant speed boost for bulk inserts
+                'PRAGMA cache_size=-100000;'    # Uses ~100MB of RAM for the page cache
+                'PRAGMA temp_store=MEMORY;'     # Keeps temp tables/sorts in RAM, not on the slow HDD
+                'PRAGMA mmap_size=4294967296;'  # Set mmap to 4GB
+            ),
+        },
     }
 }
 
