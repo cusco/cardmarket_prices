@@ -6,7 +6,7 @@ pandas==2.3.2
 python-dotenv==1.1.1
 
 Django==5.2
-django-money==3.5.4
+django-money==3.6.0
 django-extensions==4.1
 django-unfold==0.65.0
 
