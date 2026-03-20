@@ -110,7 +110,8 @@ class MTGCard(BaseAbstractModel):
     # slope = models.FloatField(verbose_name='Slope')
 
     class Meta:
-        indexes = [models.Index(fields=['cm_id'], name='idx_mtgcard_cm_id')]
+        # indexes = [models.Index(fields=['cm_id'], name='idx_mtgcard_cm_id')]
+        pass
 
     def __str__(self):
         """Return representation in string format."""
@@ -146,11 +147,11 @@ class MTGCardPrice(BaseAbstractModel):
     class Meta:
         constraints = [models.UniqueConstraint(fields=['catalog_date', 'cm_id'], name='Unique card price per day')]
         indexes = [
-            models.Index(fields=['card', 'trend', 'catalog_date']),  # Composite index
-            models.Index(fields=['cm_id'], name='idx_mtgprice_cm_id'),
-            models.Index(fields=['catalog_date'], name='idx_mtgprice_catalog_date'),
-            models.Index(fields=['cm_id', 'catalog_date'], name='idx_mtgprice_cm_id_date'),
-            models.Index(fields=['low'], name='idx_mtgprice_low'),
+            models.Index(fields=['card', 'catalog_date', 'trend']),  # Composite index
+            # models.Index(fields=['cm_id'], name='idx_mtgprice_cm_id'),
+            # models.Index(fields=['catalog_date'], name='idx_mtgprice_catalog_date'),
+            # models.Index(fields=['cm_id', 'catalog_date'], name='idx_mtgprice_cm_id_date'),
+            # models.Index(fields=['low'], name='idx_mtgprice_low'),
         ]
 
     def __str__(self):
