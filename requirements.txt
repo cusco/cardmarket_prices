@@ -22,6 +22,6 @@ gspread==6.2.1
 # dev
 black==25.9.0
 isort==5.13.2
-prospector==1.11.0
+prospector==1.18.0
 bandit==1.8.6
 semgrep==1.155.0
