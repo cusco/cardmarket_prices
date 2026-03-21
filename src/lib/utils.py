@@ -145,7 +145,7 @@ def rank_card_by_price(card, days=None):
     for p_field in price_fields:
         increase = price_increase_ranking(card, p_field, days)
         if increase < min_percentage:
-            return 0  # Discard if any increase is below threshold
+            return 0  # Discard if any increase is below a threshold
         increase_list.append(increase)
 
     # Return the mean of the increases if all price fields meet the threshold
@@ -153,7 +153,7 @@ def rank_card_by_price(card, days=None):
 
 
 def update_card_slopes(card_qs=None, chunk_size=990):
-    """Calculate and store slopes for a queryset of MTGCards in chunks, and returns created/updated counts."""
+    """Calculate and store slopes for a queryset of MTGCards in chunks and returns created/updated counts."""
 
     if not card_qs:
         card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
@@ -238,15 +238,15 @@ def get_top_20_cards_by_slope(card_qs, min_price=3, interval_days=7, only_positi
     """Return up to the top 20 cards with the highest slopes, filtering only positive changes if specified."""
 
     p_field = settings.PRICE_FIELD
-    # Fetch latest price for filtering cards based on min_price
+    # Fetch the latest price for filtering cards based on min_price
     latest_price = MTGCardPrice.objects.filter(card=OuterRef('pk')).order_by('-catalog_date').values(p_field)[:1]
     annotated_qs = card_qs.annotate(latest_price=Subquery(latest_price))
     filtered_qs = annotated_qs.filter(latest_price__gte=min_price)
 
     # Retrieve pre-calculated slopes and get a larger initial set
-    slopes = MTGCardPriceSlope.objects.filter(card__in=filtered_qs, interval_days=interval_days).order_by(
-        '-percent_change'
-    )[:50]
+    slopes = MTGCardPriceSlope.objects.filter(
+        card__in=filtered_qs, interval_days=interval_days, slope__isnull=False
+    ).order_by('-percent_change')[:50]
 
     top_cards = []
     for slope in slopes:
@@ -321,7 +321,7 @@ def find_spiking_cards(
     accelerating_increase_factor=1.0,
     min_price_difference=0.50,
 ):
-    """Find cards with potential price spikes based on increasing trend."""
+    """Find cards with potential price spikes based on the increasing trend."""
     if not 2 <= last_entries <= 30:
         raise ValueError("last_entries must be between 2 and 30.")
 

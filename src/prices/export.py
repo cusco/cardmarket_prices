@@ -3,6 +3,7 @@ import pandas as pd
 import pytz
 from django.conf import settings
 from django.db.models import Min, Q
+from django.utils import timezone
 
 from prices.constants import LEGAL_PREMODERN_SETS
 from prices.models import Catalog, MTGCard, MTGCardPrice
@@ -75,7 +76,7 @@ def export_top_cards_to_gdrive():
 
     # 6. Transform data using Pandas
     df = pd.DataFrame(list(history_qs))
-    df["date_only"] = pd.to_datetime(df["catalog_date"]).dt.date
+    df["date_only"] = pd.to_datetime(df["catalog_date"]).dt.normalize()
 
     card_to_meta = dict(MTGCard.objects.filter(cm_id__in=relevant_pks).values_list("cm_id", "metacard_id"))
 
@@ -94,7 +95,7 @@ def export_top_cards_to_gdrive():
     # 7. Authentication and Upload
     try:
         gdrive_client = gspread.service_account(filename=settings.GOOGLE_SECRET_CREDENTIALS)
-        sheet = gdrive_client.open_by_key("1vQs3vlXHu7BELFoVuK4ysfzMeYHDxMdOWgPAGmPVZjk")
+        sheet = gdrive_client.open_by_key("1vQs3vlXHu7BELFoVuK4ysfzMeYHDxMdOWgPAGmPVZjk")  # NOQA
 
         try:
             worksheet = sheet.worksheet("premodern_bulk")
@@ -111,10 +112,11 @@ def export_top_cards_to_gdrive():
             status_ws = sheet.add_worksheet(title="status", rows=20, cols=5)
 
         status_ws.clear()
+        local_now = timezone.localtime(timezone.now())
         status_ws.update(
             [
                 ["Metric", "Value"],
-                ["Last script run (UTC)", pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")],
+                ["Last script run", local_now.strftime("%Y-%m-%d %H:%M:%S")],
                 ["Latest pricing date", cur_date.strftime("%Y-%m-%d %H:%M:%S")],
                 ["Oldest pricing date", recent_catalogs[-1].strftime("%Y-%m-%d") if recent_catalogs else "N/A"],
                 ["Total Premodern Cards", pm_metacard_ids.count()],
