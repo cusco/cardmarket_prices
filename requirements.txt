@@ -15,7 +15,7 @@ pytz==2025.2
 
 celery~=5.5.3
 PyYAML~=6.0.2
-tqdm==4.67.1
+tqdm==4.67.3
 
 gspread==6.2.1
 
