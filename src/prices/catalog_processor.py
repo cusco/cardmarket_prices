@@ -260,7 +260,10 @@ def _bulk_create_prices(insert_prices, catalog_date):
     finally:
         # update query plan
         with connection.cursor() as cursor:
-            cursor.execute("PRAGMA optimize;")
+            if connection.vendor == 'sqlite':
+                cursor.execute("PRAGMA optimize;")
+            elif connection.vendor == 'mysql':
+                cursor.execute("ANALYZE TABLE prices_mtgcardprice;")
 
 
 def update_cm_prices(local_content=None, force_reprocess=False):
