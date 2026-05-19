@@ -9,7 +9,6 @@ from gspread.exceptions import APIError
 from prices.constants import LEGAL_PREMODERN_SETS
 from prices.models import Catalog, MTGCard, MTGCardPrice
 
-# Constants
 MAX_HISTORICAL_ENTRIES = 60  # pricing columns
 TOP_N_COUNT = 800  # rows
 
@@ -23,6 +22,7 @@ BUFFER = 20
 
 def export_top_cards_to_gdrive():
     """Find the cheapest printing per metacard and track its 60-day history."""
+    price_field = getattr(settings, "PRICE_FIELD", "trend")
 
     # 1. Get Premodern legal metacard IDs
     pm_metacard_ids = (
@@ -36,30 +36,34 @@ def export_top_cards_to_gdrive():
     latest_cat = Catalog.objects.filter(catalog_id=Catalog.MTG, catalog_type=Catalog.PRICES).latest("catalog_date")
     cur_date = latest_cat.catalog_date
 
-    # 3. Find the "Floor Price" for every Metacard
+    # 3. Find the "Floor Price" for every Metacard dynamically
+    # tg: the cheapest print of a card
+    floor_filter = {
+        "card__metacard_id__in": pm_metacard_ids,
+        "catalog_date": cur_date,
+        f"{price_field}__gt": 0.01,
+    }
+
     metacard_floors = list(
-        MTGCardPrice.objects.filter(
-            card__metacard_id__in=pm_metacard_ids,
-            catalog_date=cur_date,
-            trend__gt=0.01,
-        )
+        MTGCardPrice.objects.filter(**floor_filter)
         .exclude(card__expansion_id__in=EXCLUDED_EXPANSION_IDS)
         .values("card__metacard_id")
-        .annotate(cheapest_trend=Min("trend"))
+        .annotate(cheapest_trend=Min(price_field))
         .order_by("-cheapest_trend")[:TOP_N_COUNT]
     )
 
     # 4. SURGICAL SELECTION: Identify the specific Card IDs for these floors
-    identity_filter = Q()
+    metacard_filter = Q()
     for item in metacard_floors:
-        identity_filter |= Q(
-            metacard_id=item["card__metacard_id"],
-            prices__trend=item["cheapest_trend"],
-            prices__catalog_date=cur_date,
-        )
+        metacard_kwargs = {
+            "metacard_id": item["card__metacard_id"],
+            f"prices__{price_field}": item["cheapest_trend"],
+            "prices__catalog_date": cur_date,
+        }
+        metacard_filter |= Q(**metacard_kwargs)
 
     winning_prints_qs = (
-        MTGCard.objects.filter(identity_filter)
+        MTGCard.objects.filter(metacard_filter)
         .select_related("expansion")
         .values("cm_id", "metacard_id", "name", "expansion__name")
     )
@@ -81,11 +85,13 @@ def export_top_cards_to_gdrive():
         .values_list("catalog_date", flat=True)[: MAX_HISTORICAL_ENTRIES + BUFFER]
     )
 
-    history_qs = MTGCardPrice.objects.filter(
-        card_id__in=cheapest_pks,
-        catalog_date__in=recent_catalog_dates,
-        trend__gt=0.01,
-    ).values("card_id", "catalog_date", "trend")
+    history_filter = {
+        "card_id__in": cheapest_pks,
+        "catalog_date__in": recent_catalog_dates,
+        f"{price_field}__gt": 0.01,
+    }
+
+    history_qs = MTGCardPrice.objects.filter(**history_filter).values("card_id", "catalog_date", price_field)
 
     # 6. Transform using Pandas (Robust version)
     df = pd.DataFrame(list(history_qs))
@@ -102,15 +108,14 @@ def export_top_cards_to_gdrive():
     pivot_df = df.pivot_table(
         index=["set_name", "card_name"],
         columns="date_only",
-        values="trend",
+        values=price_field,
         aggfunc="mean",
     )
 
     # 1. Sort columns newest to oldest first
     pivot_df = pivot_df.reindex(sorted(pivot_df.columns, reverse=True), axis=1)
 
-    # 2. THE TRIM: Take only the first 60 columns (the most recent ones)
-    # This ensures that even if we fetched 80, the sheet only sees 60
+    # 2. THE TRIM: Take only the first X columns (the most recent ones)
     pivot_df = pivot_df.iloc[:, :MAX_HISTORICAL_ENTRIES]
 
     # 3. Sort Rows by price (using the actual newest column available)
@@ -140,15 +145,14 @@ def export_top_cards_to_gdrive():
                 ["Metric", "Value"],
                 ["Last script run", local_now.strftime("%Y-%m-%d %H:%M:%S")],
                 ["Latest pricing date", cur_date.strftime("%Y-%m-%d %H:%M:%S")],
+                ["Price Metric Tracked", price_field.upper()],
                 ["Data Window", f"{len(recent_catalog_dates)} entries"],
                 ["Total Cards Tracked", len(final_df)],
             ]
         )
 
-        return f"Success: {len(final_df)} cards uploaded."
+        return f"Success: {len(final_df)} cards uploaded using {price_field}."
     except (GSpreadException, APIError) as err:
-        # Handles issues with Google Sheets (auth, quota, missing worksheet, etc.)
         return f"Google Sheets Error: {str(err)}"
     except OSError as err:
-        # Handles issues with the local credentials file (file not found, permissions)
         return f"File System Error: {str(err)}"
