@@ -20,10 +20,8 @@ EXCLUDED_EXPANSION_IDS = [
 BUFFER = 20
 
 
-def export_top_cards_to_gdrive():
-    """Find the cheapest printing per metacard and track its 60-day history."""
-    price_field = getattr(settings, "PRICE_FIELD", "trend")
-
+def _get_cheapest_premodern_prints(price_field, cur_date):
+    """Find the cheapest print for queryset premodern cards."""
     # 1. Get Premodern legal metacard IDs
     pm_metacard_ids = (
         MTGCard.objects.filter(expansion_id__in=LEGAL_PREMODERN_SETS)
@@ -32,12 +30,7 @@ def export_top_cards_to_gdrive():
         .distinct()
     )
 
-    # 2. Identify the latest price date
-    latest_cat = Catalog.objects.filter(catalog_id=Catalog.MTG, catalog_type=Catalog.PRICES).latest("catalog_date")
-    cur_date = latest_cat.catalog_date
-
-    # 3. Find the "Floor Price" for every Metacard dynamically
-    # tg: the cheapest print of a card
+    # 2. Find the "Floor Price" for every Metacard dynamically
     floor_filter = {
         "card__metacard_id__in": pm_metacard_ids,
         "catalog_date": cur_date,
@@ -52,18 +45,18 @@ def export_top_cards_to_gdrive():
         .order_by("-cheapest_trend")[:TOP_N_COUNT]
     )
 
-    # 4. SURGICAL SELECTION: Identify the specific Card IDs for these floors
-    metacard_filter = Q()
+    # 3. SURGICAL SELECTION: Identify the specific Card IDs for these floors
+    identity_filter = Q()
     for item in metacard_floors:
-        metacard_kwargs = {
+        identity_kwargs = {
             "metacard_id": item["card__metacard_id"],
             f"prices__{price_field}": item["cheapest_trend"],
             "prices__catalog_date": cur_date,
         }
-        metacard_filter |= Q(**metacard_kwargs)
+        identity_filter |= Q(**identity_kwargs)
 
     winning_prints_qs = (
-        MTGCard.objects.filter(metacard_filter)
+        MTGCard.objects.filter(identity_filter)
         .select_related("expansion")
         .values("cm_id", "metacard_id", "name", "expansion__name")
     )
@@ -78,33 +71,21 @@ def export_top_cards_to_gdrive():
             card_metadata[c_id] = {"name": cp["name"], "set_name": cp["expansion__name"]}
             cheapest_pks.append(c_id)
 
-    # 5. Fetch history ONLY for these specific versions
-    recent_catalog_dates = list(
-        Catalog.objects.filter(catalog_id=Catalog.MTG, catalog_type=Catalog.PRICES)
-        .order_by("-catalog_date")
-        .values_list("catalog_date", flat=True)[: MAX_HISTORICAL_ENTRIES + BUFFER]
-    )
+    return cheapest_pks, card_metadata
 
-    history_filter = {
-        "card_id__in": cheapest_pks,
-        "catalog_date__in": recent_catalog_dates,
-        f"{price_field}__gt": 0.01,
-    }
 
-    history_qs = MTGCardPrice.objects.filter(**history_filter).values("card_id", "catalog_date", price_field)
-
-    # 6. Transform using Pandas (Robust version)
+def _build_pivot_dataframe(history_qs, card_metadata, price_field):
+    """Transform raw history query results into a structured pivot table."""
     df = pd.DataFrame(list(history_qs))
-
     if df.empty:
-        return "Error: No history data found."
+        return None
 
-    # Map metadata and normalize dates to actual Python date objects
+    # Map metadata and normalize dates
     df["card_name"] = df["card_id"].map(lambda x: card_metadata[x]["name"])
     df["set_name"] = df["card_id"].map(lambda x: card_metadata[x]["set_name"])
     df["date_only"] = pd.to_datetime(df["catalog_date"]).dt.date  # NOQA
 
-    # Create Pivot Table: Using 'mean' to handle multiple scrapes per day
+    # Create Pivot Table
     pivot_df = df.pivot_table(
         index=["set_name", "card_name"],
         columns="date_only",
@@ -112,21 +93,21 @@ def export_top_cards_to_gdrive():
         aggfunc="mean",
     )
 
-    # 1. Sort columns newest to oldest first
+    # Sort columns newest to oldest, and trim to max entries
     pivot_df = pivot_df.reindex(sorted(pivot_df.columns, reverse=True), axis=1)
-
-    # 2. THE TRIM: Take only the first X columns (the most recent ones)
     pivot_df = pivot_df.iloc[:, :MAX_HISTORICAL_ENTRIES]
 
-    # 3. Sort Rows by price (using the actual newest column available)
+    # Sort Rows by the latest available price
     newest_col = pivot_df.columns[0]
     pivot_df = pivot_df.sort_values(by=newest_col, ascending=False)
 
-    # 4. Format for Google Sheets
+    # Format for Google Sheets
     pivot_df.columns = [c.strftime("%Y-%m-%d") for c in pivot_df.columns]
-    final_df = pivot_df.reset_index().fillna("")
+    return pivot_df.reset_index().fillna("")
 
-    # 7. Upload to Google Sheets
+
+def _upload_to_gsheets(final_df, cur_date, price_field, recent_dates_count):
+    """Handle Google Sheets authentication and sheet updates."""
     try:
         gdrive_client = gspread.service_account(filename=settings.GOOGLE_SECRET_CREDENTIALS)
         sheet = gdrive_client.open_by_key("1vQs3vlXHu7BELFoVuK4ysfzMeYHDxMdOWgPAGmPVZjk")
@@ -146,13 +127,46 @@ def export_top_cards_to_gdrive():
                 ["Last script run", local_now.strftime("%Y-%m-%d %H:%M:%S")],
                 ["Latest pricing date", cur_date.strftime("%Y-%m-%d %H:%M:%S")],
                 ["Price Metric Tracked", price_field.upper()],
-                ["Data Window", f"{len(recent_catalog_dates)} entries"],
+                ["Data Window", f"{recent_dates_count} entries"],
                 ["Total Cards Tracked", len(final_df)],
             ]
         )
-
         return f"Success: {len(final_df)} cards uploaded using {price_field}."
     except (GSpreadException, APIError) as err:
         return f"Google Sheets Error: {str(err)}"
     except OSError as err:
         return f"File System Error: {str(err)}"
+
+
+def export_top_cards_to_gdrive():
+    """Find the cheapest printing per metacard and track its 60-day history."""
+    price_field = getattr(settings, "PRICE_FIELD", "trend")
+
+    # 1. Identify the latest price date
+    latest_cat = Catalog.objects.filter(catalog_id=Catalog.MTG, catalog_type=Catalog.PRICES).latest("catalog_date")
+    cur_date = latest_cat.catalog_date
+
+    # 2. Fetch the top print IDs and metadata using an isolated helper
+    cheapest_pks, card_metadata = _get_cheapest_premodern_prints(price_field, cur_date)
+
+    # 3. Fetch history targeting only those specific versions
+    recent_catalog_dates = list(
+        Catalog.objects.filter(catalog_id=Catalog.MTG, catalog_type=Catalog.PRICES)
+        .order_by("-catalog_date")
+        .values_list("catalog_date", flat=True)[: MAX_HISTORICAL_ENTRIES + BUFFER]
+    )
+
+    history_filter = {
+        "card_id__in": cheapest_pks,
+        "catalog_date__in": recent_catalog_dates,
+        f"{price_field}__gt": 0.01,
+    }
+    history_qs = MTGCardPrice.objects.filter(**history_filter).values("card_id", "catalog_date", price_field)
+
+    # 4. Transform using Pandas isolated helper
+    final_df = _build_pivot_dataframe(history_qs, card_metadata, price_field)
+    if final_df is None:
+        return "Error: No history data found."
+
+    # 5. Upload via isolated helper
+    return _upload_to_gsheets(final_df, cur_date, price_field, len(recent_catalog_dates))

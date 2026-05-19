@@ -13,7 +13,7 @@ from django.core.wsgi import get_wsgi_application
 from dotenv import load_dotenv
 
 load_dotenv()
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cm_prices.settings')
+django_env = os.environ.get("DJANGO_ENV", "prod")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", f"cm_prices.settings.{django_env}")
 
 application = get_wsgi_application()

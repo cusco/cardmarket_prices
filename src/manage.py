@@ -10,7 +10,8 @@ load_dotenv()
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cm_prices.settings')
+    django_env = os.environ.get("DJANGO_ENV", "dev")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", f"cm_prices.settings.{django_env}")
     try:
         from django.core.management import execute_from_command_line  # NOQA
     except ImportError as exc:
