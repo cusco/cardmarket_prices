@@ -67,7 +67,7 @@ class Catalog(BaseAbstractModel):
     md5sum = models.CharField(max_length=32, verbose_name='MD5sum', unique=True)
 
     def __str__(self):
-        """Return string representation of Catalog item."""
+        """Return string representation of a Catalog item."""
 
         id_str = self.get_catalog_id_display()
         type_str = self.get_catalog_type_display()
@@ -145,13 +145,11 @@ class MTGCardPrice(BaseAbstractModel):
     avg30_foil = models.FloatField(null=True, verbose_name="Foil average price for 30 days")
 
     class Meta:
-        constraints = [models.UniqueConstraint(fields=['catalog_date', 'cm_id'], name='Unique card price per day')]
+        constraints = [models.UniqueConstraint(fields=['catalog_date', 'cm_id'], name='unique_card_price_per_day')]
         indexes = [
-            models.Index(fields=['card', 'catalog_date', 'trend']),  # Composite index
-            # models.Index(fields=['cm_id'], name='idx_mtgprice_cm_id'),
-            # models.Index(fields=['catalog_date'], name='idx_mtgprice_catalog_date'),
-            # models.Index(fields=['cm_id', 'catalog_date'], name='idx_mtgprice_cm_id_date'),
-            # models.Index(fields=['low'], name='idx_mtgprice_low'),
+            # Optimized for: .filter(card_id=X).order_by('-catalog_date')
+            models.Index(fields=['card', 'catalog_date'], name='idx_price_card_date'),
+            models.Index(fields=['catalog_date', 'trend'], name='idx_price_date_trend'),
         ]
 
     def __str__(self):
@@ -174,9 +172,10 @@ class MTGCardPriceSlope(BaseAbstractModel):
     class Meta:
         constraints = [models.UniqueConstraint(fields=['card', 'interval_days'], name='unique_card_interval')]
         indexes = [
-            models.Index(fields=['card'], name='idx_slope_card'),
+            # Keep this: filters strictly by the lookback window (e.g., 2, 7, 30)
             models.Index(fields=['interval_days'], name='idx_slope_interval'),
-            models.Index(fields=['card', 'interval_days'], name='idx_slope_card_interval'),
+            # CRUCIAL: For finding the biggest gainers/losers: .filter(interval_days=7).order_by('-percent_change')
+            models.Index(fields=['interval_days', 'percent_change'], name='idx_slope_interval_change'),
         ]
 
     def __str__(self):
