@@ -12,6 +12,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  PYTHONPATH: ${{ github.workspace }}/src
+  DJANGO_ENV: dev
+
 jobs:
   Validate_and_Test:
     runs-on: ubuntu-latest
@@ -54,7 +58,7 @@ jobs:
     - name: Verify installation
       run: |
         python --version
-        pip list | head -20
+        pip list | sed -n '1,20p'
         echo "Django version: $(python -c 'import django; print(django.get_version())')"
 
     - name: System info (on failure)
