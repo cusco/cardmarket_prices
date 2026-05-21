@@ -238,7 +238,7 @@ def _bulk_create_prices(insert_prices, catalog_date):
     try:
         pre_count = MTGCardPrice.objects.filter(catalog_date=catalog_date).count()
 
-        # Perform the bulk create
+        # Perform the bulk creation
         MTGCardPrice.objects.bulk_create(insert_prices, batch_size=2000, ignore_conflicts=False)
 
         post_count = MTGCardPrice.objects.filter(catalog_date=catalog_date).count()

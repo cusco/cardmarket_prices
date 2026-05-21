@@ -126,7 +126,7 @@ class MTGCard(BaseAbstractModel):
 class MTGCardPrice(BaseAbstractModel):
     """MTG card price model."""
 
-    card = models.ForeignKey(MTGCard, on_delete=models.CASCADE, related_name='prices')
+    card = models.ForeignKey(MTGCard, on_delete=models.CASCADE, related_name='prices', db_index=False)
     catalog_date = models.DateTimeField(verbose_name='Catalog Date')
     cm_id = models.IntegerField(verbose_name="cardmarket id")
     avg = models.FloatField(null=True, verbose_name="Average price")

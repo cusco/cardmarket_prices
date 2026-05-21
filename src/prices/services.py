@@ -20,6 +20,7 @@ from prices.models import Catalog, MTGCard, MTGCardPrice, MTGSet
 logging.basicConfig(level=logging.INFO)  # temporary
 logger = logging.getLogger(__name__)
 germany_tz = pytz.timezone("Europe/Berlin")
+BATCH_SIZE = 5000
 
 
 def update_mtg():
@@ -126,7 +127,7 @@ def update_cm_products():
 
         # Bulk create / update
         if insert_cards:
-            MTGCard.objects.bulk_create(insert_cards)
+            MTGCard.objects.bulk_create(insert_cards, batch_size=BATCH_SIZE)
             logger.info("%d new cards inserted.", len(insert_cards))
 
         if update_cards:
@@ -139,6 +140,7 @@ def update_cm_products():
                     "metacard_id",
                     "date_updated",
                 ],
+                batch_size=BATCH_SIZE,
             )
             logger.info("%d existing cards updated.", len(update_cards))
 
@@ -234,7 +236,7 @@ def update_cm_prices(local_content=None):
 
         # Bulk create all prices
         if insert_prices:
-            MTGCardPrice.objects.bulk_create(insert_prices)
+            MTGCardPrice.objects.bulk_create(insert_prices, batch_size=BATCH_SIZE)
             logger.info("%d new prices inserted.", len(insert_prices))
 
         if unknown_cards:
@@ -318,7 +320,7 @@ def update_sets_extra_info():
                 # local_set.save(update_fields=['code', 'release_date'])
 
         if update_sets:
-            MTGSet.objects.bulk_update(update_sets, ["url", "release_date"])
+            MTGSet.objects.bulk_update(update_sets, ["url", "release_date"], batch_size=BATCH_SIZE)
             logger.info("Updated %d sets", len(update_sets))
 
     return len(update_sets)

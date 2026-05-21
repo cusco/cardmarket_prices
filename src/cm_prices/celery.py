@@ -31,17 +31,11 @@ app.conf.timezone = 'Europe/London'
 
 @task_prerun.connect
 def db_health_check_before_task(*args, **kwargs):
-    """
-    Triggers right before ANY celery task executes.
-    Flushes out connections killed by a MariaDB restart.
-    """
+    """Flush out dead database connections before a task executes."""
     close_old_connections()
 
 
 @task_postrun.connect
 def db_cleanup_after_task(*args, **kwargs):
-    """
-    Triggers right after ANY celery task completes.
-    Prevents idle connection leaks from stacking up.
-    """
+    """Close old database connections after a task completes to prevent leaks."""
     close_old_connections()
