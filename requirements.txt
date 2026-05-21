@@ -10,7 +10,7 @@ django-money==3.6.0
 django-extensions==4.1
 django-unfold==0.85.0
 
-ptpython==3.0.31
+ptpython==3.0.32
 pytz==2025.2
 
 celery~=5.5.3
