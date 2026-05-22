@@ -111,7 +111,7 @@ class MTGCard(BaseAbstractModel):
 
     class Meta:
         # indexes = [models.Index(fields=['cm_id'], name='idx_mtgcard_cm_id')]
-        pass
+        indexes = [models.Index(fields=['metacard_id', 'cm_id'], name='idx_card_meta_cm')]
 
     def __str__(self):
         """Return representation in string format."""
