@@ -3,6 +3,7 @@ import hashlib
 import io
 import json
 import logging
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -26,11 +27,24 @@ BATCH_SIZE = 5000
 def update_mtg():
     """Fetch new cards, new prices and save them in the local models."""
 
+    total_start = time.time()
+
     # pricing needs card, card needs set/expansion
+    start = time.time()
     new_sets = create_cm_sets()
+    logger.info("-> create_cm_sets() took: %.2fs", time.time() - start)
+
+    start = time.time()
     updated_sets = update_sets_extra_info()
+    logger.info("-> update_sets_extra_info() took: %.2fs", time.time() - start)
+
+    start = time.time()
     new_cards, updated_cards = update_cm_products()
+    logger.info("-> update_cm_products() took: %.2fs", time.time() - start)
+
+    start = time.time()
     updated_prices = update_cm_prices()
+    logger.info("-> update_cm_prices() took: %.2fs", time.time() - start)
 
     result = {
         "new_sets": new_sets,
@@ -41,17 +55,23 @@ def update_mtg():
     }
 
     if updated_prices:
+        start = time.time()
         catalog_date = MTGCardPrice.objects.order_by("catalog_date").last().catalog_date
         card_ids = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list("cm_id", flat=True)
         card_qs = MTGCard.objects.filter(cm_id__in=card_ids)
         new_slopes, updated_slopes = update_card_slopes(card_qs=card_qs)
+        logger.info("-> update_card_slopes() took: %.2fs", time.time() - start)
         result["new_slopes"] = new_slopes
         result["updated_slopes"] = updated_slopes
 
         # update google spreadsheet
+        start = time.time()
         msg = export_top_cards_to_gdrive()
         logger.info(msg)
+        logger.info("-> export_top_cards_to_gdrive() took: %.2fs", time.time() - start)
 
+    total_duration = time.time() - total_start
+    logger.info("=== update_mtg taken: %.2fs (approx. %d minutes) ===", total_duration, total_duration // 60)
     return result
 
 
@@ -188,7 +208,7 @@ def update_cm_prices(local_content=None):
 
         # List all existing cards within the current JSON
         all_cm_ids = [item["idProduct"] for item in data["priceGuides"]]
-        existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(field_name="cm_id")
+        valid_card_ids = set(MTGCard.objects.filter(cm_id__in=all_cm_ids).values_list("cm_id", flat=True))
         existing_prices = MTGCardPrice.objects.filter(catalog_date=catalog_date).values_list("cm_id", flat=True)
         existing_price_ids = set(existing_prices)
         unknown_cards = set()
@@ -198,8 +218,7 @@ def update_cm_prices(local_content=None):
 
             # Check if the card already exists
             # products function should handle this
-            card = existing_cards.get(cm_id)
-            if not card:
+            if cm_id not in valid_card_ids:
                 unknown_cards.add(cm_id)
                 # card = MTGCard(cm_id=cm_id)
                 # insert_cards.append(card)
@@ -216,7 +235,7 @@ def update_cm_prices(local_content=None):
 
             mtg_card_price = MTGCardPrice(
                 catalog_date=catalog_date,
-                card=card,
+                card_id=cm_id,
                 cm_id=cm_id,
                 avg=price_item.get("avg", None),
                 low=price_item.get("low", None),

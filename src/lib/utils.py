@@ -1,14 +1,16 @@
 import logging
 import statistics
+from collections import defaultdict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import timedelta
 
 import pytz
 from django.conf import settings
-from django.db.models import OuterRef, Subquery
+from django.db.models import OuterRef, Prefetch, Subquery
 from django.utils import timezone
+from tqdm.auto import tqdm
 
-from prices.constants import LEGAL_PIONEER_SETS, LEGAL_STANDARD_SETS
+from prices.constants import LEGAL_PREMODERN_SETS
 from prices.models import MTGCard, MTGCardPrice, MTGCardPriceSlope
 
 logger = logging.getLogger(__name__)
@@ -20,7 +22,7 @@ MIN_PERCENTAGE = 1
 def show_stats(days=7, cards_qs=None):
     """Show statistics for MTG cards regarding latest price changes over a specified period."""
     if not cards_qs:
-        cards_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
+        cards_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PREMODERN_SETS)
 
     always_rising = {}
     trending_cards = {}
@@ -156,7 +158,7 @@ def update_card_slopes(card_qs=None, chunk_size=990):
     """Calculate and store slopes for a queryset of MTGCards in chunks and returns created/updated counts."""
 
     if not card_qs:
-        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_STANDARD_SETS)
+        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PREMODERN_SETS)
 
     cards = list(card_qs)
     created_count = 0
@@ -293,7 +295,7 @@ def get_top_20_cards_by_slope(card_qs, min_price=3, interval_days=7, only_positi
 def show_changes(card_qs=None, days=7, min_price=3):
     """Display the top 20 cards based on slope and percentage change."""
     if not card_qs:
-        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PIONEER_SETS)
+        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PREMODERN_SETS)
         card_qs = card_qs.exclude(expansion__code__startswith='X')
 
     top_20_cards = get_top_20_cards_by_slope(card_qs, min_price, days)
@@ -326,7 +328,7 @@ def find_spiking_cards(
         raise ValueError("last_entries must be between 2 and 30.")
 
     if not card_qs:
-        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PIONEER_SETS)
+        card_qs = MTGCard.objects.filter(expansion_id__in=LEGAL_PREMODERN_SETS)
 
     # filter cards with trend != 0
     valid_card_ids = {
