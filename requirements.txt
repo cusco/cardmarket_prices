@@ -25,3 +25,4 @@ isort==5.13.2
 prospector==1.11.0
 bandit==1.8.6
 semgrep==1.155.0
+soupsieve>=2.8.4 # not directly required, pinned by Snyk to avoid a vulnerability
