@@ -15,6 +15,11 @@ fi
 # Calculate the MD5 hash
 md5_hash=$(md5sum "$json_file" | cut -d " " -f 1)
 
+# if we already have the file, exit
+if ls "${script_path}/"*"${md5_hash}"* 1> /dev/null 2>&1; then
+	exit 0
+fi
+
 # Move the file to a new name with the date and hash
 new_file="${script_path}/${local_date}_${md5_hash}_price_guide_1.json"
 if ! mv "$json_file" "$new_file"; then
