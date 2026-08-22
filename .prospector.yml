@@ -1,14 +1,14 @@
 inherits:
   - strictness_veryhigh
 
-uses:
-    - django
-    - celery
+# prospector auto-detects django/celery by scanning the whole tree for their imports, ignoring ignore-patterns -
+# old/ (the retired Django project) still has them, which would otherwise pull in the pylint_django plugin and its
+# django-not-available/django-not-configured nags for a project that isn't Django. Turning off autodetection (and
+# never opting in via `uses:`) keeps that plugin out of the picture entirely.
+autodetect: false
 
 ignore-patterns:
-  - ^setup.py$
-  - wsgi.py$
-  - ^static
+  - ^old/
 
 pylint:
   disable:
@@ -32,6 +32,7 @@ pylint:
     max-public-methods: 24
     max-line-length: 120
     max-args: 10
+    max-positional-arguments: 10
     max-module-lines: 1200
     max-attributes: 8
     # Regular expressions used to match various names
@@ -65,7 +66,7 @@ pep257:
     - D106  # Missing docstring in public nested class
     - D202  # No blank lines allowed after function docstring
     - D203  # 1 blank line required before class docstring
-    - D212  # Multi-line docstring summary should start at the first line
+    - D213  # Multi-line docstring summary should start at the second line (this codebase uses the first line)
 
 
 mccabe:

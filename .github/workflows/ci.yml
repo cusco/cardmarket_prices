@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.11
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --prefer-binary -r requirements-dev.txt
+
+      - name: Syntax check
+        run: python -m py_compile *.py
+
+      - name: Static validation
+        id: validation
+        run: ./scripts/static_validate_backend.sh
+
+      - name: Run tests
+        id: tests
+        run: ./scripts/test_backend.sh
+
+      - name: Test report
+        uses: dorny/test-reporter@v2
+        if: always()
+        with:
+          name: Test Results
+          path: report_pytest.xml
+          reporter: java-junit
+          fail-on-error: false
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: coverage-html
+          path: htmlcov/
+          retention-days: 30
+
+      - name: Upload test/coverage artifacts
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: test-reports
+          path: |
+            report_pytest.xml
+            coverage.xml
+          retention-days: 30
