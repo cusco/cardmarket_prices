@@ -7,8 +7,8 @@ Two ways data gets in:
   - find_local_catalog_files(): scans CATALOGS_DIR for whatever .gz snapshots
     already exist (fetched live or dropped in manually).
 
-Either way, every snapshot flows through the same ingest_file() parser, so there's
-only one code path that understands the JSON shape.
+Either way, every snapshot flows through the same ingest_file() parser, so there's only one code path that
+understands the JSON shape.
 """
 
 import gzip
@@ -34,12 +34,10 @@ from init import run_if_first_time
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Explicit schemas for read_json(), rather than read_json_auto()'s sample-based
-# inference: a field absent from every row DuckDB happens to sample (e.g. a day
-# where no product has foil pricing data) would otherwise make the inferred
-# struct type lack that key entirely, and querying it would raise a BinderException
-# instead of just returning NULL. Declaring the schema up front means a missing
-# field is always NULL, never a schema mismatch.
+# Explicit schemas for read_json(), rather than read_json_auto()'s sample-based inference: a field absent from every
+# row DuckDB happens to sample (e.g. a day where no product has foil pricing data) would otherwise make the
+# inferred struct type lack that key entirely, and querying it would raise a BinderException instead of just
+# returning NULL. Declaring the schema up front means a missing field is always NULL, never a schema mismatch.
 PRICE_GUIDE_COLUMNS = {
     "version": "BIGINT",
     "createdAt": "VARCHAR",
@@ -59,9 +57,8 @@ PRODUCT_CATALOG_COLUMNS = {
     ),
 }
 
-# Every snapshot filename starts with its date (fetch_latest_catalog() writes
-# them that way, and every existing local/remote file follows the same
-# convention), e.g. "2026-08-22_<hash>_price_guide_1.json.gz".
+# Every snapshot filename starts with its date (fetch_latest_catalog() writes them that way, and every existing
+# local/remote file follows the same convention), e.g. "2026-08-22_<hash>_price_guide_1.json.gz".
 FILENAME_DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})_")
 
 
@@ -75,8 +72,7 @@ def _date_from_filename(path: Path) -> date | None:
 def fetch_latest_catalog(catalogs_dir: Path = CATALOGS_DIR) -> Path | None:
     """Download today's price guide and save it as a new local .gz snapshot.
 
-    Returns the new file's path, or None if this exact snapshot (by content hash)
-    is already archived.
+    Returns the new file's path, or None if this exact snapshot (by content hash) is already archived.
     """
 
     response = requests.get(PRICE_GUIDE_URL, timeout=30)
@@ -107,14 +103,12 @@ def ingest_file(con: duckdb.DuckDBPyConnection, path: Path) -> int:
 
     Returns the number of rows inserted (0 if this catalog_date was already loaded).
 
-    Checking whether a file's already ingested used to require opening and fully
-    parsing it just to read `createdAt` (~170ms/file measured against real data -
-    minutes, across hundreds of files, almost all of which turn out to already be
-    loaded). The filename already encodes the date, so that's checked against the
-    DB first, with zero file I/O; only a file whose filename-date isn't already
-    present gets actually opened, and its real `createdAt` (not the filename
-    guess) is still what gets stored, so a file with a misleading name can't
-    corrupt the data - it just loses the fast path.
+    Checking whether a file's already ingested used to require opening and fully parsing it just to read
+    `createdAt` (~170ms/file measured against real data - minutes, across hundreds of files, almost all of which
+    turn out to already be loaded). The filename already encodes the date, so that's checked against the DB first,
+    with zero file I/O; only a file whose filename-date isn't already present gets actually opened, and its real
+    `createdAt` (not the filename guess) is still what gets stored, so a file with a misleading name can't corrupt
+    the data - it just loses the fast path.
     """
 
     guessed_date = _date_from_filename(path)
@@ -124,8 +118,8 @@ def ingest_file(con: duckdb.DuckDBPyConnection, path: Path) -> int:
             logger.info("Skipping %s: catalog_date %s (from filename) already ingested.", path.name, guessed_date)
             return 0
 
-    # {read_json} only ever interpolates MAX_JSON_OBJECT_SIZE, a hardcoded int constant -
-    # the actual path/columns values are bound parameters (the `?`s below), not interpolated.
+    # {read_json} only ever interpolates MAX_JSON_OBJECT_SIZE, a hardcoded int constant - the actual path/columns
+    # values are bound parameters (the `?`s below), not interpolated.
     read_json = f"read_json(?, columns=?, maximum_object_size={MAX_JSON_OBJECT_SIZE})"  # nosec B608
 
     # DuckDB's .execute() is not SQLAlchemy's; the rule below matches on method name alone.
@@ -169,8 +163,8 @@ def ingest_all(con: duckdb.DuckDBPyConnection, catalogs_dir: Path = CATALOGS_DIR
 def refresh_products(con: duckdb.DuckDBPyConnection) -> int:
     """Fetch the current product catalog live and replace the `products` snapshot.
 
-    Unlike prices, products aren't versioned history - each run just overwrites
-    the table with Cardmarket's current view of card -> set/name/metacard.
+    Unlike prices, products aren't versioned history - each run just overwrites the table with Cardmarket's
+    current view of card -> set/name/metacard.
     """
 
     response = requests.get(PRODUCT_CATALOG_URL, timeout=30)
@@ -208,12 +202,11 @@ def refresh_products(con: duckdb.DuckDBPyConnection) -> int:
 def run() -> int:
     """Fetch the latest snapshot, ingest all local snapshots, refresh product metadata.
 
-    On a fresh database (no price rows yet), backfills local/catalogs from
-    constants.REMOTE_CATALOGS_URL first - see init.py.
+    On a fresh database (no price rows yet), backfills local/catalogs from constants.REMOTE_CATALOGS_URL first -
+    see init.py.
 
-    Returns the number of new price rows ingested (0 if nothing was new) - see
-    daily.py, which uses this to decide whether there's anything worth pushing
-    to Google Sheets.
+    Returns the number of new price rows ingested (0 if nothing was new) - see daily.py, which uses this to decide
+    whether there's anything worth pushing to Google Sheets.
     """
 
     con = get_connection()

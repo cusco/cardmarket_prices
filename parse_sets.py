@@ -1,10 +1,9 @@
 """Parse Cardmarket's `idExpansion` <select> dropdown HTML into id -> set name JSON.
 
-The dropdown isn't reachable by script anymore (Cloudflare challenge), so this
-expects HTML copied by hand from your own logged-in browser session - e.g. from
-"View Page Source" or copying the <select id="idExpansion..."> element on any
-Cardmarket "Magic Singles" search page. Save it to data/cardmarket_sets.html and
-rerun this whenever you want to refresh the set list (new sets, renamed sets).
+The dropdown isn't reachable by script anymore (Cloudflare challenge), so this expects HTML copied by hand from
+your own logged-in browser session - e.g. from "View Page Source" or copying the <select id="idExpansion...">
+element on any Cardmarket "Magic Singles" search page. Save it to data/cardmarket_sets.html and rerun this
+whenever you want to refresh the set list (new sets, renamed sets).
 
 Usage:
     python parse_sets.py

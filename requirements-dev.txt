@@ -1,8 +1,8 @@
 -r requirements.txt
-pytest
-pytest-cov
-black
-isort
-prospector
-bandit
-semgrep
+pytest==9.1.1
+pytest-cov==7.1.0
+black==26.5.1
+isort==8.0.1
+prospector==1.19.1
+bandit==1.9.4
+semgrep==1.174.0

@@ -1,6 +1,12 @@
 inherits:
   - strictness_veryhigh
 
+# prospector auto-detects django/celery by scanning the whole tree for their imports, ignoring ignore-patterns -
+# old/ (the retired Django project) still has them, which would otherwise pull in the pylint_django plugin and its
+# django-not-available/django-not-configured nags for a project that isn't Django. Turning off autodetection (and
+# never opting in via `uses:`) keeps that plugin out of the picture entirely.
+autodetect: false
+
 ignore-patterns:
   - ^old/
 
@@ -16,7 +22,6 @@ pylint:
     - R0201  # disable no-self-use
     - C0209  # disbale consider-using-f-string, use .format() as valid
     - invalid-name
-    - django-not-configured  # pylint_django plugin nag; this project isn't Django, just shares a venv with old/
 
   options:
     max-locals: 25
@@ -27,6 +32,7 @@ pylint:
     max-public-methods: 24
     max-line-length: 120
     max-args: 10
+    max-positional-arguments: 10
     max-module-lines: 1200
     max-attributes: 8
     # Regular expressions used to match various names
