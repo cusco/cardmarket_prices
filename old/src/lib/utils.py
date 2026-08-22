@@ -1,14 +1,12 @@
 import logging
 import statistics
-from collections import defaultdict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import timedelta
 
 import pytz
 from django.conf import settings
-from django.db.models import OuterRef, Prefetch, Subquery
+from django.db.models import OuterRef, Subquery
 from django.utils import timezone
-from tqdm.auto import tqdm
 
 from prices.constants import LEGAL_PREMODERN_SETS
 from prices.models import MTGCard, MTGCardPrice, MTGCardPriceSlope

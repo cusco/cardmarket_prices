@@ -104,6 +104,11 @@ def update_cm_products():
         all_cm_ids = [item["idProduct"] for item in data["products"]]
         existing_cards = MTGCard.objects.filter(cm_id__in=all_cm_ids).in_bulk(field_name="cm_id")
 
+        # Sets are scraped separately (create_cm_sets); if that scrape is unavailable (e.g. blocked),
+        # products for brand-new expansions must wait rather than break bulk_create's FK constraint.
+        known_expansion_ids = set(MTGSet.objects.values_list("expansion_id", flat=True))
+        unknown_expansions = set()
+
         for product_item in data["products"]:
             cm_id = product_item["idProduct"]
             name = product_item.get("name", None)
@@ -115,6 +120,10 @@ def update_cm_products():
                 date_added = datetime.strptime(date_added, "%Y-%m-%d %H:%M:%S")
                 date_added = date_added.replace(tzinfo=germany_tz)
             # slug = product_item.get('website', None).replace("/en/", "") if product_item.get('website') else None
+
+            if expansion_id is not None and expansion_id not in known_expansion_ids:
+                unknown_expansions.add(expansion_id)
+                continue
 
             card = MTGCard(
                 cm_id=cm_id,
@@ -163,6 +172,13 @@ def update_cm_products():
                 batch_size=BATCH_SIZE,
             )
             logger.info("%d existing cards updated.", len(update_cards))
+
+        if unknown_expansions:
+            logger.warning(
+                "Skipped products for %d expansion(s) not yet in MTGSet: %s",
+                len(unknown_expansions),
+                sorted(unknown_expansions),
+            )
 
     return len(insert_cards), len(update_cards)
 
