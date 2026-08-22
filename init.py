@@ -1,19 +1,16 @@
 """First-time setup: detect an empty database and backfill it before ingesting.
 
-Called automatically from ingest.py's run() - a fresh checkout doesn't need a
-separate setup command, just `python ingest.py`. Detection is simple: the
-`prices` table has zero rows.
+Called automatically from ingest.py's run() - a fresh checkout doesn't need a separate setup command, just
+`python ingest.py`. Detection is simple: the `prices` table has zero rows.
 
-If constants.REMOTE_CATALOGS_URL is set (an Apache-style directory listing of
-historical .gz price-guide snapshots - e.g. an S3/OVH bucket with autoindex
-on), first-run also backfills local/catalogs from it before the normal
-ingest runs, so a fresh checkout starts with real history instead of just
-today's snapshot. Same idea as the old project's README instructing a manual
-`wget -r -A "*.gz"` step, just built into the tool instead of a doc a person
+If constants.REMOTE_CATALOGS_URL is set (an Apache-style directory listing of historical .gz price-guide snapshots
+- e.g. an S3/OVH bucket with autoindex on), first-run also backfills local/catalogs from it before the normal
+ingest runs, so a fresh checkout starts with real history instead of just today's snapshot. Same idea as the old
+project's README instructing a manual `wget -r -A "*.gz"` step, just built into the tool instead of a doc a person
 has to remember to follow.
 
-If REMOTE_CATALOGS_URL isn't set, first-run just logs that no backfill is
-configured and lets the normal ingest.py flow continue as usual.
+If REMOTE_CATALOGS_URL isn't set, first-run just logs that no backfill is configured and lets the normal ingest.py
+flow continue as usual.
 """
 
 import logging

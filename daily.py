@@ -1,8 +1,7 @@
 """Daily entry point: ingest the latest snapshot, push to Google Sheets only if it changed anything.
 
-Meant to be invoked by scripts/cron_ingest.sh. Kept separate from ingest.py's
-run() so this "only export when something's new" decision is its own testable
-unit, rather than conditional logic buried in a shell script.
+Meant to be invoked by scripts/cron_ingest.sh. Kept separate from ingest.py's run() so this "only export when
+something's new" decision is its own testable unit, rather than conditional logic buried in a shell script.
 """
 
 import logging

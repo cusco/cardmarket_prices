@@ -1,26 +1,20 @@
 """Spike detection: which cards are rising in price while still affordable.
 
-Two independent signals so far, meant to be combined/compared over time rather
-than treated as the final answer - see find_price_gaps()'s docstring for where
-this is headed next.
+Two independent signals so far, meant to be combined/compared over time rather than treated as the final answer -
+see find_price_gaps()'s docstring for where this is headed next.
 
-find_spikes() - week-over-week trend movement. Unlike the original Django
-project's slope table (fixed 2/7/30-day calendar windows that return nothing if
-a card has no second data point inside the window) or its "quick hack" fallback
-(counts the last N price *rows*, not the last N *days*, so a gap in history
-silently mixes old and new prices together), this uses DuckDB's ASOF JOIN: for
-each card, find the closest price point at or before "window_days ago",
-whatever date that actually lands on, and report the real elapsed days
-alongside the percentage change. A comparison spanning a data gap is still
-visible as such, instead of being silently wrong.
+find_spikes() - week-over-week trend movement. Unlike the original Django project's slope table (fixed 2/7/30-day
+calendar windows that return nothing if a card has no second data point inside the window) or its "quick hack"
+fallback (counts the last N price *rows*, not the last N *days*, so a gap in history silently mixes old and new
+prices together), this uses DuckDB's ASOF JOIN: for each card, find the closest price point at or before
+"window_days ago", whatever date that actually lands on, and report the real elapsed days alongside the percentage
+change. A comparison spanning a data gap is still visible as such, instead of being silently wrong.
 
-find_price_gaps() - a same-day signal, not a trend over time: how far today's
-cheapest listing (`low`) has pulled away from the smoothed `trend` price.
-Ported from an even older project's heuristic (~/cardmarket_scraper,
-src/lib/utils.py's show_spikes()/show_stats()) that scraped Cardmarket's
-per-card chart widget directly rather than the bulk price-guide JSON this
-project uses - the scraping approach doesn't carry over, but the underlying
-idea does, and it's data we already have and weren't using.
+find_price_gaps() - a same-day signal, not a trend over time: how far today's cheapest listing (`low`) has pulled
+away from the smoothed `trend` price. Ported from an even older project's heuristic (~/cardmarket_scraper,
+src/lib/utils.py's show_spikes()/show_stats()) that scraped Cardmarket's per-card chart widget directly rather than
+the bulk price-guide JSON this project uses - the scraping approach doesn't carry over, but the underlying idea
+does, and it's data we already have and weren't using.
 """
 
 import duckdb
@@ -50,16 +44,15 @@ def find_spikes(
 ):
     """Return the top cards by % price change over `window_days`, as a DataFrame.
 
-    Both the latest and the baseline price must clear `min_price` (filters out
-    bulk-card noise, where a few cents' move looks like a huge percentage), and
-    the latest price must stay under `max_price` ("still affordable").
+    Both the latest and the baseline price must clear `min_price` (filters out bulk-card noise, where a few cents'
+    move looks like a huge percentage), and the latest price must stay under `max_price` ("still affordable").
 
-    `format_name` filters to one of the id sets in constants.FORMATS (e.g.
-    "premodern"); pass None to scan every set Cardmarket sells.
+    `format_name` filters to one of the id sets in constants.FORMATS (e.g. "premodern"); pass None to scan every
+    set Cardmarket sells.
     """
 
-    # set_filter/{PRICE_FIELD} only ever interpolate constants.FORMATS/PRICE_FIELD - developer-
-    # controlled config, never external input. All actual values are bound parameters below.
+    # set_filter/{PRICE_FIELD} only ever interpolate constants.FORMATS/PRICE_FIELD - developer-controlled config,
+    # never external input. All actual values are bound parameters below.
     set_filter = ""
     if format_name is not None:
         expansion_ids = FORMATS[format_name]
@@ -130,43 +123,36 @@ def find_price_gaps(
 ):
     """Find cards where today's cheapest listing (`low`) has pulled away from `trend`.
 
-    Not a trend over time like find_spikes() - a single day's snapshot. The idea:
-    `trend` is Cardmarket's smoothed price, `low` is what you'd actually pay right
-    now. When `low` sits well above `trend`, the cheap copies have already sold
-    and remaining sellers are asking more - a live "the good price is going/gone"
-    signal, complementary to (and often earlier than) a week-over-week trend move.
+    Not a trend over time like find_spikes() - a single day's snapshot. The idea: `trend` is Cardmarket's smoothed
+    price, `low` is what you'd actually pay right now. When `low` sits well above `trend`, the cheap copies have
+    already sold and remaining sellers are asking more - a live "the good price is going/gone" signal, complementary
+    to (and often earlier than) a week-over-week trend move.
 
-    Both a percentage (`min_gap_pct`) and an absolute euro (`min_gap_abs`)
-    threshold apply, same reasoning as find_spikes()'s min_price floor: without
-    the absolute floor, a cent-level gap on a near-free card reads as a huge %.
+    Both a percentage (`min_gap_pct`) and an absolute euro (`min_gap_abs`) threshold apply, same reasoning as
+    find_spikes()'s min_price floor: without the absolute floor, a cent-level gap on a near-free card reads as a
+    huge %.
 
-    `min_price`/`max_price` bound `low` (what you'd actually pay); `trend` is
-    separately floored at `min_price` too (not just `> 0`) - without that, a
-    real Pioneer example: a card with trend=0.02 and low=16.00 (a near-worthless
-    variant with one oddly-priced listing) reported as a "+79900%" gap. Same
-    class of bulk-card noise find_spikes() already guards against by flooring
-    both sides of its comparison, this just hadn't been applied here yet.
+    `min_price`/`max_price` bound `low` (what you'd actually pay); `trend` is separately floored at `min_price` too
+    (not just `> 0`) - without that, a real Pioneer example: a card with trend=0.02 and low=16.00 (a near-worthless
+    variant with one oddly-priced listing) reported as a "+79900%" gap. Same class of bulk-card noise find_spikes()
+    already guards against by flooring both sides of its comparison, this just hadn't been applied here yet.
 
-    This is a first cut at a much bigger question - eventually this project
-    wants a real statistical view across trend/low/avg (and their medians)
-    together, not three separate ad hoc signals. Treat this function as a
+    This is a first cut at a much bigger question - eventually this project wants a real statistical view across
+    trend/low/avg (and their medians) together, not three separate ad hoc signals. Treat this function as a
     building block for that, not the final design.
 
-    Checked empirically against real Premodern data (2026-08): `low > trend`
-    essentially never happens in this dataset - 0 of 502 cards in the 1-20 EUR
-    range, and swapping in avg7/avg30 as the baseline instead of trend barely
-    changes that (0 and 1 of 502). The old project this idea came from scraped
-    Cardmarket's live per-card page; this project ingests one bulk end-of-day
-    snapshot, where `low` and `trend` are computed from the same moment together
-    - there's no lag for `low` to spike ahead of. This function is correct and
-    will fire the day it's warranted, but don't expect it to surface much on
-    daily-snapshot data the way it did on live-scraped data. See CLAUDE.md for
-    where this points next (comparing the *trajectory* of the gap over time,
-    rather than its size on a single day, is the more promising direction).
+    Checked empirically against real Premodern data (2026-08): `low > trend` essentially never happens in this
+    dataset - 0 of 502 cards in the 1-20 EUR range, and swapping in avg7/avg30 as the baseline instead of trend
+    barely changes that (0 and 1 of 502). The old project this idea came from scraped Cardmarket's live per-card
+    page; this project ingests one bulk end-of-day snapshot, where `low` and `trend` are computed from the same
+    moment together - there's no lag for `low` to spike ahead of. This function is correct and will fire the day
+    it's warranted, but don't expect it to surface much on daily-snapshot data the way it did on live-scraped data.
+    See CLAUDE.md for where this points next (comparing the *trajectory* of the gap over time, rather than its size
+    on a single day, is the more promising direction).
     """
 
-    # set_filter only ever interpolates constants.FORMATS - developer-controlled config,
-    # never external input. All actual values are bound parameters below.
+    # set_filter only ever interpolates constants.FORMATS - developer-controlled config, never external input. All
+    # actual values are bound parameters below.
     set_filter = ""
     if format_name is not None:
         expansion_ids = FORMATS[format_name]

@@ -1,24 +1,18 @@
 """Refresh Standard (and, additively, Pioneer) legal sets from whatsinstandard.com.
 
-whatsinstandard.com's public API (no auth, not Cloudflare-protected) tells us
-which named sets are Standard-legal right now. It does NOT know Cardmarket's
-internal expansion_id numbers - those only exist in sets.json, built from HTML
-you paste yourself (see parse_sets.py). So this script can only go as far as:
+whatsinstandard.com's public API (no auth, not Cloudflare-protected) tells us which named sets are Standard-legal
+right now. It does NOT know Cardmarket's internal expansion_id numbers - those only exist in sets.json, built from
+HTML you paste yourself (see parse_sets.py). So this script can only go as far as:
 
   1. Fetch the currently-active set names from whatsinstandard.com.
-  2. For each, look up its Cardmarket expansion_id (base set + ": Extras") by
-     exact name match against sets.json.
-  3. Anything it can't match gets reported, not guessed - either because it's a
-     name that needs an entry in NAME_OVERRIDES (see below - e.g. a digital-only
-     companion set with no physical Cardmarket product), or because sets.json is
-     stale and needs refreshing (parse_sets.py / merge_sets.py) before this can
-     resolve it.
+  2. For each, look up its Cardmarket expansion_id (base set + ": Extras") by exact name match against sets.json.
+  3. Anything it can't match gets reported, not guessed - either because it's a name that needs an entry in
+     NAME_OVERRIDES (see below - e.g. a digital-only companion set with no physical Cardmarket product), or
+     because sets.json is stale and needs refreshing (parse_sets.py / merge_sets.py) before this can resolve it.
 
-Standard is rewritten wholesale each run (it's authoritative for "what's active
-right now"). Pioneer is only ever unioned with its previous contents - it's a
-non-rotating format, so once a set is Pioneer-legal it stays that way, and this
-script only knows about *currently* Standard-legal sets, not the full ~14-year
-Pioneer history.
+Standard is rewritten wholesale each run (it's authoritative for "what's active right now"). Pioneer is only ever
+unioned with its previous contents - it's a non-rotating format, so once a set is Pioneer-legal it stays that way,
+and this script only knows about *currently* Standard-legal sets, not the full ~14-year Pioneer history.
 
 Usage:
     python update_formats.py
@@ -34,17 +28,16 @@ from constants import FORMATS_JSON_PATH, SETS
 
 WHATS_IN_STANDARD_URL = "https://whatsinstandard.com/api/v6/standard.json"
 
-# whatsinstandard.com name -> None means "known non-physical set, skip silently"
-# (no Cardmarket product exists for it, so it's not a resolution failure).
+# whatsinstandard.com name -> None means "known non-physical set, skip silently" (no Cardmarket product exists
+# for it, so it's not a resolution failure).
 NAME_OVERRIDES: dict[str, str | None] = {
     "Through the Omenpaths": None,  # digital-only companion to Marvel's Spider-Man
 }
 
-# whatsinstandard.com uses official branded titles ("Magic: The Gathering® |
-# Teenage Mutant Ninja Turtles") while Cardmarket drops that prefix for crossover
-# sets ("Teenage Mutant Ninja Turtles") - but keeps it for sets where it's part of
-# the actual name ("Magic: The Gathering Foundations"). Stripping the prefix on
-# BOTH sides before comparing keeps both cases matching correctly either way.
+# whatsinstandard.com uses official branded titles ("Magic: The Gathering® | Teenage Mutant Ninja Turtles") while
+# Cardmarket drops that prefix for crossover sets ("Teenage Mutant Ninja Turtles") - but keeps it for sets where
+# it's part of the actual name ("Magic: The Gathering Foundations"). Stripping the prefix on BOTH sides before
+# comparing keeps both cases matching correctly either way.
 _MTG_PREFIX_RE = re.compile(r"^Magic:?\s*The Gathering\s*[®™\-—|:]*\s*", re.IGNORECASE)
 
 

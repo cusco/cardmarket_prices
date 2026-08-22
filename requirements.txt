@@ -1,4 +1,4 @@
 duckdb==1.5.5
-pandas
-requests
-gspread
+pandas==3.0.5
+requests==2.34.2
+gspread==6.2.1
