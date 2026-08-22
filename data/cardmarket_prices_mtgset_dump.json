@@ -1,0 +1,5343 @@
+{
+  "1": {
+    "code": "LEA",
+    "is_foil_only": false,
+    "name": "Alpha",
+    "release_date": "1993-08-01",
+    "type": "core"
+  },
+  "2": {
+    "code": "LEB",
+    "is_foil_only": false,
+    "name": "Beta",
+    "release_date": "1993-10-01",
+    "type": "core"
+  },
+  "3": {
+    "code": "2ED",
+    "is_foil_only": false,
+    "name": "Unlimited",
+    "release_date": "1993-12-01",
+    "type": "core"
+  },
+  "4": {
+    "code": "ARN",
+    "is_foil_only": false,
+    "name": "Arabian Nights",
+    "release_date": "1993-12-17",
+    "type": "expansion"
+  },
+  "5": {
+    "code": "ATQ",
+    "is_foil_only": false,
+    "name": "Antiquities",
+    "release_date": "1994-03-01",
+    "type": "expansion"
+  },
+  "6": {
+    "code": "3ED",
+    "is_foil_only": false,
+    "name": "Revised",
+    "release_date": "1994-04-01",
+    "type": "core"
+  },
+  "7": {
+    "code": "LEG",
+    "is_foil_only": false,
+    "name": "Legends",
+    "release_date": "1994-06-01",
+    "type": "expansion"
+  },
+  "8": {
+    "code": "DRK",
+    "is_foil_only": false,
+    "name": "The Dark",
+    "release_date": "1994-08-01",
+    "type": "expansion"
+  },
+  "9": {
+    "code": "FEM",
+    "is_foil_only": false,
+    "name": "Fallen Empires",
+    "release_date": "1994-11-01",
+    "type": "expansion"
+  },
+  "10": {
+    "code": "4ED",
+    "is_foil_only": false,
+    "name": "Fourth Edition",
+    "release_date": "1995-04-01",
+    "type": "core"
+  },
+  "11": {
+    "code": "ICE",
+    "is_foil_only": false,
+    "name": "Ice Age",
+    "release_date": "1995-06-01",
+    "type": "expansion"
+  },
+  "12": {
+    "code": "CHR",
+    "is_foil_only": false,
+    "name": "Chronicles",
+    "release_date": "1995-09-01",
+    "type": "masters"
+  },
+  "14": {
+    "code": "HML",
+    "is_foil_only": false,
+    "name": "Homelands",
+    "release_date": "1995-11-01",
+    "type": "expansion"
+  },
+  "15": {
+    "code": "ALL",
+    "is_foil_only": false,
+    "name": "Alliances",
+    "release_date": "1996-06-01",
+    "type": "expansion"
+  },
+  "16": {
+    "code": "MIR",
+    "is_foil_only": false,
+    "name": "Mirage",
+    "release_date": "1996-10-01",
+    "type": "expansion"
+  },
+  "17": {
+    "code": "VIS",
+    "is_foil_only": false,
+    "name": "Visions",
+    "release_date": "1997-02-01",
+    "type": "expansion"
+  },
+  "18": {
+    "code": "WTH",
+    "is_foil_only": false,
+    "name": "Weatherlight",
+    "release_date": "1997-06-01",
+    "type": "expansion"
+  },
+  "19": {
+    "code": "TP",
+    "is_foil_only": false,
+    "name": "Tempest",
+    "release_date": "1997-10-01",
+    "type": "expansion"
+  },
+  "20": {
+    "code": "STH",
+    "is_foil_only": false,
+    "name": "Stronghold",
+    "release_date": "1998-03-01",
+    "type": "expansion"
+  },
+  "21": {
+    "code": "EXO",
+    "is_foil_only": false,
+    "name": "Exodus",
+    "release_date": "1998-06-15",
+    "type": "expansion"
+  },
+  "22": {
+    "code": "UGL",
+    "is_foil_only": false,
+    "name": "Unglued",
+    "release_date": "1998-08-01",
+    "type": "funny"
+  },
+  "23": {
+    "code": "5ED",
+    "is_foil_only": false,
+    "name": "Fifth Edition",
+    "release_date": "1997-03-01",
+    "type": "core"
+  },
+  "24": {
+    "code": "P02",
+    "is_foil_only": false,
+    "name": "Portal Second Age",
+    "release_date": "1998-06-24",
+    "type": "starter"
+  },
+  "25": {
+    "code": "POR",
+    "is_foil_only": false,
+    "name": "Portal",
+    "release_date": "1997-01-01",
+    "type": "starter"
+  },
+  "26": {
+    "code": "USG",
+    "is_foil_only": false,
+    "name": "Urza's Saga",
+    "release_date": "1998-10-01",
+    "type": "expansion"
+  },
+  "27": {
+    "code": "ULG",
+    "is_foil_only": false,
+    "name": "Urza's Legacy",
+    "release_date": "1999-02-01",
+    "type": "expansion"
+  },
+  "28": {
+    "code": "UDS",
+    "is_foil_only": false,
+    "name": "Urza's Destiny",
+    "release_date": "1999-06-01",
+    "type": "expansion"
+  },
+  "29": {
+    "code": "6ED",
+    "is_foil_only": false,
+    "name": "Sixth Edition",
+    "release_date": "1999-04-01",
+    "type": "core"
+  },
+  "30": {
+    "code": "PTK",
+    "is_foil_only": false,
+    "name": "Portal Three Kingdoms",
+    "release_date": "1999-07-06",
+    "type": "starter"
+  },
+  "31": {
+    "code": "MMQ",
+    "is_foil_only": false,
+    "name": "Mercadian Masques",
+    "release_date": "1999-10-01",
+    "type": "expansion"
+  },
+  "32": {
+    "code": "NEM",
+    "is_foil_only": false,
+    "name": "Nemesis",
+    "release_date": "2000-02-01",
+    "type": "expansion"
+  },
+  "33": {
+    "code": "PCY",
+    "is_foil_only": false,
+    "name": "Prophecy",
+    "release_date": "2000-06-01",
+    "type": "expansion"
+  },
+  "34": {
+    "code": "INV",
+    "is_foil_only": false,
+    "name": "Invasion",
+    "release_date": "2000-10-01",
+    "type": "expansion"
+  },
+  "35": {
+    "code": "PLS",
+    "is_foil_only": false,
+    "name": "Planeshift",
+    "release_date": "2001-02-01",
+    "type": "expansion"
+  },
+  "36": {
+    "code": "APC",
+    "is_foil_only": false,
+    "name": "Apocalypse",
+    "release_date": "2001-06-01",
+    "type": "expansion"
+  },
+  "37": {
+    "code": "7ED",
+    "is_foil_only": false,
+    "name": "Seventh Edition",
+    "release_date": "2001-04-01",
+    "type": "core"
+  },
+  "38": {
+    "code": "ODY",
+    "is_foil_only": false,
+    "name": "Odyssey",
+    "release_date": "2001-10-01",
+    "type": "expansion"
+  },
+  "39": {
+    "code": "TOR",
+    "is_foil_only": false,
+    "name": "Torment",
+    "release_date": "2002-02-01",
+    "type": "expansion"
+  },
+  "40": {
+    "code": "JUD",
+    "is_foil_only": false,
+    "name": "Judgment",
+    "release_date": "2002-05-01",
+    "type": "expansion"
+  },
+  "41": {
+    "code": "ONS",
+    "is_foil_only": false,
+    "name": "Onslaught",
+    "release_date": "2002-10-01",
+    "type": "expansion"
+  },
+  "42": {
+    "code": "LGN",
+    "is_foil_only": false,
+    "name": "Legions",
+    "release_date": "2003-02-01",
+    "type": "expansion"
+  },
+  "43": {
+    "code": "SCG",
+    "is_foil_only": false,
+    "name": "Scourge",
+    "release_date": "2003-06-01",
+    "type": "expansion"
+  },
+  "44": {
+    "code": "8ED",
+    "is_foil_only": false,
+    "name": "Eighth Edition",
+    "release_date": "2003-08-01",
+    "type": "core"
+  },
+  "45": {
+    "code": "MRD",
+    "is_foil_only": false,
+    "name": "Mirrodin",
+    "release_date": "2003-10-01",
+    "type": "expansion"
+  },
+  "46": {
+    "code": "DST",
+    "is_foil_only": false,
+    "name": "Darksteel",
+    "release_date": "2004-02-01",
+    "type": "expansion"
+  },
+  "47": {
+    "code": "5DN",
+    "is_foil_only": false,
+    "name": "Fifth Dawn",
+    "release_date": "2004-06-01",
+    "type": "expansion"
+  },
+  "48": {
+    "code": "CHK",
+    "is_foil_only": false,
+    "name": "Champions of Kamigawa",
+    "release_date": "2004-10-01",
+    "type": "expansion"
+  },
+  "49": {
+    "code": "9ED",
+    "is_foil_only": false,
+    "name": "Ninth Edition",
+    "release_date": "2005-07-01",
+    "type": "core"
+  },
+  "50": {
+    "code": "SOK",
+    "is_foil_only": false,
+    "name": "Saviors of Kamigawa",
+    "release_date": "2005-06-01",
+    "type": "expansion"
+  },
+  "51": {
+    "code": "BOK",
+    "is_foil_only": false,
+    "name": "Betrayers of Kamigawa",
+    "release_date": "2005-02-01",
+    "type": "expansion"
+  },
+  "52": {
+    "code": "CSP",
+    "is_foil_only": false,
+    "name": "Coldsnap",
+    "release_date": "2006-07-01",
+    "type": "expansion"
+  },
+  "53": {
+    "code": "DIS",
+    "is_foil_only": false,
+    "name": "Dissension",
+    "release_date": "2006-05-01",
+    "type": "expansion"
+  },
+  "54": {
+    "code": "GPT",
+    "is_foil_only": false,
+    "name": "Guildpact",
+    "release_date": "2006-02-01",
+    "type": "expansion"
+  },
+  "55": {
+    "code": "RAV",
+    "is_foil_only": false,
+    "name": "Ravnica: City of Guilds",
+    "release_date": "2005-10-01",
+    "type": "expansion"
+  },
+  "56": {
+    "code": "TSP",
+    "is_foil_only": false,
+    "name": "Time Spiral",
+    "release_date": "2006-10-01",
+    "type": "expansion"
+  },
+  "57": {
+    "code": "DTL",
+    "is_foil_only": false,
+    "name": "Foreign Black Bordered",
+    "release_date": "1994-04-01",
+    "type": null
+  },
+  "58": {
+    "code": "PLC",
+    "is_foil_only": false,
+    "name": "Planar Chaos",
+    "release_date": "2007-02-01",
+    "type": "expansion"
+  },
+  "59": {
+    "code": "UNH",
+    "is_foil_only": false,
+    "name": "Unhinged",
+    "release_date": "2004-11-01",
+    "type": "funny"
+  },
+  "60": {
+    "code": "RE",
+    "is_foil_only": false,
+    "name": "Renaissance",
+    "release_date": "1995-07-01",
+    "type": "masters"
+  },
+  "61": {
+    "code": "CED",
+    "is_foil_only": false,
+    "name": "Collectors' Edition",
+    "release_date": "1993-12-10",
+    "type": "memorabilia"
+  },
+  "62": {
+    "code": "BTD",
+    "is_foil_only": false,
+    "name": "Beatdown",
+    "release_date": "2000-12-01",
+    "type": "box"
+  },
+  "63": {
+    "code": "S99",
+    "is_foil_only": false,
+    "name": "Starter 1999",
+    "release_date": "1999-07-01",
+    "type": "starter"
+  },
+  "64": {
+    "code": "BRB",
+    "is_foil_only": false,
+    "name": "Battle Royale",
+    "release_date": "1999-11-01",
+    "type": "box"
+  },
+  "65": {
+    "code": "S00",
+    "is_foil_only": false,
+    "name": "Starter 2000",
+    "release_date": "2000-07-01",
+    "type": "starter"
+  },
+  "66": {
+    "code": "DCI",
+    "is_foil_only": false,
+    "name": "DCI Promos",
+    "release_date": "2000-01-01",
+    "type": "promo"
+  },
+  "67": {
+    "code": "DKM",
+    "is_foil_only": false,
+    "name": "Deckmasters",
+    "release_date": "2001-12-01",
+    "type": "box"
+  },
+  "69": {
+    "code": "VG",
+    "is_foil_only": false,
+    "name": "Vanguard",
+    "release_date": "1997-07-01",
+    "type": null
+  },
+  "70": {
+    "code": "FUT",
+    "is_foil_only": false,
+    "name": "Future Sight",
+    "release_date": "2007-05-01",
+    "type": "expansion"
+  },
+  "71": {
+    "code": "HPP",
+    "is_foil_only": false,
+    "name": "Harper Prism Promos",
+    "release_date": "1994-09-01",
+    "type": null
+  },
+  "72": {
+    "code": "FNM",
+    "is_foil_only": true,
+    "name": "Friday Night Magic Promos",
+    "release_date": "2000-02-01",
+    "type": "promo"
+  },
+  "73": {
+    "code": "DTU",
+    "is_foil_only": false,
+    "name": "Foreign White Bordered",
+    "release_date": "1995-01-01",
+    "type": null
+  },
+  "74": {
+    "code": "10E",
+    "is_foil_only": false,
+    "name": "Tenth Edition",
+    "release_date": "2007-07-01",
+    "type": "core"
+  },
+  "75": {
+    "code": "ATH",
+    "is_foil_only": false,
+    "name": "Anthologies",
+    "release_date": "1998-11-01",
+    "type": "box"
+  },
+  "76": {
+    "code": "SUM",
+    "is_foil_only": false,
+    "name": "Summer Magic",
+    "release_date": "1994-07-01",
+    "type": "core"
+  },
+  "77": {
+    "code": "IED",
+    "is_foil_only": false,
+    "name": "International Edition",
+    "release_date": "1993-12-10",
+    "type": null
+  },
+  "78": {
+    "code": "GW",
+    "is_foil_only": false,
+    "name": "Gateway Promos",
+    "release_date": "2006-01-01",
+    "type": null
+  },
+  "79": {
+    "code": "MPR",
+    "is_foil_only": false,
+    "name": "Player Rewards Promos",
+    "release_date": "2001-05-01",
+    "type": "promo"
+  },
+  "80": {
+    "code": "JR",
+    "is_foil_only": false,
+    "name": "Judge Rewards Promos",
+    "release_date": "1999-06-01",
+    "type": null
+  },
+  "81": {
+    "code": "EL",
+    "is_foil_only": false,
+    "name": "Euro Lands",
+    "release_date": "2000-02-01",
+    "type": null
+  },
+  "82": {
+    "code": "CSPTD",
+    "is_foil_only": false,
+    "name": "Coldsnap Theme Decks",
+    "release_date": "2006-07-01",
+    "type": "box"
+  },
+  "83": {
+    "code": "GDC",
+    "is_foil_only": false,
+    "name": "Prerelease Promos",
+    "release_date": "1997-10-01",
+    "type": null
+  },
+  "84": {
+    "code": "LRW",
+    "is_foil_only": false,
+    "name": "Lorwyn",
+    "release_date": "2007-10-01",
+    "type": "expansion"
+  },
+  "85": {
+    "code": "IBS",
+    "is_foil_only": false,
+    "name": "Introductory Two-Player Set",
+    "release_date": "1996-01-01",
+    "type": "starter"
+  },
+  "86": {
+    "code": "JSS",
+    "is_foil_only": false,
+    "name": "Junior Super Series Promos",
+    "release_date": "1999-12-01",
+    "type": null
+  },
+  "87": {
+    "code": "JJT",
+    "is_foil_only": false,
+    "name": "Japan Junior Tournament Promos",
+    "release_date": "2002-07-01",
+    "type": null
+  },
+  "88": {
+    "code": "GUL",
+    "is_foil_only": false,
+    "name": "Guru Lands",
+    "release_date": "1999-07-01",
+    "type": null
+  },
+  "89": {
+    "code": "ALP",
+    "is_foil_only": false,
+    "name": "Arena League Promos",
+    "release_date": "1996-07-01",
+    "type": null
+  },
+  "91": {
+    "code": "EVG",
+    "is_foil_only": false,
+    "name": "Duel Decks: Elves vs. Goblins",
+    "release_date": "2007-11-01",
+    "type": "duel_deck"
+  },
+  "92": {
+    "code": "MOR",
+    "is_foil_only": false,
+    "name": "Morningtide",
+    "release_date": "2008-02-01",
+    "type": "expansion"
+  },
+  "93": {
+    "code": "TDP",
+    "is_foil_only": false,
+    "name": "The Duelist Promos",
+    "release_date": "1994-01-01",
+    "type": null
+  },
+  "94": {
+    "code": "CPR",
+    "is_foil_only": false,
+    "name": "Champs & States Promos",
+    "release_date": "2006-06-01",
+    "type": null
+  },
+  "95": {
+    "code": "SHM",
+    "is_foil_only": false,
+    "name": "Shadowmoor",
+    "release_date": "2008-04-01",
+    "type": "expansion"
+  },
+  "96": {
+    "code": "RI",
+    "is_foil_only": false,
+    "name": "Rinascimento",
+    "release_date": "1995-07-01",
+    "type": "masters"
+  },
+  "97": {
+    "code": "APL",
+    "is_foil_only": false,
+    "name": "APAC Lands",
+    "release_date": "1997-10-01",
+    "type": null
+  },
+  "98": {
+    "code": "RSP",
+    "is_foil_only": false,
+    "name": "Resale Promos",
+    "release_date": "2007-08-01",
+    "type": "promo"
+  },
+  "99": {
+    "code": "EVE",
+    "is_foil_only": false,
+    "name": "Eventide",
+    "release_date": "2008-07-01",
+    "type": "expansion"
+  },
+  "100": {
+    "code": "DRB",
+    "is_foil_only": true,
+    "name": "From the Vault: Dragons",
+    "release_date": "2008-09-01",
+    "type": "from_the_vault"
+  },
+  "101": {
+    "code": "MPSP",
+    "is_foil_only": false,
+    "name": "Magic Premiere Shop Promos",
+    "release_date": "2006-01-01",
+    "type": null
+  },
+  "102": {
+    "code": "ALA",
+    "is_foil_only": false,
+    "name": "Shards of Alara",
+    "release_date": "2008-10-01",
+    "type": "expansion"
+  },
+  "104": {
+    "code": "DD2",
+    "is_foil_only": false,
+    "name": "Duel Decks: Jace vs. Chandra",
+    "release_date": "2008-11-01",
+    "type": "duel_deck"
+  },
+  "105": {
+    "code": "SAL",
+    "is_foil_only": false,
+    "name": "Salvat-Hachette",
+    "release_date": "2005-01-22",
+    "type": null
+  },
+  "106": {
+    "code": "CONF",
+    "is_foil_only": false,
+    "name": "Conflux",
+    "release_date": "2009-02-01",
+    "type": "expansion"
+  },
+  "107": {
+    "code": "DDC",
+    "is_foil_only": false,
+    "name": "Duel Decks: Divine vs. Demonic",
+    "release_date": "2009-04-01",
+    "type": "duel_deck"
+  },
+  "108": {
+    "code": "ARB",
+    "is_foil_only": false,
+    "name": "Alara Reborn",
+    "release_date": "2009-05-01",
+    "type": "expansion"
+  },
+  "109": {
+    "code": "M10",
+    "is_foil_only": false,
+    "name": "Magic 2010",
+    "release_date": "2009-07-01",
+    "type": "core"
+  },
+  "110": {
+    "code": "OS69",
+    "is_foil_only": false,
+    "name": "Oversized 6x9 Promos",
+    "release_date": "1997-01-01",
+    "type": null
+  },
+  "111": {
+    "code": "OBT",
+    "is_foil_only": false,
+    "name": "Oversized Box Toppers",
+    "release_date": "2003-12-01",
+    "type": null
+  },
+  "112": {
+    "code": "V09",
+    "is_foil_only": true,
+    "name": "From the Vault: Exiled",
+    "release_date": "2009-08-01",
+    "type": "from_the_vault"
+  },
+  "113": {
+    "code": "HOP",
+    "is_foil_only": false,
+    "name": "Planechase",
+    "release_date": "2009-09-01",
+    "type": "planechase"
+  },
+  "114": {
+    "code": "ZEN",
+    "is_foil_only": false,
+    "name": "Zendikar",
+    "release_date": "2009-10-01",
+    "type": "expansion"
+  },
+  "115": {
+    "code": "DDD",
+    "is_foil_only": false,
+    "name": "Duel Decks: Garruk vs. Liliana",
+    "release_date": "2009-11-01",
+    "type": "duel_deck"
+  },
+  "116": {
+    "code": "H09",
+    "is_foil_only": true,
+    "name": "Premium Deck Series: Slivers",
+    "release_date": "2009-12-01",
+    "type": "premium_deck"
+  },
+  "117": {
+    "code": "ARBI",
+    "is_foil_only": false,
+    "name": "Armada Comics",
+    "release_date": "1994-01-01",
+    "type": null
+  },
+  "118": {
+    "code": "WWK",
+    "is_foil_only": false,
+    "name": "Worldwake",
+    "release_date": "2010-02-01",
+    "type": "expansion"
+  },
+  "119": {
+    "code": "DDE",
+    "is_foil_only": false,
+    "name": "Duel Decks: Phyrexia vs. The Coalition",
+    "release_date": "2010-03-01",
+    "type": "duel_deck"
+  },
+  "120": {
+    "code": "ROE",
+    "is_foil_only": false,
+    "name": "Rise of the Eldrazi",
+    "release_date": "2010-04-01",
+    "type": "expansion"
+  },
+  "121": {
+    "code": "WCD1",
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: Bertrand Lestree",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "122": {
+    "code": "WCD2",
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: Eric Tam",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "123": {
+    "code": "WCD3",
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: George Baxter",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "124": {
+    "code": "WCD4",
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: Leon Lindback",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "125": {
+    "code": "WCD5",
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: Mark Justice",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "126": {
+    "code": "WCD6",
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: Michael Locanto",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "127": {
+    "code": "WCD7",
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: Preston Poulter",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "128": {
+    "code": "WCD8",
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: Shawn Regnier",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "129": {
+    "code": "TDPR",
+    "is_foil_only": false,
+    "name": "TopDeck Promos",
+    "release_date": "2000-01-01",
+    "type": null
+  },
+  "1193": {
+    "code": "DPA",
+    "is_foil_only": false,
+    "name": "Duels of the Planeswalkers Decks",
+    "release_date": "2010-06-01",
+    "type": "box"
+  },
+  "1194": {
+    "code": "ARC",
+    "is_foil_only": false,
+    "name": "Archenemy",
+    "release_date": "2010-06-01",
+    "type": "archenemy"
+  },
+  "1197": {
+    "code": "M11",
+    "is_foil_only": false,
+    "name": "Magic 2011",
+    "release_date": "2010-07-01",
+    "type": "core"
+  },
+  "1198": {
+    "code": "BABP",
+    "is_foil_only": false,
+    "name": "Buy a Box Promos",
+    "release_date": "2009-07-01",
+    "type": null
+  },
+  "1199": {
+    "code": "WCD9",
+    "is_foil_only": false,
+    "name": "WCD 1997: Jakub Slemr",
+    "release_date": "1997-12-01",
+    "type": null
+  },
+  "1200": {
+    "code": "WCD10",
+    "is_foil_only": false,
+    "name": "WCD 1997: Janosch Kuhn",
+    "release_date": "1997-12-01",
+    "type": null
+  },
+  "1202": {
+    "code": "V10",
+    "is_foil_only": true,
+    "name": "From the Vault: Relics",
+    "release_date": "2010-08-01",
+    "type": "from_the_vault"
+  },
+  "1203": {
+    "code": "DDF",
+    "is_foil_only": false,
+    "name": "Duel Decks: Elspeth vs. Tezzeret",
+    "release_date": "2010-09-01",
+    "type": "duel_deck"
+  },
+  "1206": {
+    "code": "SOM",
+    "is_foil_only": false,
+    "name": "Scars of Mirrodin",
+    "release_date": "2010-10-01",
+    "type": "expansion"
+  },
+  "1209": {
+    "code": "GDP",
+    "is_foil_only": false,
+    "name": "Game Day Set Promos",
+    "release_date": "2009-12-01",
+    "type": null
+  },
+  "1210": {
+    "code": "REL",
+    "is_foil_only": false,
+    "name": "Release Promos",
+    "release_date": "2003-07-01",
+    "type": null
+  },
+  "1218": {
+    "code": "PD2",
+    "is_foil_only": true,
+    "name": "Premium Deck Series: Fire & Lightning",
+    "release_date": "2010-11-01",
+    "type": "premium_deck"
+  },
+  "1247": {
+    "code": "HHPR",
+    "is_foil_only": false,
+    "name": "Happy Holidays Promos",
+    "release_date": "2006-12-01",
+    "type": null
+  },
+  "1248": {
+    "code": "DMPR",
+    "is_foil_only": false,
+    "name": "Dengeki Maoh Promos",
+    "release_date": "2009-11-01",
+    "type": null
+  },
+  "1249": {
+    "code": "PROM",
+    "is_foil_only": false,
+    "name": "Promos",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1253": {
+    "code": "MBS",
+    "is_foil_only": false,
+    "name": "Mirrodin Besieged",
+    "release_date": "2011-02-01",
+    "type": "expansion"
+  },
+  "1259": {
+    "code": "SV11",
+    "is_foil_only": false,
+    "name": "Salvat-Hachette 2011",
+    "release_date": "2011-01-01",
+    "type": null
+  },
+  "1261": {
+    "code": "DDG",
+    "is_foil_only": false,
+    "name": "Duel Decks: Knights vs. Dragons",
+    "release_date": "2011-04-01",
+    "type": "duel_deck"
+  },
+  "1262": {
+    "code": "NPH",
+    "is_foil_only": false,
+    "name": "New Phyrexia",
+    "release_date": "2011-05-01",
+    "type": "expansion"
+  },
+  "1269": {
+    "code": "PC06",
+    "is_foil_only": false,
+    "name": "2006 Player Cards",
+    "release_date": "2006-01-01",
+    "type": null
+  },
+  "1273": {
+    "code": "CMD",
+    "is_foil_only": false,
+    "name": "Commander",
+    "release_date": "2011-06-01",
+    "type": "commander"
+  },
+  "1278": {
+    "code": "DPP",
+    "is_foil_only": false,
+    "name": "Duels of the Planeswalkers Promos",
+    "release_date": "2009-06-01",
+    "type": null
+  },
+  "1280": {
+    "code": "M12",
+    "is_foil_only": false,
+    "name": "Magic 2012",
+    "release_date": "2011-07-01",
+    "type": "core"
+  },
+  "1281": {
+    "code": "YMGT",
+    "is_foil_only": false,
+    "name": "Your Move Games Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1286": {
+    "code": "V11",
+    "is_foil_only": true,
+    "name": "From the Vault: Legends",
+    "release_date": "2011-08-01",
+    "type": "from_the_vault"
+  },
+  "1288": {
+    "code": "DDH",
+    "is_foil_only": false,
+    "name": "Duel Decks: Ajani vs. Nicol Bolas",
+    "release_date": "2011-09-01",
+    "type": "duel_deck"
+  },
+  "1292": {
+    "code": "WCD11",
+    "is_foil_only": false,
+    "name": "WCD 1997: Paul McCabe",
+    "release_date": "1997-12-01",
+    "type": null
+  },
+  "1293": {
+    "code": "WCD12",
+    "is_foil_only": false,
+    "name": "WCD 1997: Svend Geertsen",
+    "release_date": "1997-12-01",
+    "type": null
+  },
+  "1294": {
+    "code": "WCD13",
+    "is_foil_only": false,
+    "name": "WCD 1998: Randy Buehler",
+    "release_date": "1998-12-01",
+    "type": null
+  },
+  "1295": {
+    "code": "WCD14",
+    "is_foil_only": false,
+    "name": "WCD 1998: Brian Hacker",
+    "release_date": "1998-12-01",
+    "type": null
+  },
+  "1296": {
+    "code": "WCD15",
+    "is_foil_only": false,
+    "name": "WCD 1998: Ben Rubin",
+    "release_date": "1998-12-01",
+    "type": null
+  },
+  "1297": {
+    "code": "WCD16",
+    "is_foil_only": false,
+    "name": "WCD 1998: Brian Selden",
+    "release_date": "1998-12-01",
+    "type": null
+  },
+  "1298": {
+    "code": "WCD17",
+    "is_foil_only": false,
+    "name": "WCD 1999: Jakub \u0160lemr",
+    "release_date": "1999-12-01",
+    "type": null
+  },
+  "1299": {
+    "code": "WCD18",
+    "is_foil_only": false,
+    "name": "WCD 1999: Matt Linde",
+    "release_date": "1999-12-01",
+    "type": null
+  },
+  "1300": {
+    "code": "WCD19",
+    "is_foil_only": false,
+    "name": "WCD 1999: Mark Le Pine",
+    "release_date": "1999-12-01",
+    "type": null
+  },
+  "1301": {
+    "code": "WCD20",
+    "is_foil_only": false,
+    "name": "WCD 1999: Kai Budde",
+    "release_date": "1999-12-01",
+    "type": null
+  },
+  "1302": {
+    "code": "WCD21",
+    "is_foil_only": false,
+    "name": "WCD 2000: Nicolas Labarre",
+    "release_date": "2000-12-01",
+    "type": null
+  },
+  "1303": {
+    "code": "WCD22",
+    "is_foil_only": false,
+    "name": "WCD 2000: Tom Van de Logt",
+    "release_date": "2000-12-01",
+    "type": null
+  },
+  "1304": {
+    "code": "WCD23",
+    "is_foil_only": false,
+    "name": "WCD 2000: Janosch K\u00fchn",
+    "release_date": "2000-12-01",
+    "type": null
+  },
+  "1305": {
+    "code": "WCD24",
+    "is_foil_only": false,
+    "name": "WCD 2000: Jon Finkel",
+    "release_date": "2000-12-01",
+    "type": null
+  },
+  "1306": {
+    "code": "WCD25",
+    "is_foil_only": false,
+    "name": "WCD 2001: Jan Tomcani",
+    "release_date": "2001-12-01",
+    "type": null
+  },
+  "1307": {
+    "code": "WCD26",
+    "is_foil_only": false,
+    "name": "WCD 2001: Antoine Ruel",
+    "release_date": "2001-12-01",
+    "type": null
+  },
+  "1308": {
+    "code": "WCD27",
+    "is_foil_only": false,
+    "name": "WCD 2001: Alex Borteh",
+    "release_date": "2001-12-01",
+    "type": null
+  },
+  "1309": {
+    "code": "WCD28",
+    "is_foil_only": false,
+    "name": "WCD 2001: Tom van de Logt",
+    "release_date": "2001-12-01",
+    "type": null
+  },
+  "1310": {
+    "code": "WCD29",
+    "is_foil_only": false,
+    "name": "WCD 2002: Sim Han How",
+    "release_date": "2002-12-01",
+    "type": null
+  },
+  "1311": {
+    "code": "WCD30",
+    "is_foil_only": false,
+    "name": "WCD 2002: Raphael Levy",
+    "release_date": "2002-12-01",
+    "type": null
+  },
+  "1312": {
+    "code": "WCD31",
+    "is_foil_only": false,
+    "name": "WCD 2002: Brian Kibler",
+    "release_date": "2002-12-01",
+    "type": null
+  },
+  "1313": {
+    "code": "WCD32",
+    "is_foil_only": false,
+    "name": "WCD 2002: Carlos Romao",
+    "release_date": "2002-12-01",
+    "type": null
+  },
+  "1314": {
+    "code": "WCD33",
+    "is_foil_only": false,
+    "name": "WCD 2003: Peer Kr\u00f6ger",
+    "release_date": "2003-12-01",
+    "type": null
+  },
+  "1315": {
+    "code": "WCD34",
+    "is_foil_only": false,
+    "name": "WCD 2003: Wolfgang Eder",
+    "release_date": "2003-12-01",
+    "type": null
+  },
+  "1316": {
+    "code": "WCD35",
+    "is_foil_only": false,
+    "name": "WCD 2003: Dave Humpherys",
+    "release_date": "2003-12-01",
+    "type": null
+  },
+  "1317": {
+    "code": "WCD36",
+    "is_foil_only": false,
+    "name": "WCD 2003: Daniel Zink",
+    "release_date": "2003-12-01",
+    "type": null
+  },
+  "1318": {
+    "code": "WCD37",
+    "is_foil_only": false,
+    "name": "WCD 2004: Gabriel Nassif",
+    "release_date": "2004-12-01",
+    "type": null
+  },
+  "1319": {
+    "code": "WCD38",
+    "is_foil_only": false,
+    "name": "WCD 2004: Manuel Bevand",
+    "release_date": "2004-12-01",
+    "type": null
+  },
+  "1320": {
+    "code": "WCD39",
+    "is_foil_only": false,
+    "name": "WCD 2004: Aeo Paquette",
+    "release_date": "2004-12-01",
+    "type": null
+  },
+  "1321": {
+    "code": "WCD40",
+    "is_foil_only": false,
+    "name": "WCD 2004: Julien Nuijten",
+    "release_date": "2004-12-01",
+    "type": null
+  },
+  "1327": {
+    "code": "ISD",
+    "is_foil_only": false,
+    "name": "Innistrad",
+    "release_date": "2011-09-01",
+    "type": "expansion"
+  },
+  "1328": {
+    "code": "JH02",
+    "is_foil_only": false,
+    "name": "JingHe Age: 2002 Tokens",
+    "release_date": "2002-01-01",
+    "type": null
+  },
+  "1329": {
+    "code": "JH03",
+    "is_foil_only": false,
+    "name": "JingHe Age: MtG 10th Anniversary Tokens",
+    "release_date": "2003-01-01",
+    "type": null
+  },
+  "1332": {
+    "code": "4EBB",
+    "is_foil_only": false,
+    "name": "Fourth Edition: Black Bordered",
+    "release_date": "1995-04-01",
+    "type": null
+  },
+  "1337": {
+    "code": "PD3",
+    "is_foil_only": true,
+    "name": "Premium Deck Series: Graveborn",
+    "release_date": "2011-11-01",
+    "type": "premium_deck"
+  },
+  "1342": {
+    "code": "CDZP",
+    "is_foil_only": false,
+    "name": "CardZ Promos",
+    "release_date": "2001-01-01",
+    "type": null
+  },
+  "1345": {
+    "code": "DKA",
+    "is_foil_only": false,
+    "name": "Dark Ascension",
+    "release_date": "2012-01-01",
+    "type": "expansion"
+  },
+  "1350": {
+    "code": "DDI",
+    "is_foil_only": false,
+    "name": "Duel Decks: Venser vs. Koth",
+    "release_date": "2012-03-01",
+    "type": "duel_deck"
+  },
+  "1358": {
+    "code": "AVR",
+    "is_foil_only": false,
+    "name": "Avacyn Restored",
+    "release_date": "2012-05-01",
+    "type": "expansion"
+  },
+  "1360": {
+    "code": "MSSP",
+    "is_foil_only": false,
+    "name": "Magic Scholarship Series Promos",
+    "release_date": "2007-01-01",
+    "type": null
+  },
+  "1361": {
+    "code": "JSP",
+    "is_foil_only": false,
+    "name": "Junior Series Promos",
+    "release_date": "2004-05-01",
+    "type": null
+  },
+  "1367": {
+    "code": "MSPR",
+    "is_foil_only": false,
+    "name": "Misprints",
+    "release_date": "1994-01-01",
+    "type": null
+  },
+  "1369": {
+    "code": "PC2",
+    "is_foil_only": false,
+    "name": "Planechase 2012",
+    "release_date": "2012-06-01",
+    "type": "planechase"
+  },
+  "1388": {
+    "code": "M13",
+    "is_foil_only": false,
+    "name": "Magic 2013",
+    "release_date": "2012-07-01",
+    "type": "core"
+  },
+  "1389": {
+    "code": "RTR",
+    "is_foil_only": false,
+    "name": "Return to Ravnica",
+    "release_date": "2012-10-01",
+    "type": "expansion"
+  },
+  "1391": {
+    "code": "PC05",
+    "is_foil_only": false,
+    "name": "2005 Player Cards",
+    "release_date": "2005-01-01",
+    "type": null
+  },
+  "1392": {
+    "code": "PC07",
+    "is_foil_only": false,
+    "name": "2007 Player Cards",
+    "release_date": "2007-01-01",
+    "type": null
+  },
+  "1397": {
+    "code": "V12",
+    "is_foil_only": true,
+    "name": "From the Vault: Realms",
+    "release_date": "2012-08-01",
+    "type": "from_the_vault"
+  },
+  "1398": {
+    "code": "DDJ",
+    "is_foil_only": false,
+    "name": "Duel Decks: Izzet vs. Golgari",
+    "release_date": "2012-09-01",
+    "type": "duel_deck"
+  },
+  "1401": {
+    "code": "SCAA",
+    "is_foil_only": false,
+    "name": "Simplified Chinese Alternate Art Cards",
+    "release_date": "1998-11-01",
+    "type": null
+  },
+  "1407": {
+    "code": "MTGP",
+    "is_foil_only": false,
+    "name": "Magic the Gathering Products",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1408": {
+    "code": "MGFC",
+    "is_foil_only": false,
+    "name": "Filler Cards",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1413": {
+    "code": "IDW",
+    "is_foil_only": false,
+    "name": "IDW Promos",
+    "release_date": "2010-12-01",
+    "type": null
+  },
+  "1418": {
+    "code": "CM1",
+    "is_foil_only": true,
+    "name": "Commander's Arsenal",
+    "release_date": "2012-11-01",
+    "type": "arsenal"
+  },
+  "1421": {
+    "code": "HJCC",
+    "is_foil_only": false,
+    "name": "Hobby Japan Commemorative Promos",
+    "release_date": "2002-07-01",
+    "type": null
+  },
+  "1424": {
+    "code": "GTC",
+    "is_foil_only": false,
+    "name": "Gatecrash",
+    "release_date": "2013-02-01",
+    "type": "expansion"
+  },
+  "1429": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Artists of Magic",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1430": {
+    "code": "DDK",
+    "is_foil_only": false,
+    "name": "Duel Decks: Sorin vs. Tibalt",
+    "release_date": "2013-03-01",
+    "type": "duel_deck"
+  },
+  "1432": {
+    "code": "RSPR",
+    "is_foil_only": false,
+    "name": "Revista Serra Promos",
+    "release_date": "2006-01-01",
+    "type": null
+  },
+  "1435": {
+    "code": "DGM",
+    "is_foil_only": false,
+    "name": "Dragon's Maze",
+    "release_date": "2013-05-01",
+    "type": "expansion"
+  },
+  "1438": {
+    "code": "SCT2",
+    "is_foil_only": false,
+    "name": "Starcity Games: Justin Treadway Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1444": {
+    "code": "MMA",
+    "is_foil_only": false,
+    "name": "Modern Masters",
+    "release_date": "2013-06-01",
+    "type": "masters"
+  },
+  "1449": {
+    "code": "M14",
+    "is_foil_only": false,
+    "name": "Magic 2014",
+    "release_date": "2013-07-01",
+    "type": "core"
+  },
+  "1451": {
+    "code": "UPPC",
+    "is_foil_only": false,
+    "name": "Ultra-Pro Puzzle Cards",
+    "release_date": "1996-01-01",
+    "type": null
+  },
+  "1454": {
+    "code": "CC13",
+    "is_foil_only": false,
+    "name": "San Diego Comic-Con 2013 Promos",
+    "release_date": "2013-07-18",
+    "type": null
+  },
+  "1455": {
+    "code": "V13",
+    "is_foil_only": true,
+    "name": "From the Vault: Twenty",
+    "release_date": "2013-08-23",
+    "type": "from_the_vault"
+  },
+  "1456": {
+    "code": "DDL",
+    "is_foil_only": false,
+    "name": "Duel Decks: Heroes vs. Monsters",
+    "release_date": "2013-09-06",
+    "type": "duel_deck"
+  },
+  "1457": {
+    "code": "THS",
+    "is_foil_only": false,
+    "name": "Theros",
+    "release_date": "2013-09-27",
+    "type": "expansion"
+  },
+  "1464": {
+    "code": "C13",
+    "is_foil_only": false,
+    "name": "Commander 2013",
+    "release_date": "2013-11-01",
+    "type": "commander"
+  },
+  "1469": {
+    "code": "BNG",
+    "is_foil_only": false,
+    "name": "Born of the Gods",
+    "release_date": "2014-02-07",
+    "type": "expansion"
+  },
+  "1477": {
+    "code": "DDM",
+    "is_foil_only": false,
+    "name": "Duel Decks: Jace vs. Vraska",
+    "release_date": "2014-03-14",
+    "type": "duel_deck"
+  },
+  "1481": {
+    "code": "JOU",
+    "is_foil_only": false,
+    "name": "Journey into Nyx",
+    "release_date": "2014-05-02",
+    "type": "expansion"
+  },
+  "1483": {
+    "code": "CNS",
+    "is_foil_only": false,
+    "name": "Conspiracy",
+    "release_date": "2014-06-06",
+    "type": "draft_innovation"
+  },
+  "1484": {
+    "code": "MD1",
+    "is_foil_only": false,
+    "name": "Modern Event Deck 2014",
+    "release_date": "2014-05-30",
+    "type": "box"
+  },
+  "1485": {
+    "code": "M15",
+    "is_foil_only": false,
+    "name": "Magic 2015",
+    "release_date": "2014-07-18",
+    "type": "core"
+  },
+  "1490": {
+    "code": "CPP",
+    "is_foil_only": false,
+    "name": "Clash Pack Promos",
+    "release_date": "2014-07-18",
+    "type": null
+  },
+  "1491": {
+    "code": "CC14",
+    "is_foil_only": false,
+    "name": "San Diego Comic-Con 2014 Promos",
+    "release_date": "2014-07-24",
+    "type": null
+  },
+  "1494": {
+    "code": "V14",
+    "is_foil_only": true,
+    "name": "From the Vault: Annihilation",
+    "release_date": "2014-08-22",
+    "type": "from_the_vault"
+  },
+  "1495": {
+    "code": "KTK",
+    "is_foil_only": false,
+    "name": "Khans of Tarkir",
+    "release_date": "2014-09-26",
+    "type": "expansion"
+  },
+  "1496": {
+    "code": "DDN",
+    "is_foil_only": false,
+    "name": "Duel Decks: Speed vs. Cunning",
+    "release_date": "2014-09-05",
+    "type": "duel_deck"
+  },
+  "1499": {
+    "code": "MKMT",
+    "is_foil_only": false,
+    "name": "Custom Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1500": {
+    "code": "SCT3",
+    "is_foil_only": false,
+    "name": "Starcity Games: Commemorative Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1501": {
+    "code": "SCCC",
+    "is_foil_only": false,
+    "name": "Starcity Games: Creature Collection",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1502": {
+    "code": "MSTK",
+    "is_foil_only": false,
+    "name": "Tokens for MTG",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1509": {
+    "code": "DD3",
+    "is_foil_only": false,
+    "name": "Duel Decks: Anthology",
+    "release_date": "2014-12-05",
+    "type": "duel_deck"
+  },
+  "1511": {
+    "code": "TMP",
+    "is_foil_only": false,
+    "name": "Tierra Media Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1512": {
+    "code": "SCT4",
+    "is_foil_only": false,
+    "name": "Starcity Games: Kristen Plescow Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1513": {
+    "code": "C14",
+    "is_foil_only": false,
+    "name": "Commander 2014",
+    "release_date": "2014-11-07",
+    "type": "commander"
+  },
+  "1514": {
+    "code": "SCT1",
+    "is_foil_only": false,
+    "name": "Starcity Games: Token Series One",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1515": {
+    "code": "TOKY",
+    "is_foil_only": false,
+    "name": "TokyoMTG Products",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1516": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Pro Tour 1996: Collector Set",
+    "release_date": "1996-12-01",
+    "type": null
+  },
+  "1519": {
+    "code": "MGB",
+    "is_foil_only": false,
+    "name": "Multiverse Gift Box",
+    "release_date": "1996-11-01",
+    "type": "box"
+  },
+  "1522": {
+    "code": "FRF",
+    "is_foil_only": false,
+    "name": "Fate Reforged",
+    "release_date": "2015-01-23",
+    "type": "expansion"
+  },
+  "1586": {
+    "code": "JAS",
+    "is_foil_only": false,
+    "name": "Junior APAC Series Promos",
+    "release_date": "2006-01-01",
+    "type": null
+  },
+  "1587": {
+    "code": "UGFP",
+    "is_foil_only": false,
+    "name": "Ugin's Fate Promos",
+    "release_date": "2015-01-17",
+    "type": null
+  },
+  "1588": {
+    "code": "PKTK",
+    "is_foil_only": false,
+    "name": "Khans of Tarkir: Promos",
+    "release_date": "2014-09-20",
+    "type": "promo"
+  },
+  "1589": {
+    "code": "PFRF",
+    "is_foil_only": false,
+    "name": "Fate Reforged: Promos",
+    "release_date": "2015-01-17",
+    "type": "promo"
+  },
+  "1592": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Alara Block All-Foil Booster",
+    "release_date": "2010-01-08",
+    "type": null
+  },
+  "1593": {
+    "code": "DDO",
+    "is_foil_only": false,
+    "name": "Duel Decks: Elspeth vs. Kiora",
+    "release_date": "2015-02-27",
+    "type": "duel_deck"
+  },
+  "1594": {
+    "code": "LET",
+    "is_foil_only": false,
+    "name": "League Promos",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1595": {
+    "code": "GPPR",
+    "is_foil_only": true,
+    "name": "Grand Prix Promos",
+    "release_date": "2000-01-01",
+    "type": "promo"
+  },
+  "1596": {
+    "code": "PTPR",
+    "is_foil_only": false,
+    "name": "Pro Tour Promos",
+    "release_date": "2000-01-01",
+    "type": "promo"
+  },
+  "1597": {
+    "code": "CNPR",
+    "is_foil_only": false,
+    "name": "Convention Promos",
+    "release_date": "2009-01-01",
+    "type": null
+  },
+  "1599": {
+    "code": "CHRJP",
+    "is_foil_only": false,
+    "name": "Chronicles: Japanese",
+    "release_date": "1995-09-01",
+    "type": null
+  },
+  "1600": {
+    "code": "4EAT",
+    "is_foil_only": false,
+    "name": "Fourth Edition: Alternate",
+    "release_date": "1995-04-01",
+    "type": null
+  },
+  "1601": {
+    "code": "DTK",
+    "is_foil_only": false,
+    "name": "Dragons of Tarkir",
+    "release_date": "2015-03-27",
+    "type": "expansion"
+  },
+  "1602": {
+    "code": "PDTK",
+    "is_foil_only": false,
+    "name": "Dragons Of Tarkir: Promos",
+    "release_date": "2015-03-21",
+    "type": "promo"
+  },
+  "1638": {
+    "code": "FEWM",
+    "is_foil_only": false,
+    "name": "Fallen Empires: Wyvern Misprints",
+    "release_date": "1994-11-01",
+    "type": null
+  },
+  "1639": {
+    "code": "OS912",
+    "is_foil_only": false,
+    "name": "Oversized 9x12 Promos",
+    "release_date": "1997-01-01",
+    "type": null
+  },
+  "1641": {
+    "code": "MM2",
+    "is_foil_only": false,
+    "name": "Modern Masters 2015",
+    "release_date": "2015-05-22",
+    "type": "masters"
+  },
+  "1642": {
+    "code": "GETC",
+    "is_foil_only": false,
+    "name": "GamingEtc Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1643": {
+    "code": "JPT",
+    "is_foil_only": false,
+    "name": "Judge Program Tokens",
+    "release_date": "2011-01-01",
+    "type": null
+  },
+  "1652": {
+    "code": "ORI",
+    "is_foil_only": false,
+    "name": "Magic Origins",
+    "release_date": "2015-07-17",
+    "type": "core"
+  },
+  "1654": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Perfektpro Products",
+    "release_date": "2004-01-01",
+    "type": null
+  },
+  "1655": {
+    "code": "PORI",
+    "is_foil_only": false,
+    "name": "Magic Origins: Promos",
+    "release_date": "2015-07-11",
+    "type": "promo"
+  },
+  "1658": {
+    "code": "CC15",
+    "is_foil_only": false,
+    "name": "San Diego Comic-Con 2015 Promos",
+    "release_date": "2015-07-09",
+    "type": null
+  },
+  "1659": {
+    "code": "YUM",
+    "is_foil_only": false,
+    "name": "Yummy Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1661": {
+    "code": "V15",
+    "is_foil_only": true,
+    "name": "From the Vault: Angels",
+    "release_date": "2015-08-21",
+    "type": "from_the_vault"
+  },
+  "1662": {
+    "code": "MKM1",
+    "is_foil_only": false,
+    "name": "Cardmarket Tokens",
+    "release_date": "2015-08-01",
+    "type": null
+  },
+  "1663": {
+    "code": "DDP",
+    "is_foil_only": false,
+    "name": "Duel Decks: Zendikar vs. Eldrazi",
+    "release_date": "2015-08-28",
+    "type": "duel_deck"
+  },
+  "1665": {
+    "code": "MKMS",
+    "is_foil_only": false,
+    "name": "MKM Series",
+    "release_date": "2015-08-25",
+    "type": null
+  },
+  "1668": {
+    "code": "BFZ",
+    "is_foil_only": false,
+    "name": "Battle for Zendikar",
+    "release_date": "2015-10-02",
+    "type": "expansion"
+  },
+  "1669": {
+    "code": "ZEX",
+    "is_foil_only": true,
+    "name": "Zendikar Expeditions",
+    "release_date": "2015-10-02",
+    "type": "masterpiece"
+  },
+  "1670": {
+    "code": "PBFZ",
+    "is_foil_only": false,
+    "name": "Battle for Zendikar: Promos",
+    "release_date": "2015-09-26",
+    "type": "promo"
+  },
+  "1676": {
+    "code": "OGW",
+    "is_foil_only": false,
+    "name": "Oath of the Gatewatch",
+    "release_date": "2016-01-22",
+    "type": "expansion"
+  },
+  "1679": {
+    "code": "C15",
+    "is_foil_only": false,
+    "name": "Commander 2015",
+    "release_date": "2015-11-13",
+    "type": "commander"
+  },
+  "1686": {
+    "code": "POGW",
+    "is_foil_only": false,
+    "name": "Oath of the Gatewatch: Promos",
+    "release_date": "2016-01-16",
+    "type": "promo"
+  },
+  "1691": {
+    "code": "GnDT",
+    "is_foil_only": false,
+    "name": "GnD Cards",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1692": {
+    "code": "DDQ",
+    "is_foil_only": false,
+    "name": "Duel Decks: Blessed vs. Cursed",
+    "release_date": "2016-02-26",
+    "type": "duel_deck"
+  },
+  "1694": {
+    "code": "SOI",
+    "is_foil_only": false,
+    "name": "Shadows over Innistrad",
+    "release_date": "2016-04-08",
+    "type": "expansion"
+  },
+  "1695": {
+    "code": "EMN",
+    "is_foil_only": false,
+    "name": "Eldritch Moon",
+    "release_date": "2016-07-22",
+    "type": "expansion"
+  },
+  "1696": {
+    "code": "EMA",
+    "is_foil_only": false,
+    "name": "Eternal Masters",
+    "release_date": "2016-06-10",
+    "type": "masters"
+  },
+  "1697": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "BoM Products",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1702": {
+    "code": "CN2",
+    "is_foil_only": false,
+    "name": "Conspiracy: Take the Crown",
+    "release_date": "2016-08-26",
+    "type": "draft_innovation"
+  },
+  "1703": {
+    "code": "V16",
+    "is_foil_only": true,
+    "name": "From the Vault: Lore",
+    "release_date": "2016-08-19",
+    "type": "from_the_vault"
+  },
+  "1704": {
+    "code": "PSOI",
+    "is_foil_only": false,
+    "name": "Shadows over Innistrad: Promos",
+    "release_date": "2016-04-02",
+    "type": "promo"
+  },
+  "1705": {
+    "code": "JAT",
+    "is_foil_only": false,
+    "name": "Javi Alterations Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1710": {
+    "code": "W16",
+    "is_foil_only": false,
+    "name": "Welcome Deck 2016",
+    "release_date": "2016-04-12",
+    "type": "starter"
+  },
+  "1717": {
+    "code": "KLD",
+    "is_foil_only": false,
+    "name": "Kaladesh",
+    "release_date": "2016-09-30",
+    "type": "expansion"
+  },
+  "1718": {
+    "code": "AER",
+    "is_foil_only": false,
+    "name": "Aether Revolt",
+    "release_date": "2017-01-20",
+    "type": "expansion"
+  },
+  "1719": {
+    "code": "C16",
+    "is_foil_only": false,
+    "name": "Commander 2016",
+    "release_date": "2016-11-11",
+    "type": "commander"
+  },
+  "1720": {
+    "code": "DDR",
+    "is_foil_only": false,
+    "name": "Duel Decks: Nissa vs. Ob Nixilis",
+    "release_date": "2016-09-02",
+    "type": "duel_deck"
+  },
+  "1722": {
+    "code": "PCA",
+    "is_foil_only": false,
+    "name": "Planechase Anthology",
+    "release_date": "2016-11-25",
+    "type": "planechase"
+  },
+  "1723": {
+    "code": "EMNP",
+    "is_foil_only": false,
+    "name": "Eldritch Moon: Promos",
+    "release_date": "2016-07-16",
+    "type": null
+  },
+  "1725": {
+    "code": "CC16",
+    "is_foil_only": false,
+    "name": "San Diego Comic-Con 2016 Promos",
+    "release_date": "2016-07-25",
+    "type": null
+  },
+  "1726": {
+    "code": "PKLD",
+    "is_foil_only": false,
+    "name": "Kaladesh: Promos",
+    "release_date": "2016-09-24",
+    "type": "promo"
+  },
+  "1727": {
+    "code": "MM3",
+    "is_foil_only": false,
+    "name": "Modern Masters 2017",
+    "release_date": "2017-03-17",
+    "type": "masters"
+  },
+  "1728": {
+    "code": "DDS",
+    "is_foil_only": false,
+    "name": "Duel Decks: Mind vs. Might",
+    "release_date": "2017-03-31",
+    "type": "duel_deck"
+  },
+  "1729": {
+    "code": "AKH",
+    "is_foil_only": false,
+    "name": "Amonkhet",
+    "release_date": "2017-04-28",
+    "type": "expansion"
+  },
+  "1730": {
+    "code": "E01",
+    "is_foil_only": false,
+    "name": "Archenemy: Nicol Bolas",
+    "release_date": "2017-06-16",
+    "type": "archenemy"
+  },
+  "1731": {
+    "code": "HOU",
+    "is_foil_only": false,
+    "name": "Hour of Devastation",
+    "release_date": "2017-07-14",
+    "type": "expansion"
+  },
+  "1732": {
+    "code": "CMA",
+    "is_foil_only": false,
+    "name": "Commander Anthology",
+    "release_date": "2017-06-09",
+    "type": "commander"
+  },
+  "1733": {
+    "code": "KLDS",
+    "is_foil_only": true,
+    "name": "Kaladesh Inventions",
+    "release_date": "2016-09-30",
+    "type": "masterpiece"
+  },
+  "1750": {
+    "code": "PAER",
+    "is_foil_only": false,
+    "name": "Aether Revolt: Promos",
+    "release_date": "2017-01-14",
+    "type": "promo"
+  },
+  "1765": {
+    "code": "MFMT",
+    "is_foil_only": false,
+    "name": "Mezzocielo & Friends Mini Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1798": {
+    "code": "AKHI",
+    "is_foil_only": true,
+    "name": "Amonkhet Invocations",
+    "release_date": "2017-04-28",
+    "type": "masterpiece"
+  },
+  "1802": {
+    "code": "W17",
+    "is_foil_only": false,
+    "name": "Welcome Deck 2017",
+    "release_date": "2017-04-15",
+    "type": "starter"
+  },
+  "1803": {
+    "code": "PAKH",
+    "is_foil_only": false,
+    "name": "Amonkhet: Promos",
+    "release_date": "2017-04-22",
+    "type": "promo"
+  },
+  "1809": {
+    "code": "SSP",
+    "is_foil_only": false,
+    "name": "Standard Series Promos",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1811": {
+    "code": "IMA",
+    "is_foil_only": false,
+    "name": "Iconic Masters",
+    "release_date": "2017-11-17",
+    "type": "masters"
+  },
+  "1812": {
+    "code": "XLN",
+    "is_foil_only": false,
+    "name": "Ixalan",
+    "release_date": "2017-09-29",
+    "type": "expansion"
+  },
+  "1813": {
+    "code": "C17",
+    "is_foil_only": false,
+    "name": "Commander 2017",
+    "release_date": "2017-08-25",
+    "type": "commander"
+  },
+  "1818": {
+    "code": "DDT",
+    "is_foil_only": false,
+    "name": "Duel Decks: Merfolk vs. Goblins",
+    "release_date": "2017-11-10",
+    "type": "duel_deck"
+  },
+  "1819": {
+    "code": "V17",
+    "is_foil_only": true,
+    "name": "From the Vault: Transform",
+    "release_date": "2017-11-24",
+    "type": "from_the_vault"
+  },
+  "1820": {
+    "code": "A25",
+    "is_foil_only": false,
+    "name": "Masters 25",
+    "release_date": "2018-03-16",
+    "type": "masters"
+  },
+  "1821": {
+    "code": "UST",
+    "is_foil_only": false,
+    "name": "Unstable",
+    "release_date": "2017-12-08",
+    "type": "funny"
+  },
+  "1822": {
+    "code": "DOM",
+    "is_foil_only": false,
+    "name": "Dominaria",
+    "release_date": "2018-04-27",
+    "type": "expansion"
+  },
+  "1825": {
+    "code": "PHOU",
+    "is_foil_only": false,
+    "name": "Hour of Devastation: Promos",
+    "release_date": "2017-07-08",
+    "type": "promo"
+  },
+  "1828": {
+    "code": "CC17",
+    "is_foil_only": false,
+    "name": "San Diego Comic-Con 2017 Promos",
+    "release_date": "2017-07-20",
+    "type": null
+  },
+  "1829": {
+    "code": "RIX",
+    "is_foil_only": false,
+    "name": "Rivals of Ixalan",
+    "release_date": "2018-01-19",
+    "type": "expansion"
+  },
+  "1830": {
+    "code": "E02",
+    "is_foil_only": false,
+    "name": "Explorers of Ixalan",
+    "release_date": "2017-11-24",
+    "type": "box"
+  },
+  "1833": {
+    "code": "RKP",
+    "is_foil_only": false,
+    "name": "Rk post Products",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1834": {
+    "code": "MFCT",
+    "is_foil_only": false,
+    "name": "Mezzocielo & Friends Classic Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "1835": {
+    "code": "M19",
+    "is_foil_only": false,
+    "name": "Core 2019",
+    "release_date": "2018-07-13",
+    "type": "core"
+  },
+  "1836": {
+    "code": "SSP2",
+    "is_foil_only": false,
+    "name": "Standard Showdown Promos",
+    "release_date": "2017-10-07",
+    "type": null
+  },
+  "1837": {
+    "code": "DKIT",
+    "is_foil_only": false,
+    "name": "The Dark Italian",
+    "release_date": "1995-01-01",
+    "type": null
+  },
+  "1838": {
+    "code": "LEIT",
+    "is_foil_only": false,
+    "name": "Legends Italian",
+    "release_date": "1995-01-01",
+    "type": null
+  },
+  "1841": {
+    "code": "H17",
+    "is_foil_only": true,
+    "name": "Hascon 2017 Promos",
+    "release_date": "2017-09-08",
+    "type": "funny"
+  },
+  "1844": {
+    "code": "OH",
+    "is_foil_only": false,
+    "name": "Open House Promos",
+    "release_date": "2017-09-16",
+    "type": null
+  },
+  "1847": {
+    "code": "XLNP",
+    "is_foil_only": false,
+    "name": "Ixalan: Promos",
+    "release_date": "2017-09-23",
+    "type": null
+  },
+  "2023": {
+    "code": "SCH",
+    "is_foil_only": false,
+    "name": "Store Championship Promos",
+    "release_date": "2017-12-25",
+    "type": "promo"
+  },
+  "2063": {
+    "code": "RIXP",
+    "is_foil_only": false,
+    "name": "Rivals of Ixalan: Promos",
+    "release_date": "2018-01-13",
+    "type": null
+  },
+  "2068": {
+    "code": "DDU",
+    "is_foil_only": false,
+    "name": "Duel Decks: Elves vs. Inventors",
+    "release_date": "2018-04-06",
+    "type": "duel_deck"
+  },
+  "2103": {
+    "code": "SS1",
+    "is_foil_only": false,
+    "name": "Signature Spellbook: Jace",
+    "release_date": "2018-06-15",
+    "type": "spellbook"
+  },
+  "2108": {
+    "code": "GS1",
+    "is_foil_only": false,
+    "name": "Global Series Jiang Yanggu & Mu Yanling",
+    "release_date": "2018-06-22",
+    "type": "duel_deck"
+  },
+  "2109": {
+    "code": "CM2",
+    "is_foil_only": false,
+    "name": "Commander Anthology II",
+    "release_date": "2018-06-08",
+    "type": "commander"
+  },
+  "2110": {
+    "code": "C18",
+    "is_foil_only": false,
+    "name": "Commander 2018",
+    "release_date": "2018-08-10",
+    "type": "commander"
+  },
+  "2111": {
+    "code": "BBD",
+    "is_foil_only": false,
+    "name": "Battlebond",
+    "release_date": "2018-06-08",
+    "type": "draft_innovation"
+  },
+  "2114": {
+    "code": "JVT",
+    "is_foil_only": false,
+    "name": "Johannes Voss Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2115": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Relic Tokens: Eternal Collection",
+    "release_date": "2018-03-29",
+    "type": null
+  },
+  "2315": {
+    "code": "PDOM",
+    "is_foil_only": false,
+    "name": "Dominaria: Promos",
+    "release_date": "2018-04-21",
+    "type": "promo"
+  },
+  "2333": {
+    "code": "PBBD",
+    "is_foil_only": true,
+    "name": "Battlebond: Promos",
+    "release_date": "2018-06-08",
+    "type": "promo"
+  },
+  "2337": {
+    "code": "PM19",
+    "is_foil_only": false,
+    "name": "Core 2019: Promos",
+    "release_date": "2018-07-07",
+    "type": "promo"
+  },
+  "2341": {
+    "code": "CC18",
+    "is_foil_only": false,
+    "name": "San Diego Comic-Con 2018 Promos",
+    "release_date": "2018-07-18",
+    "type": null
+  },
+  "2348": {
+    "code": "GRN",
+    "is_foil_only": false,
+    "name": "Guilds of Ravnica",
+    "release_date": "2018-10-05",
+    "type": "expansion"
+  },
+  "2360": {
+    "code": "OST",
+    "is_foil_only": false,
+    "name": "Old School Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2371": {
+    "code": "XGRN",
+    "is_foil_only": false,
+    "name": "Guilds of Ravnica: Extras",
+    "release_date": "2018-09-29",
+    "type": "expansion"
+  },
+  "2372": {
+    "code": "PRVW",
+    "is_foil_only": false,
+    "name": "Weekend Promos",
+    "release_date": "2018-11-09",
+    "type": null
+  },
+  "2373": {
+    "code": "MED",
+    "is_foil_only": true,
+    "name": "Guilds of Ravnica: Mythic Edition",
+    "release_date": "2018-10-03",
+    "type": "masterpiece"
+  },
+  "2379": {
+    "code": "GK1",
+    "is_foil_only": false,
+    "name": "Guilds of Ravnica: Guild Kits",
+    "release_date": "2018-11-02",
+    "type": "box"
+  },
+  "2381": {
+    "code": "GNT",
+    "is_foil_only": false,
+    "name": "Magic Game Night",
+    "release_date": "2018-11-16",
+    "type": "box"
+  },
+  "2383": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Creature Forge: Overwhelming Swarm",
+    "release_date": "2018-09-30",
+    "type": null
+  },
+  "2397": {
+    "code": "UMA",
+    "is_foil_only": false,
+    "name": "Ultimate Masters",
+    "release_date": "2018-12-07",
+    "type": "masters"
+  },
+  "2398": {
+    "code": "XUMA",
+    "is_foil_only": false,
+    "name": "Ultimate Box Toppers",
+    "release_date": "2018-12-07",
+    "type": null
+  },
+  "2402": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Relic Tokens: Lineage Collection",
+    "release_date": "2018-10-30",
+    "type": null
+  },
+  "2403": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Relic Tokens: Promos",
+    "release_date": "2018-10-30",
+    "type": null
+  },
+  "2411": {
+    "code": "RNA",
+    "is_foil_only": false,
+    "name": "Ravnica Allegiance",
+    "release_date": "2019-01-25",
+    "type": "expansion"
+  },
+  "2413": {
+    "code": "PMF",
+    "is_foil_only": false,
+    "name": "MagicFest Promos",
+    "release_date": "2019-01-04",
+    "type": null
+  },
+  "2417": {
+    "code": "HTR",
+    "is_foil_only": false,
+    "name": "Heroes of the Realm Promos",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2419": {
+    "code": "XRNA",
+    "is_foil_only": false,
+    "name": "Ravnica Allegiance: Extras",
+    "release_date": "2019-01-19",
+    "type": "expansion"
+  },
+  "2422": {
+    "code": "MRNA",
+    "is_foil_only": false,
+    "name": "Ravnica Allegiance: Mythic Edition",
+    "release_date": "2019-01-24",
+    "type": null
+  },
+  "2423": {
+    "code": "GK2",
+    "is_foil_only": false,
+    "name": "Ravnica Allegiance: Guild Kits",
+    "release_date": "2019-02-15",
+    "type": "box"
+  },
+  "2433": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Relic Tokens: Legendary Collection",
+    "release_date": "2019-02-04",
+    "type": null
+  },
+  "2439": {
+    "code": "WAR",
+    "is_foil_only": false,
+    "name": "War of the Spark",
+    "release_date": "2019-04-27",
+    "type": "expansion"
+  },
+  "2440": {
+    "code": "MH1",
+    "is_foil_only": false,
+    "name": "Modern Horizons",
+    "release_date": "2019-06-14",
+    "type": "draft_innovation"
+  },
+  "2447": {
+    "code": "M20",
+    "is_foil_only": false,
+    "name": "Core 2020",
+    "release_date": "2019-07-12",
+    "type": "core"
+  },
+  "2448": {
+    "code": "C19",
+    "is_foil_only": false,
+    "name": "Commander 2019",
+    "release_date": "2019-08-23",
+    "type": "commander"
+  },
+  "2451": {
+    "code": "XWAR",
+    "is_foil_only": false,
+    "name": "War of the Spark: Extras",
+    "release_date": "2019-04-27",
+    "type": "expansion"
+  },
+  "2457": {
+    "code": "MPT",
+    "is_foil_only": false,
+    "name": "Mark Poole Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2459": {
+    "code": "MWAR",
+    "is_foil_only": false,
+    "name": "War of the Spark: Mythic Edition",
+    "release_date": "2019-05-03",
+    "type": null
+  },
+  "2460": {
+    "code": "SS2",
+    "is_foil_only": false,
+    "name": "Signature Spellbook: Gideon",
+    "release_date": "2019-06-28",
+    "type": "spellbook"
+  },
+  "2461": {
+    "code": "JWAR",
+    "is_foil_only": false,
+    "name": "War of the Spark: Japanese Alternate-Art Planeswalkers",
+    "release_date": "2019-04-27",
+    "type": null
+  },
+  "2484": {
+    "code": "XMH1",
+    "is_foil_only": false,
+    "name": "Modern Horizons: Art Series",
+    "release_date": "2019-06-14",
+    "type": null
+  },
+  "2490": {
+    "code": "XM20",
+    "is_foil_only": false,
+    "name": "Core 2020: Extras",
+    "release_date": "2019-06-29",
+    "type": null
+  },
+  "2511": {
+    "code": "CC19",
+    "is_foil_only": false,
+    "name": "San Diego Comic-Con 2019 Promos",
+    "release_date": "2019-07-18",
+    "type": null
+  },
+  "2517": {
+    "code": "TOK1",
+    "is_foil_only": false,
+    "name": "Aaron Miller Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2520": {
+    "code": "TOK2",
+    "is_foil_only": false,
+    "name": "ALRadeck Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2523": {
+    "code": "TOK3",
+    "is_foil_only": false,
+    "name": "Angelarium Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2526": {
+    "code": "TOK4",
+    "is_foil_only": false,
+    "name": "Cardamajigs Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2529": {
+    "code": "TOK5",
+    "is_foil_only": false,
+    "name": "Cats & Cantrips Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2532": {
+    "code": "TOK6",
+    "is_foil_only": false,
+    "name": "Durdling Around Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2552": {
+    "code": "TOK7",
+    "is_foil_only": false,
+    "name": "Givememana's Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2557": {
+    "code": "TOK8",
+    "is_foil_only": false,
+    "name": "Human for Scale Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2562": {
+    "code": "TOK9",
+    "is_foil_only": false,
+    "name": "Jason Engle Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2567": {
+    "code": "TOK10",
+    "is_foil_only": false,
+    "name": "Tokens of Spirit",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2572": {
+    "code": "TOK11",
+    "is_foil_only": false,
+    "name": "Classic Art Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2582": {
+    "code": "ELD",
+    "is_foil_only": false,
+    "name": "Throne of Eldraine",
+    "release_date": "2019-10-04",
+    "type": "expansion"
+  },
+  "2587": {
+    "code": "XELD",
+    "is_foil_only": false,
+    "name": "Throne of Eldraine: Extras",
+    "release_date": "2019-10-04",
+    "type": "expansion"
+  },
+  "2694": {
+    "code": "PELD",
+    "is_foil_only": false,
+    "name": "Throne of Eldraine: Promos",
+    "release_date": "2019-09-27",
+    "type": "promo"
+  },
+  "2699": {
+    "code": "PTG",
+    "is_foil_only": true,
+    "name": "Ponies: The Galloping",
+    "release_date": "2019-10-22",
+    "type": "funny"
+  },
+  "2804": {
+    "code": "GN2",
+    "is_foil_only": false,
+    "name": "Game Night 2019",
+    "release_date": "2019-11-15",
+    "type": "box"
+  },
+  "2809": {
+    "code": "UND",
+    "is_foil_only": false,
+    "name": "Unsanctioned",
+    "release_date": "2020-02-28",
+    "type": "funny"
+  },
+  "2814": {
+    "code": "THB",
+    "is_foil_only": false,
+    "name": "Theros Beyond Death",
+    "release_date": "2020-01-24",
+    "type": "expansion"
+  },
+  "2819": {
+    "code": "IKO",
+    "is_foil_only": false,
+    "name": "Ikoria: Lair of Behemoths",
+    "release_date": "2020-05-15",
+    "type": "expansion"
+  },
+  "2869": {
+    "code": "MYSPT",
+    "is_foil_only": false,
+    "name": "Mystery Booster: Playtest Cards",
+    "release_date": "2019-11-07",
+    "type": null
+  },
+  "2874": {
+    "code": "MYS",
+    "is_foil_only": false,
+    "name": "Mystery Booster",
+    "release_date": "2019-11-07",
+    "type": "masters"
+  },
+  "2901": {
+    "code": "SLD",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series",
+    "release_date": "2019-12-02",
+    "type": "box"
+  },
+  "2911": {
+    "code": "C20",
+    "is_foil_only": false,
+    "name": "Commander: Ikoria",
+    "release_date": "2020-05-15",
+    "type": "commander"
+  },
+  "2956": {
+    "code": "CGT",
+    "is_foil_only": false,
+    "name": "Card Game Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "2961": {
+    "code": "XTHB",
+    "is_foil_only": false,
+    "name": "Theros Beyond Death: Extras",
+    "release_date": "2020-01-24",
+    "type": "expansion"
+  },
+  "2999": {
+    "code": "PTHB",
+    "is_foil_only": false,
+    "name": "Theros Beyond Death: Promos",
+    "release_date": "2020-01-17",
+    "type": "promo"
+  },
+  "3043": {
+    "code": "AAT",
+    "is_foil_only": false,
+    "name": "Amaranth Alchemy Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "3048": {
+    "code": "M21",
+    "is_foil_only": false,
+    "name": "Core 2021",
+    "release_date": "2020-07-03",
+    "type": "core"
+  },
+  "3053": {
+    "code": "JMP",
+    "is_foil_only": false,
+    "name": "Jumpstart",
+    "release_date": "2020-10-16",
+    "type": "draft_innovation"
+  },
+  "3063": {
+    "code": "SS3",
+    "is_foil_only": false,
+    "name": "Signature Spellbook: Chandra",
+    "release_date": "2020-06-26",
+    "type": "spellbook"
+  },
+  "3068": {
+    "code": "SLU",
+    "is_foil_only": false,
+    "name": "Secret Lair: Ultimate Edition",
+    "release_date": "2020-06-12",
+    "type": "box"
+  },
+  "3113": {
+    "code": "XIKO",
+    "is_foil_only": false,
+    "name": "Ikoria: Lair of Behemoths: Extras",
+    "release_date": "2020-05-15",
+    "type": "expansion"
+  },
+  "3118": {
+    "code": "PIKO",
+    "is_foil_only": false,
+    "name": "Ikoria: Lair of Behemoths: Promos",
+    "release_date": "2020-05-15",
+    "type": "promo"
+  },
+  "3204": {
+    "code": "2XM",
+    "is_foil_only": false,
+    "name": "Double Masters",
+    "release_date": "2020-08-07",
+    "type": "masters"
+  },
+  "3209": {
+    "code": "X2XM",
+    "is_foil_only": false,
+    "name": "Double Masters: Extras",
+    "release_date": "2020-08-07",
+    "type": "masters"
+  },
+  "3309": {
+    "code": "XM21",
+    "is_foil_only": false,
+    "name": "Core 2021: Extras",
+    "release_date": "2020-07-03",
+    "type": null
+  },
+  "3319": {
+    "code": "PM21",
+    "is_foil_only": false,
+    "name": "Core 2021: Promos",
+    "release_date": "2020-07-03",
+    "type": "promo"
+  },
+  "3344": {
+    "code": "TOK12",
+    "is_foil_only": false,
+    "name": "Anthony Christou Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "3349": {
+    "code": "TOK13",
+    "is_foil_only": false,
+    "name": "Andrew Thompson Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "3394": {
+    "code": "CC1",
+    "is_foil_only": false,
+    "name": "Commander Collection: Green",
+    "release_date": "2020-12-04",
+    "type": "arsenal"
+  },
+  "3399": {
+    "code": "ZNC",
+    "is_foil_only": false,
+    "name": "Commander: Zendikar Rising",
+    "release_date": "2020-09-25",
+    "type": "commander"
+  },
+  "3404": {
+    "code": "ZNR",
+    "is_foil_only": false,
+    "name": "Zendikar Rising",
+    "release_date": "2020-09-25",
+    "type": "expansion"
+  },
+  "3454": {
+    "code": "CMR",
+    "is_foil_only": false,
+    "name": "Commander Legends",
+    "release_date": "2020-11-20",
+    "type": "draft_innovation"
+  },
+  "3459": {
+    "code": "XCMR",
+    "is_foil_only": false,
+    "name": "Commander Legends: Extras",
+    "release_date": "2020-11-20",
+    "type": "draft_innovation"
+  },
+  "3469": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Kraken Wargames Playmats",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "3474": {
+    "code": "XZNR",
+    "is_foil_only": false,
+    "name": "Zendikar Rising: Extras",
+    "release_date": "2020-09-25",
+    "type": "expansion"
+  },
+  "3489": {
+    "code": "ZNE",
+    "is_foil_only": false,
+    "name": "Zendikar Rising Expeditions",
+    "release_date": "2020-09-25",
+    "type": "masterpiece"
+  },
+  "3494": {
+    "code": "ZNL",
+    "is_foil_only": false,
+    "name": "The List",
+    "release_date": "2020-09-25",
+    "type": "masters"
+  },
+  "3500": {
+    "code": "PZNR",
+    "is_foil_only": false,
+    "name": "Zendikar Rising: Promos",
+    "release_date": "2020-09-25",
+    "type": "promo"
+  },
+  "3660": {
+    "code": "KHM",
+    "is_foil_only": false,
+    "name": "Kaldheim",
+    "release_date": "2021-02-05",
+    "type": "expansion"
+  },
+  "3680": {
+    "code": "XKHM",
+    "is_foil_only": false,
+    "name": "Kaldheim: Extras",
+    "release_date": "2021-02-05",
+    "type": "expansion"
+  },
+  "3685": {
+    "code": "KHC",
+    "is_foil_only": false,
+    "name": "Commander: Kaldheim",
+    "release_date": "2021-02-05",
+    "type": "commander"
+  },
+  "3723": {
+    "code": "PKHM",
+    "is_foil_only": false,
+    "name": "Kaldheim: Promos",
+    "release_date": "2021-02-05",
+    "type": "promo"
+  },
+  "3741": {
+    "code": "STX",
+    "is_foil_only": false,
+    "name": "Strixhaven: School of Mages",
+    "release_date": "2021-04-23",
+    "type": "expansion"
+  },
+  "3746": {
+    "code": "STA",
+    "is_foil_only": false,
+    "name": "Mystical Archive",
+    "release_date": "2021-04-23",
+    "type": "masterpiece"
+  },
+  "3756": {
+    "code": "C21",
+    "is_foil_only": false,
+    "name": "Commander: Strixhaven",
+    "release_date": "2021-04-23",
+    "type": "commander"
+  },
+  "3761": {
+    "code": "XSTX",
+    "is_foil_only": false,
+    "name": "Strixhaven: School of Mages: Extras",
+    "release_date": "2021-04-23",
+    "type": "expansion"
+  },
+  "3766": {
+    "code": "TSR",
+    "is_foil_only": false,
+    "name": "Time Spiral Remastered",
+    "release_date": "2021-03-19",
+    "type": "masters"
+  },
+  "3771": {
+    "code": "XTSR",
+    "is_foil_only": false,
+    "name": "Time Spiral Remastered: Extras",
+    "release_date": "2021-03-19",
+    "type": "masters"
+  },
+  "4175": {
+    "code": "XC21",
+    "is_foil_only": false,
+    "name": "Commander: Strixhaven: Extras",
+    "release_date": "2021-04-23",
+    "type": null
+  },
+  "4176": {
+    "code": "PSTX",
+    "is_foil_only": false,
+    "name": "Strixhaven: School of Mages: Promos",
+    "release_date": "2021-04-23",
+    "type": "promo"
+  },
+  "4219": {
+    "code": "MH2",
+    "is_foil_only": false,
+    "name": "Modern Horizons 2",
+    "release_date": "2021-06-18",
+    "type": "draft_innovation"
+  },
+  "4244": {
+    "code": "XMH2",
+    "is_foil_only": false,
+    "name": "Modern Horizons 2: Extras",
+    "release_date": "2021-06-18",
+    "type": "draft_innovation"
+  },
+  "4259": {
+    "code": "AFR",
+    "is_foil_only": false,
+    "name": "Adventures in the Forgotten Realms",
+    "release_date": "2021-07-23",
+    "type": "expansion"
+  },
+  "4260": {
+    "code": "XAFR",
+    "is_foil_only": false,
+    "name": "Adventures in the Forgotten Realms: Extras",
+    "release_date": "2021-07-23",
+    "type": "expansion"
+  },
+  "4275": {
+    "code": "RMH2",
+    "is_foil_only": false,
+    "name": "Modern Horizons: Retro Frame Cards",
+    "release_date": "2021-06-18",
+    "type": null
+  },
+  "4327": {
+    "code": "PMH2",
+    "is_foil_only": false,
+    "name": "Modern Horizons 2: Promos",
+    "release_date": "2021-06-18",
+    "type": "promo"
+  },
+  "4334": {
+    "code": "SLDDR",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Dr. Lair's Secretorium Superdrop",
+    "release_date": "2021-08-25",
+    "type": null
+  },
+  "4335": {
+    "code": "SLDAN",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: All-Natural, Totally Refreshing Superdrop",
+    "release_date": "2021-10-29",
+    "type": null
+  },
+  "4356": {
+    "code": "AFC",
+    "is_foil_only": false,
+    "name": "Commander: Adventures in the Forgotten Realms",
+    "release_date": "2021-07-23",
+    "type": "commander"
+  },
+  "4358": {
+    "code": "PAFR",
+    "is_foil_only": false,
+    "name": "Adventures in the Forgotten Realms: Promos",
+    "release_date": "2021-07-23",
+    "type": "promo"
+  },
+  "4359": {
+    "code": "XAFC",
+    "is_foil_only": false,
+    "name": "Commander: Adventures in the Forgotten Realms: Extras",
+    "release_date": "2021-07-23",
+    "type": null
+  },
+  "4362": {
+    "code": "MID",
+    "is_foil_only": false,
+    "name": "Innistrad: Midnight Hunt",
+    "release_date": "2021-09-24",
+    "type": "expansion"
+  },
+  "4363": {
+    "code": "XMID",
+    "is_foil_only": false,
+    "name": "Innistrad: Midnight Hunt: Extras",
+    "release_date": "2021-09-24",
+    "type": "expansion"
+  },
+  "4364": {
+    "code": "VOW",
+    "is_foil_only": false,
+    "name": "Innistrad: Crimson Vow",
+    "release_date": "2021-11-19",
+    "type": "expansion"
+  },
+  "4365": {
+    "code": "MIC",
+    "is_foil_only": false,
+    "name": "Commander: Innistrad: Midnight Hunt",
+    "release_date": "2021-09-24",
+    "type": "commander"
+  },
+  "4366": {
+    "code": "VOC",
+    "is_foil_only": false,
+    "name": "Commander: Innistrad: Crimson Vow",
+    "release_date": "2021-11-19",
+    "type": "commander"
+  },
+  "4383": {
+    "code": "PMID",
+    "is_foil_only": false,
+    "name": "Innistrad: Midnight Hunt: Promos",
+    "release_date": "2021-09-24",
+    "type": "promo"
+  },
+  "4395": {
+    "code": "SLDOT",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Out of Time Superdrop",
+    "release_date": "2021-12-13",
+    "type": null
+  },
+  "4400": {
+    "code": "CC2",
+    "is_foil_only": false,
+    "name": "Commander Collection: Black",
+    "release_date": "2022-01-28",
+    "type": "arsenal"
+  },
+  "4401": {
+    "code": "DBL",
+    "is_foil_only": false,
+    "name": "Innistrad: Double Feature",
+    "release_date": "2022-01-28",
+    "type": "draft_innovation"
+  },
+  "4414": {
+    "code": "SLDOS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: October Superdrop 2021",
+    "release_date": "2022-01-28",
+    "type": null
+  },
+  "4423": {
+    "code": "XVOW",
+    "is_foil_only": false,
+    "name": "Innistrad: Crimson Vow: Extras",
+    "release_date": "2021-11-19",
+    "type": "expansion"
+  },
+  "4461": {
+    "code": "PVOW",
+    "is_foil_only": false,
+    "name": "Innistrad: Crimson Vow: Promos",
+    "release_date": "2021-11-19",
+    "type": "promo"
+  },
+  "4468": {
+    "code": "UNF",
+    "is_foil_only": false,
+    "name": "Unfinity",
+    "release_date": "2022-10-07",
+    "type": "funny"
+  },
+  "4469": {
+    "code": "XUNF",
+    "is_foil_only": false,
+    "name": "Unfinity: Extras",
+    "release_date": "2022-10-07",
+    "type": "funny"
+  },
+  "4472": {
+    "code": "NEO",
+    "is_foil_only": false,
+    "name": "Kamigawa: Neon Dynasty",
+    "release_date": "2022-02-18",
+    "type": "expansion"
+  },
+  "4473": {
+    "code": "XNEO",
+    "is_foil_only": false,
+    "name": "Kamigawa: Neon Dynasty: Extras",
+    "release_date": "2022-02-18",
+    "type": "expansion"
+  },
+  "4474": {
+    "code": "NEC",
+    "is_foil_only": false,
+    "name": "Commander: Kamigawa: Neon Dynasty",
+    "release_date": "2022-02-18",
+    "type": "commander"
+  },
+  "4947": {
+    "code": "PNEO",
+    "is_foil_only": false,
+    "name": "Kamigawa: Neon Dynasty: Promos",
+    "release_date": "2022-02-18",
+    "type": "promo"
+  },
+  "4965": {
+    "code": "SLDXL",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Extra Life",
+    "release_date": "2022-01-28",
+    "type": null
+  },
+  "4966": {
+    "code": "SLDMS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: MSCHF",
+    "release_date": "2022-02-04",
+    "type": null
+  },
+  "4975": {
+    "code": "SNC",
+    "is_foil_only": false,
+    "name": "Streets of New Capenna",
+    "release_date": "2022-04-29",
+    "type": "expansion"
+  },
+  "4976": {
+    "code": "XSNC",
+    "is_foil_only": false,
+    "name": "Streets of New Capenna: Extras",
+    "release_date": "2022-04-29",
+    "type": "expansion"
+  },
+  "4977": {
+    "code": "NCC",
+    "is_foil_only": false,
+    "name": "Commander: Streets of New Capenna",
+    "release_date": "2022-04-29",
+    "type": "commander"
+  },
+  "4980": {
+    "code": "SLDSV",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secretversary 2021",
+    "release_date": "2022-05-06",
+    "type": null
+  },
+  "4981": {
+    "code": "SLDFS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: February Superdrop 2022",
+    "release_date": "2022-07-22",
+    "type": null
+  },
+  "4982": {
+    "code": "SLDAL",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: The Astrology Lands",
+    "release_date": "2022-04-29",
+    "type": null
+  },
+  "5030": {
+    "code": "CLB",
+    "is_foil_only": false,
+    "name": "Commander Legends: Battle for Baldur's Gate",
+    "release_date": "2022-06-10",
+    "type": "draft_innovation"
+  },
+  "5031": {
+    "code": "XCLB",
+    "is_foil_only": false,
+    "name": "Commander Legends: Battle for Baldur's Gate: Extras",
+    "release_date": "2022-06-10",
+    "type": "draft_innovation"
+  },
+  "5038": {
+    "code": "SLX",
+    "is_foil_only": false,
+    "name": "Universes Within",
+    "release_date": "2022-04-29",
+    "type": "masters"
+  },
+  "5039": {
+    "code": "PSNC",
+    "is_foil_only": false,
+    "name": "Streets of New Capenna: Promos",
+    "release_date": "2022-04-29",
+    "type": "promo"
+  },
+  "5040": {
+    "code": "XNCC",
+    "is_foil_only": false,
+    "name": "Commander: Streets of New Capenna: Extras",
+    "release_date": "2022-04-29",
+    "type": null
+  },
+  "5049": {
+    "code": "SLDAS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: April Superdrop 2022",
+    "release_date": "2022-08-05",
+    "type": null
+  },
+  "5057": {
+    "code": "SLDPA",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Pride Across the Multiverse",
+    "release_date": "2022-08-05",
+    "type": null
+  },
+  "5069": {
+    "code": "GDY",
+    "is_foil_only": false,
+    "name": "Game Day Promos",
+    "release_date": "2022-05-07",
+    "type": "promo"
+  },
+  "5070": {
+    "code": "2X2",
+    "is_foil_only": false,
+    "name": "Double Masters 2022",
+    "release_date": "2022-07-08",
+    "type": "masters"
+  },
+  "5071": {
+    "code": "X2X2",
+    "is_foil_only": false,
+    "name": "Double Masters 2022: Extras",
+    "release_date": "2022-07-08",
+    "type": "masters"
+  },
+  "5072": {
+    "code": "DMU",
+    "is_foil_only": false,
+    "name": "Dominaria United",
+    "release_date": "2022-09-09",
+    "type": "expansion"
+  },
+  "5073": {
+    "code": "XDMU",
+    "is_foil_only": false,
+    "name": "Dominaria United: Extras",
+    "release_date": "2022-09-09",
+    "type": "expansion"
+  },
+  "5074": {
+    "code": "40K",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Warhammer 40,000",
+    "release_date": "2022-10-07",
+    "type": "commander"
+  },
+  "5075": {
+    "code": "PNCC",
+    "is_foil_only": true,
+    "name": "Commander: Streets of New Capenna: Promos",
+    "release_date": "2022-04-29",
+    "type": "promo"
+  },
+  "5084": {
+    "code": "PCLB",
+    "is_foil_only": false,
+    "name": "Commander Legends: Battle for Baldur's Gate: Promos",
+    "release_date": "2022-06-10",
+    "type": "promo"
+  },
+  "5090": {
+    "code": "SLDBG",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x Beadle & Grimm's: Here Be Dragons",
+    "release_date": "2022-09-30",
+    "type": null
+  },
+  "5092": {
+    "code": "SLDJS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: June Superdrop 2022",
+    "release_date": "2022-09-23",
+    "type": null
+  },
+  "5108": {
+    "code": "GN3",
+    "is_foil_only": false,
+    "name": "Game Night: Free For All",
+    "release_date": "2022-10-14",
+    "type": "box"
+  },
+  "5110": {
+    "code": "SLDFN",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Fortnite",
+    "release_date": "2022-09-02",
+    "type": null
+  },
+  "5118": {
+    "code": "PDMU",
+    "is_foil_only": false,
+    "name": "Dominaria United: Promos",
+    "release_date": "2022-09-09",
+    "type": "promo"
+  },
+  "5122": {
+    "code": "DMC",
+    "is_foil_only": false,
+    "name": "Commander: Dominaria United",
+    "release_date": "2022-09-09",
+    "type": "commander"
+  },
+  "5123": {
+    "code": "XDMC",
+    "is_foil_only": false,
+    "name": "Commander: Dominaria United: Extras",
+    "release_date": "2022-09-09",
+    "type": null
+  },
+  "5126": {
+    "code": "30C",
+    "is_foil_only": false,
+    "name": "30th Anniversary Celebration",
+    "release_date": "2022-09-02",
+    "type": null
+  },
+  "5137": {
+    "code": "SLD30",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Magic 30",
+    "release_date": "2022-10-21",
+    "type": null
+  },
+  "5146": {
+    "code": "SLDAUS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: August Superdrop 2022",
+    "release_date": "2022-11-09",
+    "type": null
+  },
+  "5164": {
+    "code": "BRO",
+    "is_foil_only": false,
+    "name": "The Brothers' War",
+    "release_date": "2022-11-18",
+    "type": "expansion"
+  },
+  "5165": {
+    "code": "XBRO",
+    "is_foil_only": false,
+    "name": "The Brothers' War: Extras",
+    "release_date": "2022-11-18",
+    "type": "expansion"
+  },
+  "5168": {
+    "code": "BRC",
+    "is_foil_only": false,
+    "name": "Commander: The Brothers' War",
+    "release_date": "2022-11-18",
+    "type": "commander"
+  },
+  "5169": {
+    "code": "XBRC",
+    "is_foil_only": false,
+    "name": "Commander: The Brothers' War: Extras",
+    "release_date": "2022-11-18",
+    "type": null
+  },
+  "5170": {
+    "code": "BRR",
+    "is_foil_only": false,
+    "name": "Retro Frame Artifacts",
+    "release_date": "2022-11-18",
+    "type": "masterpiece"
+  },
+  "5171": {
+    "code": "30J",
+    "is_foil_only": true,
+    "name": "30th Anniversary History Promos",
+    "release_date": "2022-10-01",
+    "type": "promo"
+  },
+  "5172": {
+    "code": "BOT",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Transformers",
+    "release_date": "2022-11-18",
+    "type": "masterpiece"
+  },
+  "5173": {
+    "code": "SCD",
+    "is_foil_only": false,
+    "name": "Starter Commander Decks",
+    "release_date": "2022-12-09",
+    "type": "commander"
+  },
+  "5178": {
+    "code": "PBRO",
+    "is_foil_only": false,
+    "name": "The Brothers' War: Promos",
+    "release_date": "2022-11-18",
+    "type": "promo"
+  },
+  "5181": {
+    "code": "SLDLILR",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: LI\u2019L\u2019ER Walkers",
+    "release_date": "2023-01-09",
+    "type": null
+  },
+  "5183": {
+    "code": "SLDO2",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: October Superdrop 2022",
+    "release_date": "2023-02-03",
+    "type": null
+  },
+  "5184": {
+    "code": "ONE",
+    "is_foil_only": false,
+    "name": "Phyrexia: All Will Be One",
+    "release_date": "2023-02-10",
+    "type": "expansion"
+  },
+  "5185": {
+    "code": "J22",
+    "is_foil_only": false,
+    "name": "Jumpstart 2022",
+    "release_date": "2022-12-02",
+    "type": "draft_innovation"
+  },
+  "5186": {
+    "code": "TOK14",
+    "is_foil_only": false,
+    "name": "Durian Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5187": {
+    "code": "TOK15",
+    "is_foil_only": false,
+    "name": "MorArt Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5188": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "F&M Cases",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5189": {
+    "code": "TOK16",
+    "is_foil_only": false,
+    "name": "House of Tokens, by J.F.S.",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5191": {
+    "code": "XONE",
+    "is_foil_only": false,
+    "name": "Phyrexia: All Will Be One: Extras",
+    "release_date": "2023-02-10",
+    "type": "expansion"
+  },
+  "5192": {
+    "code": "DMR",
+    "is_foil_only": false,
+    "name": "Dominaria Remastered",
+    "release_date": "2023-01-13",
+    "type": "masters"
+  },
+  "5193": {
+    "code": "XDMR",
+    "is_foil_only": false,
+    "name": "Dominaria Remastered: Extras",
+    "release_date": "2023-01-13",
+    "type": "masters"
+  },
+  "5196": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Extra Life 2022",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5197": {
+    "code": "PONE",
+    "is_foil_only": false,
+    "name": "Phyrexia: All Will Be One: Promos",
+    "release_date": "2023-02-10",
+    "type": "promo"
+  },
+  "5199": {
+    "code": "30A",
+    "is_foil_only": false,
+    "name": "30th Anniversary Edition",
+    "release_date": "2022-10-28",
+    "type": "memorabilia"
+  },
+  "5205": {
+    "code": "SLD30CK",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: 30th Anniversary Countdown Kit",
+    "release_date": "2022-11-26",
+    "type": null
+  },
+  "5208": {
+    "code": "XMAT",
+    "is_foil_only": false,
+    "name": "March of the Machine: The Aftermath: Extras",
+    "release_date": "2023-05-12",
+    "type": "expansion"
+  },
+  "5215": {
+    "code": "SLDDCM",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: December Superdrop 2022",
+    "release_date": "2023-03-18",
+    "type": null
+  },
+  "5225": {
+    "code": "ONC",
+    "is_foil_only": false,
+    "name": "Commander: Phyrexia: All Will Be One",
+    "release_date": "2023-02-10",
+    "type": "commander"
+  },
+  "5227": {
+    "code": "MOM",
+    "is_foil_only": false,
+    "name": "March of the Machine",
+    "release_date": "2023-04-21",
+    "type": "expansion"
+  },
+  "5228": {
+    "code": "XONC",
+    "is_foil_only": false,
+    "name": "Commander: Phyrexia: All Will Be One: Extras",
+    "release_date": "2023-02-10",
+    "type": null
+  },
+  "5245": {
+    "code": "MCON",
+    "is_foil_only": false,
+    "name": "MagicCon Products",
+    "release_date": "2023-02-17",
+    "type": null
+  },
+  "5248": {
+    "code": "341",
+    "is_foil_only": false,
+    "name": "Three for One Trading",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5249": {
+    "code": "23LNY",
+    "is_foil_only": false,
+    "name": "2023 Lunar New Year Promos",
+    "release_date": "2023-02-10",
+    "type": null
+  },
+  "5253": {
+    "code": "TOK17",
+    "is_foil_only": false,
+    "name": "DeadRatART Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5256": {
+    "code": "TOK18",
+    "is_foil_only": false,
+    "name": "Zerofun's Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5264": {
+    "code": "SLDW23",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Winter Superdrop 2023",
+    "release_date": "2023-04-14",
+    "type": null
+  },
+  "5278": {
+    "code": "XMOM",
+    "is_foil_only": false,
+    "name": "March of the Machine: Extras",
+    "release_date": "2023-04-21",
+    "type": "expansion"
+  },
+  "5279": {
+    "code": "MOC",
+    "is_foil_only": false,
+    "name": "Commander: March of the Machine",
+    "release_date": "2023-04-21",
+    "type": "commander"
+  },
+  "5280": {
+    "code": "XMOC",
+    "is_foil_only": false,
+    "name": "Commander: March of the Machine: Extras",
+    "release_date": "2023-04-21",
+    "type": null
+  },
+  "5284": {
+    "code": "MUL",
+    "is_foil_only": false,
+    "name": "Multiverse Legends",
+    "release_date": "2023-04-21",
+    "type": "masterpiece"
+  },
+  "5285": {
+    "code": "LTR",
+    "is_foil_only": false,
+    "name": "The Lord of the Rings: Tales of Middle-earth",
+    "release_date": "2023-06-23",
+    "type": "draft_innovation"
+  },
+  "5286": {
+    "code": "CMM",
+    "is_foil_only": false,
+    "name": "Commander Masters",
+    "release_date": "2023-08-04",
+    "type": "masters"
+  },
+  "5296": {
+    "code": "LTC",
+    "is_foil_only": false,
+    "name": "Commander: The Lord of the Rings: Tales of Middle-earth",
+    "release_date": "2023-06-23",
+    "type": "commander"
+  },
+  "5301": {
+    "code": "SLDWPNM",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop: WPN Exclusive: More Borderless Planeswalkers",
+    "release_date": "2023-03-31",
+    "type": null
+  },
+  "5308": {
+    "code": "XLTR",
+    "is_foil_only": false,
+    "name": "The Lord of the Rings: Tales of Middle-earth: Extras",
+    "release_date": "2023-06-23",
+    "type": "draft_innovation"
+  },
+  "5310": {
+    "code": "PMOM",
+    "is_foil_only": false,
+    "name": "March of the Machine: Promos",
+    "release_date": "2023-04-21",
+    "type": "promo"
+  },
+  "5320": {
+    "code": "MAT",
+    "is_foil_only": false,
+    "name": "March of the Machine: The Aftermath",
+    "release_date": "2023-05-12",
+    "type": "expansion"
+  },
+  "5321": {
+    "code": "SLDHAT",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x Dungeons & Dragons: Honor Among Thieves",
+    "release_date": "2023-04-18",
+    "type": null
+  },
+  "5345": {
+    "code": "TOK19",
+    "is_foil_only": false,
+    "name": "Stained Glass Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5346": {
+    "code": "TOK20",
+    "is_foil_only": false,
+    "name": "Linfongart Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5347": {
+    "code": "TOK21",
+    "is_foil_only": false,
+    "name": "Usagi Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5352": {
+    "code": "SLDSP3",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Spring Superdrop 2023",
+    "release_date": "2023-05-11",
+    "type": null
+  },
+  "5358": {
+    "code": "WHO",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Doctor Who",
+    "release_date": "2023-10-13",
+    "type": "commander"
+  },
+  "5359": {
+    "code": "WOE",
+    "is_foil_only": false,
+    "name": "Wilds of Eldraine",
+    "release_date": "2023-09-08",
+    "type": "expansion"
+  },
+  "5360": {
+    "code": "WOC",
+    "is_foil_only": false,
+    "name": "Commander: Wilds of Eldraine",
+    "release_date": "2023-09-08",
+    "type": "commander"
+  },
+  "5381": {
+    "code": "SLCFCB",
+    "is_foil_only": false,
+    "name": "Secret Lair Commander Deck: From Cute to Brute",
+    "release_date": "2023-05-25",
+    "type": null
+  },
+  "5387": {
+    "code": "XLTC",
+    "is_foil_only": false,
+    "name": "Commander: The Lord of the Rings: Tales of Middle-earth: Extras",
+    "release_date": "2023-06-23",
+    "type": null
+  },
+  "5396": {
+    "code": "PLTR",
+    "is_foil_only": true,
+    "name": "The Lord of the Rings: Tales of Middle-earth: Promos",
+    "release_date": "2023-06-23",
+    "type": "promo"
+  },
+  "5399": {
+    "code": "TOK22",
+    "is_foil_only": false,
+    "name": "Tzipi Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5406": {
+    "code": "TOK23",
+    "is_foil_only": false,
+    "name": "Jenn Polk Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5407": {
+    "code": "TOK24",
+    "is_foil_only": false,
+    "name": "Mike Bakker Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5408": {
+    "code": "TOK25",
+    "is_foil_only": false,
+    "name": "Shannon Allen Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5414": {
+    "code": "SLDSM3",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Summer Superdrop 2023",
+    "release_date": "2023-10-20",
+    "type": null
+  },
+  "5418": {
+    "code": "XCMM",
+    "is_foil_only": false,
+    "name": "Commander Masters: Extras",
+    "release_date": "2023-08-04",
+    "type": "masters"
+  },
+  "5424": {
+    "code": "XWHO",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Doctor Who: Extras",
+    "release_date": "2023-10-13",
+    "type": null
+  },
+  "5425": {
+    "code": "XWOC",
+    "is_foil_only": false,
+    "name": "Commander: Wilds of Eldraine: Extras",
+    "release_date": "2023-09-08",
+    "type": null
+  },
+  "5428": {
+    "code": "XWOE",
+    "is_foil_only": false,
+    "name": "Wilds of Eldraine: Extras",
+    "release_date": "2023-09-08",
+    "type": "expansion"
+  },
+  "5442": {
+    "code": "WOT",
+    "is_foil_only": false,
+    "name": "Enchanting Tales",
+    "release_date": "2023-09-08",
+    "type": "masterpiece"
+  },
+  "5463": {
+    "code": "PWOE",
+    "is_foil_only": false,
+    "name": "Wilds of Eldraine: Promos",
+    "release_date": "2023-09-08",
+    "type": "promo"
+  },
+  "5472": {
+    "code": "SLDACW",
+    "is_foil_only": false,
+    "name": "Secret Lair Commander Deck: Angels: They're Just Like Us but Cooler",
+    "release_date": "2023-09-02",
+    "type": null
+  },
+  "5474": {
+    "code": "SLDF23",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Fall Superdrop 2023",
+    "release_date": "2023-10-21",
+    "type": null
+  },
+  "5488": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Extra Life 2023: Ponies: The Galloping 2",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5489": {
+    "code": "LTRH",
+    "is_foil_only": false,
+    "name": "The Lord of the Rings: Tales of Middle-earth Holiday Release",
+    "release_date": "2023-11-03",
+    "type": null
+  },
+  "5490": {
+    "code": "LCI",
+    "is_foil_only": false,
+    "name": "The Lost Caverns of Ixalan",
+    "release_date": "2023-11-17",
+    "type": "expansion"
+  },
+  "5491": {
+    "code": "XLCI",
+    "is_foil_only": false,
+    "name": "The Lost Caverns of Ixalan: Extras",
+    "release_date": "2023-11-17",
+    "type": "expansion"
+  },
+  "5492": {
+    "code": "LCC",
+    "is_foil_only": false,
+    "name": "Commander: The Lost Caverns of Ixalan",
+    "release_date": "2023-11-17",
+    "type": "commander"
+  },
+  "5493": {
+    "code": "SLDLILEST",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: LI'L'EST WALKERS",
+    "release_date": "2024-02-16",
+    "type": null
+  },
+  "5505": {
+    "code": "RVR",
+    "is_foil_only": false,
+    "name": "Ravnica Remastered",
+    "release_date": "2024-01-12",
+    "type": "masters"
+  },
+  "5506": {
+    "code": "XRVR",
+    "is_foil_only": false,
+    "name": "Ravnica Remastered: Extras",
+    "release_date": "2024-01-12",
+    "type": "masters"
+  },
+  "5520": {
+    "code": "XLCC",
+    "is_foil_only": false,
+    "name": "Commander: The Lost Caverns of Ixalan: Extras",
+    "release_date": "2023-11-17",
+    "type": null
+  },
+  "5521": {
+    "code": "PLCI",
+    "is_foil_only": false,
+    "name": "The Lost Caverns of Ixalan: Promos",
+    "release_date": "2023-11-17",
+    "type": "promo"
+  },
+  "5522": {
+    "code": "REX",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Jurassic World Collection",
+    "release_date": "2023-11-17",
+    "type": "masterpiece"
+  },
+  "5523": {
+    "code": "SPG",
+    "is_foil_only": false,
+    "name": "Special Guests",
+    "release_date": "2023-11-17",
+    "type": "masterpiece"
+  },
+  "5536": {
+    "code": "TLCI",
+    "is_foil_only": false,
+    "name": "The Lost Caverns of Ixalan: Tokens",
+    "release_date": "2023-11-17",
+    "type": null
+  },
+  "5544": {
+    "code": "PIP",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Fallout",
+    "release_date": "2024-03-08",
+    "type": "commander"
+  },
+  "5545": {
+    "code": "XPIP",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Fallout: Extras",
+    "release_date": "2024-03-08",
+    "type": null
+  },
+  "5548": {
+    "code": "SLDSP23",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Spookydrop 2023",
+    "release_date": "2023-12-28",
+    "type": null
+  },
+  "5557": {
+    "code": "SLDAHH",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Calling All Hydra Heads",
+    "release_date": "2023-12-08",
+    "type": null
+  },
+  "5559": {
+    "code": "SLDSV23",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secretversary 2023",
+    "release_date": "2024-02-06",
+    "type": null
+  },
+  "5561": {
+    "code": "MKM",
+    "is_foil_only": false,
+    "name": "Murders at Karlov Manor",
+    "release_date": "2024-02-09",
+    "type": "expansion"
+  },
+  "5562": {
+    "code": "MKC",
+    "is_foil_only": false,
+    "name": "Commander: Murders at Karlov Manor",
+    "release_date": "2024-02-09",
+    "type": "commander"
+  },
+  "5571": {
+    "code": "TOK26",
+    "is_foil_only": false,
+    "name": "Alfie's Adventure Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5572": {
+    "code": "CLU",
+    "is_foil_only": false,
+    "name": "Ravnica: Cluedo Edition",
+    "release_date": "2024-02-23",
+    "type": "draft_innovation"
+  },
+  "5588": {
+    "code": "TRVR",
+    "is_foil_only": false,
+    "name": "Ravnica Remastered: Tokens",
+    "release_date": "2024-01-12",
+    "type": null
+  },
+  "5597": {
+    "code": "SLDDWR",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x Doctor Who: Regeneration",
+    "release_date": "2024-05-10",
+    "type": null
+  },
+  "5599": {
+    "code": "XMKM",
+    "is_foil_only": false,
+    "name": "Murders at Karlov Manor: Extras",
+    "release_date": "2024-02-09",
+    "type": "expansion"
+  },
+  "5600": {
+    "code": "PMKM",
+    "is_foil_only": false,
+    "name": "Murders at Karlov Manor: Promos",
+    "release_date": "2024-02-09",
+    "type": "promo"
+  },
+  "5601": {
+    "code": "XMKC",
+    "is_foil_only": false,
+    "name": "Commander: Murders at Karlov Manor: Extras",
+    "release_date": "2024-02-09",
+    "type": null
+  },
+  "5602": {
+    "code": "TMKM",
+    "is_foil_only": false,
+    "name": "Murders at Karlov Manor: Tokens",
+    "release_date": "2024-02-09",
+    "type": null
+  },
+  "5614": {
+    "code": "SLDRCD",
+    "is_foil_only": false,
+    "name": "Secret Lair Commander Deck: Raining Cats and Dogs",
+    "release_date": "2024-02-15",
+    "type": null
+  },
+  "5615": {
+    "code": "TOK27",
+    "is_foil_only": false,
+    "name": "Mystic Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5623": {
+    "code": "SLDW24",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Winter Superdrop 2024",
+    "release_date": "2024-04-20",
+    "type": null
+  },
+  "5625": {
+    "code": "24LNY",
+    "is_foil_only": false,
+    "name": "2024 Lunar New Year Promos",
+    "release_date": "2024-02-10",
+    "type": null
+  },
+  "5634": {
+    "code": "TOK28",
+    "is_foil_only": false,
+    "name": "SAWATARIX",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5635": {
+    "code": "SLDSMS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Sheldon's Spellbook",
+    "release_date": "2024-08-01",
+    "type": null
+  },
+  "5647": {
+    "code": "OTJ",
+    "is_foil_only": false,
+    "name": "Outlaws of Thunder Junction",
+    "release_date": "2024-04-19",
+    "type": "expansion"
+  },
+  "5648": {
+    "code": "OTC",
+    "is_foil_only": false,
+    "name": "Commander: Outlaws of Thunder Junction",
+    "release_date": "2024-04-19",
+    "type": "commander"
+  },
+  "5652": {
+    "code": "MH3",
+    "is_foil_only": false,
+    "name": "Modern Horizons 3",
+    "release_date": "2024-06-14",
+    "type": "draft_innovation"
+  },
+  "5653": {
+    "code": "XMH3",
+    "is_foil_only": false,
+    "name": "Modern Horizons 3: Extras",
+    "release_date": "2024-06-14",
+    "type": "draft_innovation"
+  },
+  "5654": {
+    "code": "M3C",
+    "is_foil_only": false,
+    "name": "Commander: Modern Horizons 3",
+    "release_date": "2024-06-14",
+    "type": "commander"
+  },
+  "5655": {
+    "code": "ACR",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Assassin's Creed",
+    "release_date": "2024-07-05",
+    "type": "draft_innovation"
+  },
+  "5656": {
+    "code": "XACR",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Assassin's Creed: Extras",
+    "release_date": "2024-07-05",
+    "type": null
+  },
+  "5657": {
+    "code": "XM3C",
+    "is_foil_only": false,
+    "name": "Commander: Modern Horizons 3: Extras",
+    "release_date": "2024-06-14",
+    "type": null
+  },
+  "5658": {
+    "code": "BLB",
+    "is_foil_only": false,
+    "name": "Bloomburrow",
+    "release_date": "2024-08-02",
+    "type": "expansion"
+  },
+  "5659": {
+    "code": "XBLB",
+    "is_foil_only": false,
+    "name": "Bloomburrow: Extras",
+    "release_date": "2024-08-02",
+    "type": "expansion"
+  },
+  "5660": {
+    "code": "BLC",
+    "is_foil_only": false,
+    "name": "Commander: Bloomburrow",
+    "release_date": "2024-08-02",
+    "type": "commander"
+  },
+  "5661": {
+    "code": "XBLC",
+    "is_foil_only": false,
+    "name": "Commander: Bloomburrow: Extras",
+    "release_date": "2024-08-02",
+    "type": null
+  },
+  "5662": {
+    "code": "XOTJ",
+    "is_foil_only": false,
+    "name": "Outlaws of Thunder Junction: Extras",
+    "release_date": "2024-04-19",
+    "type": "expansion"
+  },
+  "5663": {
+    "code": "XOTC",
+    "is_foil_only": false,
+    "name": "Commander: Outlaws of Thunder Junction: Extras",
+    "release_date": "2024-04-19",
+    "type": null
+  },
+  "5664": {
+    "code": "BIG",
+    "is_foil_only": false,
+    "name": "The Big Score",
+    "release_date": "2024-04-19",
+    "type": "expansion"
+  },
+  "5665": {
+    "code": "OTP",
+    "is_foil_only": false,
+    "name": "Breaking News",
+    "release_date": "2024-04-19",
+    "type": "masterpiece"
+  },
+  "5666": {
+    "code": "TPIP",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Fallout: Tokens",
+    "release_date": "2024-03-08",
+    "type": null
+  },
+  "5669": {
+    "code": "POTJ",
+    "is_foil_only": false,
+    "name": "Outlaws of Thunder Junction: Promos",
+    "release_date": "2024-04-19",
+    "type": "promo"
+  },
+  "5671": {
+    "code": "TOTJ",
+    "is_foil_only": false,
+    "name": "Outlaws of Thunder Junction: Tokens",
+    "release_date": "2024-04-19",
+    "type": null
+  },
+  "5696": {
+    "code": "TOK29",
+    "is_foil_only": false,
+    "name": "Mockens Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5707": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Relic Tokens: Relentless Collection",
+    "release_date": "2024-04-01",
+    "type": null
+  },
+  "5736": {
+    "code": "SLDE24",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Equinox Superdrop 2024",
+    "release_date": "2024-06-04",
+    "type": null
+  },
+  "5745": {
+    "code": "TOK30",
+    "is_foil_only": false,
+    "name": "GameON Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5746": {
+    "code": "TOK31",
+    "is_foil_only": false,
+    "name": "LocalProAlters Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5759": {
+    "code": "SLDSP4",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Spring Superdrop 2024",
+    "release_date": "2024-07-10",
+    "type": null
+  },
+  "5763": {
+    "code": "RMH3",
+    "is_foil_only": false,
+    "name": "Modern Horizons 3: Retro Frame Cards",
+    "release_date": "2024-06-14",
+    "type": null
+  },
+  "5784": {
+    "code": "TMH3",
+    "is_foil_only": false,
+    "name": "Modern Horizons 3: Tokens",
+    "release_date": "2024-06-14",
+    "type": null
+  },
+  "5785": {
+    "code": "PMH3",
+    "is_foil_only": true,
+    "name": "Modern Horizons 3: Promos",
+    "release_date": "2024-06-14",
+    "type": "promo"
+  },
+  "5789": {
+    "code": "PBLB",
+    "is_foil_only": false,
+    "name": "Bloomburrow: Promos",
+    "release_date": "2024-08-02",
+    "type": "promo"
+  },
+  "5790": {
+    "code": "TBLB",
+    "is_foil_only": false,
+    "name": "Bloomburrow: Tokens",
+    "release_date": "2024-08-02",
+    "type": null
+  },
+  "5794": {
+    "code": "TACR",
+    "is_foil_only": false,
+    "name": "Universes Beyond: Assassin's Creed: Tokens",
+    "release_date": "2024-07-05",
+    "type": null
+  },
+  "5799": {
+    "code": "SLDSM4",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Summer Superdrop 2024",
+    "release_date": "2024-08-19",
+    "type": null
+  },
+  "5806": {
+    "code": "DSK",
+    "is_foil_only": false,
+    "name": "Duskmourn: House of Horror",
+    "release_date": "2024-09-27",
+    "type": "expansion"
+  },
+  "5807": {
+    "code": "XDSK",
+    "is_foil_only": false,
+    "name": "Duskmourn: House of Horror: Extras",
+    "release_date": "2024-09-27",
+    "type": "expansion"
+  },
+  "5808": {
+    "code": "DSC",
+    "is_foil_only": false,
+    "name": "Commander: Duskmourn: House of Horror",
+    "release_date": "2024-09-27",
+    "type": "commander"
+  },
+  "5809": {
+    "code": "XDSC",
+    "is_foil_only": false,
+    "name": "Commander: Duskmourn: House of Horror: Extras",
+    "release_date": "2024-09-27",
+    "type": null
+  },
+  "5843": {
+    "code": "SLDIE",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Inside an Elevator Superdrop",
+    "release_date": "2024-08-22",
+    "type": null
+  },
+  "5852": {
+    "code": "FDN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering Foundations",
+    "release_date": "2024-11-15",
+    "type": null
+  },
+  "5854": {
+    "code": "MB2",
+    "is_foil_only": false,
+    "name": "Mystery Booster 2",
+    "release_date": "2024-10-25",
+    "type": "masters"
+  },
+  "5862": {
+    "code": "MSTW",
+    "is_foil_only": false,
+    "name": "Tokens of World",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5878": {
+    "code": "MB2PT",
+    "is_foil_only": false,
+    "name": "Mystery Booster 2: Playtest Cards",
+    "release_date": "2024-10-25",
+    "type": null
+  },
+  "5884": {
+    "code": "SLD50A",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x Dungeons & Dragons: 50th Anniversary Superdrop",
+    "release_date": "2024-09-13",
+    "type": null
+  },
+  "5885": {
+    "code": "PDSK",
+    "is_foil_only": false,
+    "name": "Duskmourn: House of Horror: Promos",
+    "release_date": "2024-09-27",
+    "type": "promo"
+  },
+  "5886": {
+    "code": "TDSK",
+    "is_foil_only": false,
+    "name": "Duskmourn: House of Horror: Tokens",
+    "release_date": "2024-09-27",
+    "type": null
+  },
+  "5897": {
+    "code": "GTP",
+    "is_foil_only": false,
+    "name": "Gatherers' Tavern",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5908": {
+    "code": "SLDCTSS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Camp Totally Safe Superdrop",
+    "release_date": "2024-10-09",
+    "type": null
+  },
+  "5911": {
+    "code": "MB2R",
+    "is_foil_only": false,
+    "name": "Mystery Booster 2: Reprints from Across Magic's History",
+    "release_date": "2024-10-25",
+    "type": null
+  },
+  "5924": {
+    "code": "SLDMVL",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Marvel Superdrop",
+    "release_date": "2024-12-01",
+    "type": null
+  },
+  "5930": {
+    "code": "INR",
+    "is_foil_only": false,
+    "name": "Innistrad Remastered",
+    "release_date": "2025-01-24",
+    "type": null
+  },
+  "5931": {
+    "code": "XFDN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering Foundations: Extras",
+    "release_date": "2024-11-15",
+    "type": null
+  },
+  "5932": {
+    "code": "J25",
+    "is_foil_only": false,
+    "name": "Foundations Jumpstart",
+    "release_date": "2024-11-15",
+    "type": null
+  },
+  "5938": {
+    "code": "SFDN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering Foundations: Starter Collection",
+    "release_date": "2024-11-15",
+    "type": null
+  },
+  "5940": {
+    "code": "PFDN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering Foundations: Promos",
+    "release_date": "2024-11-15",
+    "type": null
+  },
+  "5941": {
+    "code": "TFDN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering Foundations: Tokens",
+    "release_date": "2024-11-15",
+    "type": null
+  },
+  "5942": {
+    "code": "BFDN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering Foundations: Beginner Box",
+    "release_date": "2024-11-15",
+    "type": null
+  },
+  "5976": {
+    "code": "SLD20WTW",
+    "is_foil_only": false,
+    "name": "Secret Lair Commander Deck: 20 Ways to Win",
+    "release_date": "2025-12-20",
+    "type": null
+  },
+  "5977": {
+    "code": "XINR",
+    "is_foil_only": false,
+    "name": "Innistrad Remastered: Extras",
+    "release_date": "2025-01-24",
+    "type": null
+  },
+  "5980": {
+    "code": "VLBT",
+    "is_foil_only": false,
+    "name": "Vanlubow",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "5982": {
+    "code": "DFT",
+    "is_foil_only": false,
+    "name": "Aetherdrift",
+    "release_date": "2025-02-14",
+    "type": null
+  },
+  "5988": {
+    "code": "DRC",
+    "is_foil_only": false,
+    "name": "Commander: Aetherdrift",
+    "release_date": "2025-02-14",
+    "type": null
+  },
+  "5991": {
+    "code": "DFTP",
+    "is_foil_only": false,
+    "name": "Aetherdrift: Promos",
+    "release_date": "2025-02-14",
+    "type": null
+  },
+  "5993": {
+    "code": "SLDCV",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Chaos Vault",
+    "release_date": "2025-12-24",
+    "type": null
+  },
+  "6007": {
+    "code": "TINR",
+    "is_foil_only": false,
+    "name": "Innistrad Remastered: Tokens",
+    "release_date": "2025-01-24",
+    "type": null
+  },
+  "6011": {
+    "code": "DFTX",
+    "is_foil_only": false,
+    "name": "Aetherdrift: Extras",
+    "release_date": "2025-02-14",
+    "type": null
+  },
+  "6012": {
+    "code": "DFTFP",
+    "is_foil_only": false,
+    "name": "Aetherdrift: First-Place",
+    "release_date": "2025-02-14",
+    "type": null
+  },
+  "6022": {
+    "code": "XDFT",
+    "is_foil_only": false,
+    "name": "Commander: Aetherdrift: Extras",
+    "release_date": "2025-02-14",
+    "type": null
+  },
+  "6035": {
+    "code": "NHT",
+    "is_foil_only": false,
+    "name": "Nils Hamm Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6036": {
+    "code": "DFTT",
+    "is_foil_only": false,
+    "name": "Aetherdrift: Tokens",
+    "release_date": "2025-02-14",
+    "type": null
+  },
+  "6042": {
+    "code": "SLDW25",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Winter Superdrop 2025",
+    "release_date": "2025-02-24",
+    "type": null
+  },
+  "6046": {
+    "code": "25LNY",
+    "is_foil_only": false,
+    "name": "2025 Lunar New Year Promos",
+    "release_date": "2025-02-14",
+    "type": null
+  },
+  "6057": {
+    "code": "FIN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering\u2014FINAL FANTASY",
+    "release_date": "2025-06-13",
+    "type": null
+  },
+  "6058": {
+    "code": "FIC",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering\u2014FINAL FANTASY Commander",
+    "release_date": "2025-06-13",
+    "type": null
+  },
+  "6059": {
+    "code": "FCA",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering\u2014FINAL FANTASY Through the Ages",
+    "release_date": "2025-06-13",
+    "type": null
+  },
+  "6060": {
+    "code": "TDM",
+    "is_foil_only": false,
+    "name": "Tarkir: Dragonstorm",
+    "release_date": "2025-04-11",
+    "type": null
+  },
+  "6062": {
+    "code": "TDC",
+    "is_foil_only": false,
+    "name": "Commander: Tarkir: Dragonstorm",
+    "release_date": "2025-04-11",
+    "type": null
+  },
+  "6063": {
+    "code": "EOE",
+    "is_foil_only": false,
+    "name": "Edge of Eternities",
+    "release_date": "2025-08-01",
+    "type": null
+  },
+  "6064": {
+    "code": "EOC",
+    "is_foil_only": false,
+    "name": "Commander: Edge of Eternities",
+    "release_date": "2025-08-01",
+    "type": null
+  },
+  "6070": {
+    "code": "SPM",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Marvel's Spider-Man",
+    "release_date": "2025-09-26",
+    "type": null
+  },
+  "6091": {
+    "code": "XTDM",
+    "is_foil_only": false,
+    "name": "Tarkir: Dragonstorm: Extras",
+    "release_date": "2025-04-11",
+    "type": null
+  },
+  "6095": {
+    "code": "SLDBV",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Our Boss Is on Vacation Superdrop",
+    "release_date": "2025-04-25",
+    "type": null
+  },
+  "6100": {
+    "code": "XTDC",
+    "is_foil_only": false,
+    "name": "Commander: Tarkir: Dragonstorm: Extras",
+    "release_date": "2025-04-11",
+    "type": null
+  },
+  "6102": {
+    "code": "TTDM",
+    "is_foil_only": false,
+    "name": "Tarkir: Dragonstorm: Tokens",
+    "release_date": "2025-04-11",
+    "type": null
+  },
+  "6103": {
+    "code": "PTDM",
+    "is_foil_only": false,
+    "name": "Tarkir: Dragonstorm: Promos",
+    "release_date": "2025-04-11",
+    "type": null
+  },
+  "6106": {
+    "code": "PEOE",
+    "is_foil_only": false,
+    "name": "Edge of Eternities: Promos",
+    "release_date": "2025-08-01",
+    "type": null
+  },
+  "6112": {
+    "code": "TOK32",
+    "is_foil_only": false,
+    "name": "Boomer Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6113": {
+    "code": "TOK33",
+    "is_foil_only": false,
+    "name": "Finotto's Lost Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6114": {
+    "code": "TOK34",
+    "is_foil_only": false,
+    "name": "NTHKG Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6117": {
+    "code": "TOK35",
+    "is_foil_only": false,
+    "name": "Street Clans",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6119": {
+    "code": "SLDUP",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: The Ultimate Pencil Superdrop",
+    "release_date": "2025-05-30",
+    "type": null
+  },
+  "6120": {
+    "code": "SLDEI",
+    "is_foil_only": false,
+    "name": "Secret Lair Commander Deck: Everyone's Invited!",
+    "release_date": "2025-05-23",
+    "type": null
+  },
+  "6136": {
+    "code": "XFIC",
+    "is_foil_only": false,
+    "name": "Commander: Magic: The Gathering - FINAL FANTASY: Extras",
+    "release_date": "2025-06-13",
+    "type": null
+  },
+  "6137": {
+    "code": "XFIN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering - FINAL FANTASY: Extras",
+    "release_date": "2025-06-13",
+    "type": null
+  },
+  "6139": {
+    "code": "TFIN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering - FINAL FANTASY: Tokens",
+    "release_date": "2025-06-13",
+    "type": null
+  },
+  "6141": {
+    "code": "SLDSM5",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Summer Superdrop 2025",
+    "release_date": "2025-07-15",
+    "type": null
+  },
+  "6143": {
+    "code": "CFIC",
+    "is_foil_only": false,
+    "name": "Commander: Magic: The Gathering - FINAL FANTASY: Collector's Edition",
+    "release_date": "2025-06-13",
+    "type": null
+  },
+  "6162": {
+    "code": "PFIN",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering - FINAL FANTASY: Promos",
+    "release_date": "2025-06-13",
+    "type": null
+  },
+  "6166": {
+    "code": "TOK36",
+    "is_foil_only": false,
+    "name": "For Science!",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6174": {
+    "code": "XEOE",
+    "is_foil_only": false,
+    "name": "Edge of Eternities: Extras",
+    "release_date": "2025-08-01",
+    "type": null
+  },
+  "6185": {
+    "code": "SLDLAC",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x National Association of Latino Arts and Cultures",
+    "release_date": "2025-07-01",
+    "type": null
+  },
+  "6192": {
+    "code": "SLDTS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: The Sonic Superdrop",
+    "release_date": "2025-08-01",
+    "type": null
+  },
+  "6201": {
+    "code": "EOS",
+    "is_foil_only": false,
+    "name": "Stellar Sights",
+    "release_date": "2025-08-01",
+    "type": null
+  },
+  "6202": {
+    "code": "XEOC",
+    "is_foil_only": false,
+    "name": "Commander: Edge of Eternities: Extras",
+    "release_date": "2025-08-01",
+    "type": null
+  },
+  "6213": {
+    "code": "TEOE",
+    "is_foil_only": false,
+    "name": "Edge of Eternities: Tokens",
+    "release_date": "2025-08-01",
+    "type": null
+  },
+  "6216": {
+    "code": "TOK37",
+    "is_foil_only": false,
+    "name": "Mana ZenZero",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6234": {
+    "code": "XSPM",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Marvel's Spider-Man: Extras",
+    "release_date": "2025-09-26",
+    "type": null
+  },
+  "6236": {
+    "code": "SPE",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Marvel's Spider-Man: Eternal",
+    "release_date": "2025-09-26",
+    "type": null
+  },
+  "6246": {
+    "code": "TOK38",
+    "is_foil_only": false,
+    "name": "Josu Solano Tokens",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6261": {
+    "code": "TLA",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Avatar: The Last Airbender",
+    "release_date": "2025-11-21",
+    "type": null
+  },
+  "6262": {
+    "code": "TLE",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Avatar: The Last Airbender: Eternal",
+    "release_date": "2025-11-21",
+    "type": null
+  },
+  "6263": {
+    "code": "XTLA",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Avatar: The Last Airbender: Extras",
+    "release_date": "2025-11-21",
+    "type": null
+  },
+  "6296": {
+    "code": "TOK39",
+    "is_foil_only": false,
+    "name": "Dobi TOKENS",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6305": {
+    "code": "MAR",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Marvel's Spider-Man: Source Material Cards",
+    "release_date": "2025-09-26",
+    "type": null
+  },
+  "6307": {
+    "code": "TSPM",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Marvel's Spider-Man: Tokens",
+    "release_date": "2025-09-26",
+    "type": null
+  },
+  "6312": {
+    "code": "PSPM",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Marvel's Spider-Man: Promos",
+    "release_date": "2025-09-26",
+    "type": null
+  },
+  "6323": {
+    "code": "SLDMSM",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x Marvel's Spider-Man Superdrop",
+    "release_date": "2025-11-07",
+    "type": null
+  },
+  "6325": {
+    "code": "ECL",
+    "is_foil_only": false,
+    "name": "Lorwyn Eclipsed",
+    "release_date": "2026-01-23",
+    "type": null
+  },
+  "6326": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Lorwyn Eclipsed",
+    "release_date": "2026-01-23",
+    "type": null
+  },
+  "6327": {
+    "code": "SLDSSS",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Scare Superdrop",
+    "release_date": "2025-10-31",
+    "type": null
+  },
+  "6331": {
+    "code": "FINH",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering - FINAL FANTASY Holiday Release",
+    "release_date": "2025-12-05",
+    "type": null
+  },
+  "6345": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Teenage Mutant Ninja Turtles",
+    "release_date": "2026-03-06",
+    "type": null
+  },
+  "6346": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Magic: The Gathering | Teenage Mutant Ninja Turtles",
+    "release_date": "2026-03-06",
+    "type": null
+  },
+  "6360": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Old Masters",
+    "release_date": "1993-01-01",
+    "type": null
+  },
+  "6373": {
+    "code": "SLDPS",
+    "is_foil_only": false,
+    "name": "Secret Lair x PlayStation",
+    "release_date": "2025-12-15",
+    "type": null
+  },
+  "6384": {
+    "code": "PTLA",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Avatar: The Last Airbender: Promos",
+    "release_date": "2025-11-21",
+    "type": null
+  },
+  "6385": {
+    "code": "TTLA",
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Avatar: The Last Airbender: Tokens",
+    "release_date": "2025-11-21",
+    "type": null
+  },
+  "6388": {
+    "code": "SLDTLA",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x Avatar: The Last Airbender Superdrop",
+    "release_date": "2026-01-16",
+    "type": null
+  },
+  "6390": {
+    "code": "SLCCK",
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair Countdown Kit: An Encyclopedia of Magic",
+    "release_date": "2025-11-18",
+    "type": null
+  },
+  "6421": {
+    "code": "XECL",
+    "is_foil_only": false,
+    "name": "Lorwyn Eclipsed: Extras",
+    "release_date": "2026-01-23",
+    "type": null
+  },
+  "6436": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Lorwyn Eclipsed: Promos",
+    "release_date": "2026-01-23",
+    "type": null
+  },
+  "6438": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Lorwyn Eclipsed: Tokens",
+    "release_date": "2026-01-23",
+    "type": null
+  },
+  "6439": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Lorwyn Eclipsed: Extras",
+    "release_date": "2026-01-23",
+    "type": null
+  },
+  "6470": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Teenage Mutant Ninja Turtles: Extras",
+    "release_date": "2026-03-06",
+    "type": null
+  },
+  "6471": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Rad Superdrop",
+    "release_date": "2026-04-10",
+    "type": null
+  },
+  "6474": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secrets of Strixhaven",
+    "release_date": "2026-04-24",
+    "type": null
+  },
+  "6475": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Secrets of Strixhaven",
+    "release_date": "2026-04-24",
+    "type": null
+  },
+  "6476": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Magic: The Gathering | Marvel Super Heroes",
+    "release_date": "2026-06-26",
+    "type": null
+  },
+  "6477": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Magic: The Gathering | Marvel Super Heroes",
+    "release_date": "2026-06-26",
+    "type": null
+  },
+  "6484": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Roll for Initiative Superdrop",
+    "release_date": "2026-04-24",
+    "type": null
+  },
+  "6493": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Magic: The Gathering | Teenage Mutant Ninja Turtles: Extras",
+    "release_date": "2026-03-06",
+    "type": null
+  },
+  "6496": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Teenage Mutant Ninja Turtles: Source Material Cards",
+    "release_date": "2026-03-06",
+    "type": null
+  },
+  "6497": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Teenage Mutant Ninja Turtles: Promos",
+    "release_date": "2026-03-06",
+    "type": null
+  },
+  "6503": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Teenage Mutant Ninja Turtles: Tokens",
+    "release_date": "2026-03-06",
+    "type": null
+  },
+  "6507": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "2026 Lunar New Year Promos",
+    "release_date": "2026-02-17",
+    "type": null
+  },
+  "6520": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Totally TubuLair Superdrop",
+    "release_date": "2026-04-15",
+    "type": null
+  },
+  "6522": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Deck: Dand\u00e2n",
+    "release_date": "2026-04-01",
+    "type": null
+  },
+  "6545": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Secrets of Strixhaven: Extras",
+    "release_date": "2026-04-24",
+    "type": null
+  },
+  "6546": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secrets of Strixhaven: Extras",
+    "release_date": "2026-04-24",
+    "type": null
+  },
+  "6547": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secrets of Strixhaven: Mystical Archive",
+    "release_date": "2026-04-24",
+    "type": null
+  },
+  "6550": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secrets of Strixhaven: Tokens",
+    "release_date": "2026-04-24",
+    "type": null
+  },
+  "6553": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x Marvel's Deadpool",
+    "release_date": "2026-04-17",
+    "type": null
+  },
+  "6554": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secrets of Strixhaven: Promos",
+    "release_date": "2026-04-24",
+    "type": null
+  },
+  "6563": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Back to School Superdrop",
+    "release_date": "2026-05-18",
+    "type": null
+  },
+  "6570": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "The Hobbit",
+    "release_date": "2026-08-14",
+    "type": null
+  },
+  "6571": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Reality Fracture",
+    "release_date": "2026-10-02",
+    "type": null
+  },
+  "6572": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Foundations",
+    "release_date": "2026-10-02",
+    "type": null
+  },
+  "6577": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Marvel Super Heroes: Extras",
+    "release_date": "2026-06-26",
+    "type": null
+  },
+  "6578": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Marvel Super Heroes: Tokens",
+    "release_date": "2026-06-26",
+    "type": null
+  },
+  "6580": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Commander Deck: Goblin Storm",
+    "release_date": "2026-06-15",
+    "type": null
+  },
+  "6589": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Commander: Reality Fracture",
+    "release_date": "2026-10-02",
+    "type": null
+  },
+  "6593": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Cats Are the Best Superdrop",
+    "release_date": "2026-06-29",
+    "type": null
+  }
+}
