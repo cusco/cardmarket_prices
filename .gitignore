@@ -4,4 +4,14 @@
 local/
 *.rdb
 *.db
+*.duckdb
+*.duckdb.wal
 celerybeat.pid
+google_secrets.json
+.env
+*.env
+htmlcov/
+.coverage
+coverage.xml
+report_pytest.xml
+.pytest_cache/
