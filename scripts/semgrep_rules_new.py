@@ -5,9 +5,7 @@ import argparse
 import requests
 import semgrep
 import yaml
-from yaml import dump, load
-from yaml.loader import SafeLoader
-
+from yaml import dump
 
 RULES_LIST: dict[str, list[str]] = {
     'python': ['https://semgrep.dev/c/r/python'],
@@ -29,7 +27,7 @@ EXCLUDE_LIST: dict[str, list[str]] = {
         # replaced with internal rule that was extended
         'python.django.performance.access-foreign-keys.access-foreign-keys',
         'python.lang.best-practice.unspecified-open-encoding.unspecified-open-encoding',
-        'python.django.security.audit.unvalidated-password.unvalidated-password'
+        'python.django.security.audit.unvalidated-password.unvalidated-password',
     ],
     'javascript': [],
     'typescript': [
@@ -40,7 +38,7 @@ EXCLUDE_LIST: dict[str, list[str]] = {
 
 
 def selective_representer(dumper, data):
-    """Process yml to correctly handle \n."""
+    r"""Process yml to correctly handle \n."""
     return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|' if '\n' in data else None)
 
 
@@ -55,8 +53,8 @@ def get_rules(rules: list[str], rules_version: str):
         for rule_list in RULES_LIST[rule_choice]:
             # get rules from semgrep registry
             print(f'Downloading {rule_choice} rules from semgrep registry...')
-            response = requests.get(rule_list, headers={'User-Agent': f'Semgrep/{semgrep.__VERSION__}'})
-            config_file = load(response.text, Loader=SafeLoader)
+            response = requests.get(rule_list, headers={'User-Agent': f'Semgrep/{semgrep.__VERSION__}'}, timeout=30)
+            config_file = yaml.safe_load(response.text)
             rules = config_file['rules']
             updated_rules = [rule for rule in rules if rule['id'] not in EXCLUDE_LIST[rule_choice]]
             final_rules += updated_rules
@@ -64,9 +62,10 @@ def get_rules(rules: list[str], rules_version: str):
             # get rules from our github  (we only have rules for python for now)
             if rule_choice in ['python', 'typescript']:
                 print(f'Downloading {rule_choice} rules from our repository...')
-                url = f'https://raw.githubusercontent.com/Seedstars/culture/master/code/validation/{rules_version}/semgrep_rules_{rule_choice}.yml'
-                response = requests.get(url)
-                config_file = load(response.text, Loader=SafeLoader)
+                base_url = 'https://raw.githubusercontent.com/Seedstars/culture/master/code/validation'
+                url = f'{base_url}/{rules_version}/semgrep_rules_{rule_choice}.yml'
+                response = requests.get(url, timeout=30)
+                config_file = yaml.safe_load(response.text)
                 rules = config_file['rules']
                 updated_rules = [rule for rule in rules if rule['id'] not in EXCLUDE_LIST[rule_choice]]
                 final_rules += updated_rules

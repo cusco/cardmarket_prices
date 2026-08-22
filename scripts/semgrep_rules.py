@@ -5,9 +5,7 @@ import argparse
 import requests
 import semgrep
 import yaml
-from yaml import dump, load
-from yaml.loader import SafeLoader
-
+from yaml import dump
 
 RULES_LIST = {
     'python': ['https://semgrep.dev/c/r/python'],
@@ -34,7 +32,7 @@ EXCLUDE_LIST = {
 
 
 def selective_representer(dumper, data):
-    """Process yml to correctly handle \n."""
+    r"""Process yml to correctly handle \n."""
 
     return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|' if '\n' in data else None)
 
@@ -47,13 +45,15 @@ def get_rules(rules):
     final_rules = []
     for rule_choice in rules:
         for rule_list in RULES_LIST[rule_choice]:
-            response = requests.get(rule_list, headers={'User-Agent': 'Semgrep/{}'.format(semgrep.__VERSION__)})
-            config_file = load(response.text, Loader=SafeLoader)
+            response = requests.get(
+                rule_list, headers={'User-Agent': 'Semgrep/{}'.format(semgrep.__VERSION__)}, timeout=30
+            )
+            config_file = yaml.safe_load(response.text)
             rules = config_file['rules']
             updated_rules = [rule for rule in rules if rule['id'] not in EXCLUDE_LIST[rule_choice]]
             final_rules += updated_rules
 
-    with open('./.semgrep_rules.yml', 'w') as temp_rule_file:
+    with open('./.semgrep_rules.yml', 'w', encoding='utf-8') as temp_rule_file:
         dump({'rules': final_rules}, temp_rule_file)
 
 
