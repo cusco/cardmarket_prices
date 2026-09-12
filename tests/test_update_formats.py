@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 
@@ -81,7 +81,7 @@ def test_fetch_active_set_names_filters_by_date_window(monkeypatch):
 
     monkeypatch.setattr(uf.requests, "get", lambda *a, **k: FakeResponse())
 
-    now = datetime(2026, 6, 1, tzinfo=timezone.utc)
+    now = datetime(2026, 6, 1, tzinfo=UTC)
     active = uf.fetch_active_set_names(now=now)
 
     assert set(active) == {"Currently Active No Exit Date Yet", "Currently Active With Future Exit"}

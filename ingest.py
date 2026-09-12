@@ -78,7 +78,7 @@ def fetch_latest_catalog(catalogs_dir: Path = CATALOGS_DIR) -> Path | None:
     response = requests.get(PRICE_GUIDE_URL, timeout=30)
     response.raise_for_status()
     content = response.text
-    md5sum = hashlib.md5(content.encode("utf-8"), usedforsecurity=False).hexdigest()  # nosemgrep
+    md5sum = hashlib.md5(content.encode("utf-8"), usedforsecurity=False).hexdigest()
 
     catalogs_dir.mkdir(parents=True, exist_ok=True)
     if any(md5sum in f.name for f in catalogs_dir.glob("*price_guide*.json.gz")):
@@ -120,11 +120,11 @@ def ingest_file(con: duckdb.DuckDBPyConnection, path: Path) -> int:
 
     # {read_json} only ever interpolates MAX_JSON_OBJECT_SIZE, a hardcoded int constant - the actual path/columns
     # values are bound parameters (the `?`s below), not interpolated.
-    read_json = f"read_json(?, columns=?, maximum_object_size={MAX_JSON_OBJECT_SIZE})"  # nosec B608
+    read_json = f"read_json(?, columns=?, maximum_object_size={MAX_JSON_OBJECT_SIZE})"
 
     # DuckDB's .execute() is not SQLAlchemy's; the rule below matches on method name alone.
-    (catalog_date,) = con.execute(  # nosemgrep
-        f"SELECT CAST(createdAt AS DATE) FROM {read_json}", [str(path), PRICE_GUIDE_COLUMNS]  # nosec B608
+    (catalog_date,) = con.execute(
+        f"SELECT CAST(createdAt AS DATE) FROM {read_json}", [str(path), PRICE_GUIDE_COLUMNS]
     ).fetchone()
 
     already = con.execute("SELECT 1 FROM prices WHERE catalog_date = ? LIMIT 1", [catalog_date]).fetchone()
@@ -132,7 +132,7 @@ def ingest_file(con: duckdb.DuckDBPyConnection, path: Path) -> int:
         logger.info("Skipping %s: catalog_date %s already ingested.", path.name, catalog_date)
         return 0
 
-    con.execute(  # nosemgrep
+    con.execute(
         f"""
         INSERT INTO prices
         SELECT
@@ -143,7 +143,7 @@ def ingest_file(con: duckdb.DuckDBPyConnection, path: Path) -> int:
             pg['avg1-foil'], pg['avg7-foil'], pg['avg30-foil']
         FROM (SELECT UNNEST(priceGuides) AS pg FROM {read_json})
         WHERE pg.idProduct IS NOT NULL
-        """,  # nosec B608
+        """,
         [str(catalog_date), str(path), PRICE_GUIDE_COLUMNS],
     )
     (row_count,) = con.execute("SELECT count(*) FROM prices WHERE catalog_date = ?", [catalog_date]).fetchone()
@@ -176,8 +176,8 @@ def refresh_products(con: duckdb.DuckDBPyConnection) -> int:
         tmp_path = tmp.name
 
     try:
-        read_json = f"read_json(?, columns=?, maximum_object_size={MAX_JSON_OBJECT_SIZE})"  # nosec B608
-        con.execute(  # nosemgrep
+        read_json = f"read_json(?, columns=?, maximum_object_size={MAX_JSON_OBJECT_SIZE})"
+        con.execute(
             f"""
             CREATE OR REPLACE TABLE products AS
             SELECT
@@ -188,7 +188,7 @@ def refresh_products(con: duckdb.DuckDBPyConnection) -> int:
                 p.idCategory AS category_id
             FROM (SELECT UNNEST(products) AS p FROM {read_json})
             WHERE p.idProduct IS NOT NULL
-            """,  # nosec B608
+            """,
             [tmp_path, PRODUCT_CATALOG_COLUMNS],
         )
     finally:

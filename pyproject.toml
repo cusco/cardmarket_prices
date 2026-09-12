@@ -1,0 +1,35 @@
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["old"]
+
+[tool.ruff.format]
+# equivalent to black's --skip-string-normalization: don't force everything to double quotes
+quote-style = "preserve"
+
+[tool.ruff.lint]
+# E/W/F  = pycodestyle + pyflakes (old pep8/pyflakes prospector tools)
+# I      = import sorting (old isort)
+# B      = flake8-bugbear, common bug-prone patterns (old pylint checks)
+# C90    = mccabe complexity (old prospector mccabe)
+# S      = flake8-bandit (old bandit)
+# UP     = pyupgrade, flags outdated syntax for the target Python version
+select = ["E", "W", "F", "I", "B", "C90", "S", "UP"]
+ignore = [
+    "E402",  # module level import not at top of file - old pep8 config disabled this too
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 20  # matches the old prospector mccabe setting
+
+[tool.ruff.lint.per-file-ignores]
+# bandit was never run against tests/ either (scripts/static_validate_backend.sh excluded it explicitly)
+"tests/*" = ["S"]
+# these three build SQL dynamically, but only ever interpolate developer-controlled config (constants.FORMATS,
+# PRICE_FIELD, a hardcoded size limit) - actual values are always bound `?` parameters. Old bandit/semgrep
+# suppressed the same lines with inline `# nosec`/`# nosemgrep` comments; a per-file ignore is used instead here
+# since several of these queries are multi-line triple-quoted strings, where an inline comment can't be placed
+# without becoming part of the SQL text itself.
+"ingest.py" = ["S608"]
+"spikes.py" = ["S608"]
+"export_premodern_bulk.py" = ["S608"]

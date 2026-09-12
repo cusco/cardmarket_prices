@@ -20,7 +20,7 @@ Usage:
 
 import json
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import requests
 
@@ -50,15 +50,15 @@ def _normalize_name(name: str) -> str:
 def fetch_active_set_names(now: datetime | None = None) -> list[str]:
     """Return whatsinstandard.com set names currently inside the Standard window."""
 
-    now = now or datetime.now(timezone.utc)
+    now = now or datetime.now(UTC)
     data = requests.get(WHATS_IN_STANDARD_URL, timeout=30).json()
 
     active = []
     for entry in data["sets"]:
-        enter = datetime.fromisoformat(entry["enterDate"]["exact"]).replace(tzinfo=timezone.utc)
+        enter = datetime.fromisoformat(entry["enterDate"]["exact"]).replace(tzinfo=UTC)
         exit_info = entry.get("exitDate") or {}
         exit_exact = exit_info.get("exact")
-        exit_dt = datetime.fromisoformat(exit_exact).replace(tzinfo=timezone.utc) if exit_exact else None
+        exit_dt = datetime.fromisoformat(exit_exact).replace(tzinfo=UTC) if exit_exact else None
         if enter <= now and (exit_dt is None or now < exit_dt):
             active.append(entry["name"])
     return active

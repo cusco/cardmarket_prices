@@ -116,10 +116,13 @@ refreshed by `update_formats.py`.
 `pytest` from repo root just works (`pytest.ini` sets `pythonpath = .`).
 Network calls are mocked; DB tests run against in-memory DuckDB
 (`tests/conftest.py`'s `con` fixture). `scripts/test_backend.sh` runs pytest
-as a CI gate; `scripts/static_validate_backend.sh` runs black/isort/
-prospector/bandit/semgrep as a second gate (`old/` excluded from all of
-them - it's retired, not maintained). `.github/workflows/ci.yml` runs both
-and uploads `htmlcov/` plus the JUnit/coverage XML as build artifacts.
+as a CI gate; `scripts/static_validate_backend.sh` runs `ruff format --check`
+and `ruff check` as a second gate (config in `pyproject.toml`; `old/` excluded
+via `extend-exclude` - it's retired, not maintained). Ruff replaced the old
+black/isort/prospector/bandit/semgrep stack; `pyproject.toml` documents which
+ruff rule groups stand in for which retired tool. `.github/workflows/ci.yml`
+runs both and uploads `htmlcov/` plus the JUnit/coverage XML as build
+artifacts.
 
 ## Known gaps
 

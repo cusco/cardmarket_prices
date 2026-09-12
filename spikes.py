@@ -57,9 +57,8 @@ def find_spikes(
     if format_name is not None:
         expansion_ids = FORMATS[format_name]
         ids = ",".join(str(i) for i in expansion_ids)
-        set_filter = f"AND pr.expansion_id IN ({ids})"  # nosec B608
+        set_filter = f"AND pr.expansion_id IN ({ids})"
 
-    # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query
     query = f"""
     WITH latest AS (
         SELECT * FROM prices WHERE catalog_date = (SELECT max(catalog_date) FROM prices)
@@ -87,7 +86,7 @@ def find_spikes(
     WHERE pct_change >= ?
     ORDER BY pct_change DESC
     LIMIT ?
-    """  # nosec B608
+    """
     return con.execute(query, [window_days, min_price, max_price, min_price, min_pct, limit]).df()
 
 
@@ -106,9 +105,8 @@ def print_spikes(df) -> None:
         set_label = set_meta.get("code") or set_meta.get("name") or f"(id {row.expansion_id})"
         name = row.name[:29] + "..." if len(row.name) > 32 else row.name
         print(
-            "{:<32} {:<10} {:>8.2f} {:>8.2f} {:>8} {:>+7.1f}%".format(
-                name, set_label, row.latest_price, row.baseline_price, row.elapsed_days, row.pct_change
-            )
+            f"{name:<32} {set_label:<10} {row.latest_price:>8.2f} {row.baseline_price:>8.2f} "
+            f"{row.elapsed_days:>8} {row.pct_change:>+7.1f}%"
         )
 
 
@@ -157,9 +155,8 @@ def find_price_gaps(
     if format_name is not None:
         expansion_ids = FORMATS[format_name]
         ids = ",".join(str(i) for i in expansion_ids)
-        set_filter = f"AND pr.expansion_id IN ({ids})"  # nosec B608
+        set_filter = f"AND pr.expansion_id IN ({ids})"
 
-    # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query
     query = f"""
     WITH latest AS (
         SELECT * FROM prices WHERE catalog_date = (SELECT max(catalog_date) FROM prices)
@@ -185,7 +182,7 @@ def find_price_gaps(
     WHERE gap_pct >= ? AND gap_abs >= ?
     ORDER BY gap_pct DESC
     LIMIT ?
-    """  # nosec B608
+    """
     return con.execute(query, [min_price, max_price, min_price, min_gap_pct, min_gap_abs, limit]).df()
 
 
@@ -203,7 +200,7 @@ def print_price_gaps(df) -> None:
         set_meta = SETS.get(row.expansion_id, {})
         set_label = set_meta.get("code") or set_meta.get("name") or f"(id {row.expansion_id})"
         name = row.name[:29] + "..." if len(row.name) > 32 else row.name
-        print("{:<32} {:<10} {:>8.2f} {:>8.2f} {:>+7.1f}%".format(name, set_label, row.low, row.trend, row.gap_pct))
+        print(f"{name:<32} {set_label:<10} {row.low:>8.2f} {row.trend:>8.2f} {row.gap_pct:>+7.1f}%")
 
 
 if __name__ == "__main__":
