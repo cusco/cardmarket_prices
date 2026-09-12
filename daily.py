@@ -7,6 +7,7 @@ something's new" decision is its own testable unit, rather than conditional logi
 import logging
 
 from export_gdrive import export_spikes_to_gdrive
+from export_premodern_bulk import export_premodern_bulk_to_gdrive
 from ingest import run as run_ingest
 
 logging.basicConfig(level=logging.INFO)
@@ -20,6 +21,7 @@ def run() -> None:
     if new_rows:
         logger.info("New data ingested (%d rows) - exporting to Google Sheets.", new_rows)
         logger.info(export_spikes_to_gdrive())
+        logger.info(export_premodern_bulk_to_gdrive())
     else:
         logger.info("No new data this run - skipping Google Sheets export.")
 

@@ -114,6 +114,16 @@ SPREADSHEET_ID = "1vQs3vlXHu7BELFoVuK4ysfzMeYHDxMdOWgPAGmPVZjk"
 SPIKES_WORKSHEET = "price_pulse_spikes"
 STATUS_WORKSHEET = "price_pulse_status"
 
+# ---- Premodern "floor price" bulk export (replicates the retired old/ Django export) ----
+# Writes to the ORIGINAL "premodern_bulk"/"status" tabs, unlike the price_pulse_* tabs above - other people/sheets
+# may already depend on those tab names, so they're kept exactly as the retired project named them.
+PREMODERN_BULK_WORKSHEET = "premodern_bulk"
+PREMODERN_BULK_STATUS_WORKSHEET = "status"
+PREMODERN_BULK_TOP_N = 800  # rows: the N priciest "cheapest available printing" Premodern cards
+PREMODERN_BULK_MAX_HISTORY_DAYS = 60  # pricing columns kept in the pivot
+PREMODERN_BULK_HISTORY_BUFFER = 20  # extra catalog dates fetched beyond MAX_HISTORY_DAYS, as slack for gaps
+PREMODERN_BULK_EXCLUDED_EXPANSION_IDS = {110, 111}  # Oversized 6x9 Promos / Oversized Box Toppers - not real prints
+
 # ---- spike detection defaults ----
 DEFAULT_MIN_PRICE = 1.0  # floor, avoids bulk-card % noise
 DEFAULT_MAX_PRICE = 20.0  # ceiling, "still affordable"
