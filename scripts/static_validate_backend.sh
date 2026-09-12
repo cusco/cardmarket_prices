@@ -12,5 +12,10 @@ set -o pipefail
 # run ruff format - make sure everyone uses the same python style
 ruff format --check .
 
-# run ruff check - linting, import sorting, complexity, and bandit-style security checks (see pyproject.toml)
-ruff check .
+# run ruff check - linting, import sorting, complexity, and bandit-style security checks (see pyproject.toml).
+# In CI, --output-format=github turns findings into inline annotations on the PR diff instead of plain stdout.
+if [ "$GITHUB_ACTIONS" = "true" ]; then
+    ruff check --output-format=github .
+else
+    ruff check .
+fi
