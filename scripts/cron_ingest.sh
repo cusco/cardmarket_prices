@@ -11,8 +11,14 @@
 # "cardmarket_prices"). Adjust if this runs somewhere else. No output redirection needed in the crontab line -
 # this script logs to LOG_FILE itself. daily.py's own logging is verbose (one line per already-ingested file,
 # useful when run by hand) - that full output is captured but not kept, only a single summary line per run gets
-# appended to LOG_FILE, matching how this server's other cron jobs log under /var/log/custom/. Requires LOG_FILE's
-# directory to already be writable by this user (e.g. via group membership) - it's not created here.
+# appended to LOG_FILE.
+#
+# LOG_FILE lives under local/ (cusco-owned, gitignored), not /var/log/custom/ like this server's other cron jobs -
+# that directory's shared logrotate policy (/etc/logrotate.d/custom) recreates rotated files as root:adm 640 on
+# every rotation, which silently broke this script's write access for weeks (daily.py itself kept running fine;
+# only the log line after it failed, under `set -e`, which then reported the whole run as failed by email every
+# night). A single one-line-per-day summary never needs rotation anyway, so this sidesteps the problem entirely
+# rather than fighting root-owned config shared with unrelated services.
 #
 # Timing: real data (12 consecutive days of file mtimes on this server, see git history) shows Cardmarket's daily
 # snapshot consistently lands 01:43-01:49 server time. Scheduled with a >20-minute buffer past that.
@@ -23,7 +29,7 @@ set -e
 
 REPO_DIR="/home/cusco/git/cardmarket_prices"
 VENV_PYTHON="/home/cusco/.virtualenvs/cardmarket_prices/bin/python"
-LOG_FILE="/var/log/custom/cm_prices_ingest.log"
+LOG_FILE="$REPO_DIR/local/cron_ingest.log"
 
 cd "$REPO_DIR"
 
