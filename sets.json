@@ -3208,7 +3208,7 @@
   "5181": {
     "code": "SLDLILR",
     "is_foil_only": false,
-    "name": "Secret Lair Drop Series: LI'L'ER Walkers",
+    "name": "Secret Lair Drop Series: LI\u2019L\u2019ER Walkers",
     "release_date": "2023-01-09",
     "type": null
   },
@@ -5185,6 +5185,27 @@
     "name": "Deckmasters",
     "release_date": "2001-12-01",
     "type": "box"
+  },
+  "6753": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: A Perfectly Normal Superdrop",
+    "release_date": null,
+    "type": null
+  },
+  "6754": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Reality Fracture: Extras",
+    "release_date": null,
+    "type": null
+  },
+  "6757": {
+    "code": null,
+    "is_foil_only": false,
+    "name": "Secret Lair Drop Series: Secret Lair x MSCHF: The Zeta Set",
+    "release_date": null,
+    "type": null
   },
   "69": {
     "code": "VG",

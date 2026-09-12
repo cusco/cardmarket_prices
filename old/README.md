@@ -24,7 +24,7 @@ Follow these steps to set up the project locally:
 # Clone the repository and install dependencies
 git clone git@github.com:cusco/cardmarket_prices.git
 cd cardmarket_prices
-pip install -r requirements.txt
+pip install -r requirements.txt.frozen
 
 # Apply migrations and load initial data
 cd src

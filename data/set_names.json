@@ -496,7 +496,7 @@
   "5172": "Universes Beyond: Transformers",
   "5173": "Starter Commander Decks",
   "5178": "The Brothers' War: Promos",
-  "5181": "Secret Lair Drop Series: LI'L'ER Walkers",
+  "5181": "Secret Lair Drop Series: LI\u2019L\u2019ER Walkers",
   "5183": "Secret Lair Drop Series: October Superdrop 2022",
   "5184": "Phyrexia: All Will Be One",
   "5185": "Jumpstart 2022",
@@ -739,6 +739,7 @@
   "6554": "Secrets of Strixhaven: Promos",
   "6563": "Secret Lair Drop Series: Back to School Superdrop",
   "6570": "The Hobbit",
+  "6571": "Reality Fracture",
   "6577": "Marvel Super Heroes: Extras",
   "6578": "Marvel Super Heroes: Tokens",
   "6580": "Secret Lair Commander Deck: Goblin Storm",
@@ -753,5 +754,8 @@
   "6679": "Secret Lair Drop Series: Superdrop of the Moonlight Jellies",
   "6682": "The Hobbit: Tokens",
   "6686": "Secret Lair Commander Deck: Hatsune Miku",
-  "6692": "Secret Lair Drop Series: A Marvelous Mathom Superdrop"
+  "6692": "Secret Lair Drop Series: A Marvelous Mathom Superdrop",
+  "6753": "Secret Lair Drop Series: A Perfectly Normal Superdrop",
+  "6754": "Reality Fracture: Extras",
+  "6757": "Secret Lair Drop Series: Secret Lair x MSCHF: The Zeta Set"
 }
