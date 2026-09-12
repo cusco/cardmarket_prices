@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # requirements.txt / requirements-dev.txt at the repo root - old/ has its own frozen requirements.txt for the
+  # retired Django project, deliberately not covered by any entry here since it's not scanned recursively.
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # .github/workflows/ci.yml's own action versions (actions/checkout, actions/setup-python, dorny/test-reporter,
+  # actions/upload-artifact).
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

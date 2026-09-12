@@ -124,6 +124,9 @@ PREMODERN_BULK_MAX_HISTORY_DAYS = 60  # pricing columns kept in the pivot
 PREMODERN_BULK_HISTORY_BUFFER = 20  # extra catalog dates fetched beyond MAX_HISTORY_DAYS, as slack for gaps
 PREMODERN_BULK_EXCLUDED_EXPANSION_IDS = {110, 111}  # Oversized 6x9 Promos / Oversized Box Toppers - not real prints
 
+# ---- Trend-signal comparison export (evaluating which detection method to keep) ----
+SIGNAL_COMPARISON_WORKSHEET = "price_pulse_signal_comparison"
+
 # ---- spike detection defaults ----
 DEFAULT_MIN_PRICE = 1.0  # floor, avoids bulk-card % noise
 DEFAULT_MAX_PRICE = 20.0  # ceiling, "still affordable"
