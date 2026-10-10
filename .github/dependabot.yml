@@ -1,15 +1,27 @@
 version: 2
 updates:
-  # requirements.txt / requirements-dev.txt at the repo root - old/ has its own frozen requirements.txt for the
-  # retired Django project, deliberately not covered by any entry here since it's not scanned recursively.
+  # requirements.txt / requirements-dev.txt at the repo root. The retired project's pins live in
+  # old/requirements.txt.frozen, renamed so Dependabot doesn't treat it as a live manifest.
+  #
+  # Kept quiet on purpose: monthly checks, every update in one grouped PR, and no automatic rebases (each rebase
+  # pushes new commits to the PR branch, which GitHub emails as "added new commits"). Security fixes ignore this
+  # schedule and still open right away.
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    rebase-strategy: "disabled"
+    groups:
+      python-deps:
+        patterns: ["*"]
 
   # .github/workflows/ci.yml's own action versions (actions/checkout, actions/setup-python, dorny/test-reporter,
-  # actions/upload-artifact).
+  # actions/upload-artifact, codecov/codecov-action).
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    rebase-strategy: "disabled"
+    groups:
+      github-actions:
+        patterns: ["*"]
