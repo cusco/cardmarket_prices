@@ -1,27 +1,17 @@
 version: 2
 updates:
-  # requirements.txt / requirements-dev.txt at the repo root. The retired project's pins live in
-  # old/requirements.txt.frozen, renamed so Dependabot doesn't treat it as a live manifest.
-  #
-  # Kept quiet on purpose: monthly checks, every update in one grouped PR, and no automatic rebases (each rebase
-  # pushes new commits to the PR branch, which GitHub emails as "added new commits"). Security fixes ignore this
-  # schedule and still open right away.
+  # Version-update PRs are switched off on purpose (open-pull-requests-limit: 0): routine bumps were noisy and not
+  # wanted. This does NOT affect Dependabot security updates, which ignore this limit and are controlled by the
+  # repo's Security settings instead. The file is kept so the intent is written down, and the retired project's pins
+  # live in old/requirements.txt.frozen so they are never picked up as a live manifest.
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "monthly"
-    rebase-strategy: "disabled"
-    groups:
-      python-deps:
-        patterns: ["*"]
+    open-pull-requests-limit: 0
 
-  # .github/workflows/ci.yml's own action versions (actions/checkout, actions/setup-python, dorny/test-reporter,
-  # actions/upload-artifact, codecov/codecov-action).
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
-    rebase-strategy: "disabled"
-    groups:
-      github-actions:
-        patterns: ["*"]
+    open-pull-requests-limit: 0
